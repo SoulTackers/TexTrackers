@@ -5,6 +5,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Inward(models.Model):
     inward_id = models.AutoField(primary_key=True)
     inward_mode_id = models.IntegerField()
@@ -42,3 +43,4 @@ class InwardTypes(models.Model):
     class Meta:
         managed = True
         db_table = 'inward_types'
+

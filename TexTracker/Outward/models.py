@@ -5,6 +5,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Outward(models.Model):
     outward_id = models.AutoField(primary_key=True)
     outward_clientid = models.IntegerField()
@@ -15,3 +16,4 @@ class Outward(models.Model):
     class Meta:
         managed = True
         db_table = 'outward'
+

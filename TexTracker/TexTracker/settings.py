@@ -75,11 +75,13 @@ WSGI_APPLICATION = 'TexTracker.wsgi.application'
 
 DATABASES = {
     'default': {
+
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'xKKB9ffb4T', 
         'HOST': 'remotemysql.com',
         'USER': 'xKKB9ffb4T',
         'PASSWORD': 'y2UAfGYcUb',
+
     }
 }
 

@@ -5,6 +5,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Invoice(models.Model):
     invoice_id = models.AutoField(primary_key=True)
     invoice_servicetype = models.CharField(max_length=255)
@@ -18,3 +19,4 @@ class Invoice(models.Model):
     class Meta:
         managed = True
         db_table = 'invoice'
+
