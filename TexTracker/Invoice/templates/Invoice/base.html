@@ -1,0 +1,123 @@
+{% load static %}
+{% load  %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <link rel="stylesheet" href="{% static 'Employee/main.css'%}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Starter Page</title>
+  </head>
+  <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-steel">
+                <a class="navbar-brand" href="#">KM Kothari</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                      <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Client
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Add</a>
+                        <a class="dropdown-item" href="#">Update</a>
+                        <a class="dropdown-item" href="#">Client Work</a>
+                      </div>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                      <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Employee
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Add</a>
+                        <a class="dropdown-item" href="#">Update</a>
+                        <a class="dropdown-item" href="#">Employee Work</a>
+                        <a class="dropdown-item" href="#">Profile</a>
+                      </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                      <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Inward
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Add</a>
+                        <a class="dropdown-item" href="#">Update</a>
+                      </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                      <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Outward
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Add</a>
+                        <a class="dropdown-item" href="#">Update</a>
+                      </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                      <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Invoice
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Add</a>
+                        <a class="dropdown-item" href="#">Update</a>
+                        <a class="dropdown-item" href="#">Delete</a>
+                      </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                      <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Inward Bill
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Add</a>
+                        <a class="dropdown-item" href="#">Update</a>
+                        <a class="dropdown-item" href="#">Delete</a>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="navbar-nav">
+                      <a class="nav-item nav-link" href="#">Login</a>
+                      <a class="nav-item nav-link" href="#">Register</a>
+                  </div>
+                  </div>
+              </nav>
+
+              <!-- <div class="p-5"> 
+              
+              </div> -->
+
+              <div class="container">
+                {% block extrainfo %}
+                  
+                {% endblock extrainfo %}
+
+              </div>
+
+              <footer id="sticky-footer" class="py-4 bg-steel text-white-50">
+                  <div class="container text-center">
+                    <small>Copyright &#169; 2019 KM Kothari Pvt. Ltd. All rights reserved.</small>
+                  </div>
+                </footer>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
