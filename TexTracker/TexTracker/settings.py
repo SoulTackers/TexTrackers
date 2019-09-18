@@ -84,10 +84,10 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'xKKB9ffb4T', 
-        'HOST': 'remotemysql.com',
-        'USER': 'xKKB9ffb4T',
-        'PASSWORD': 'y2UAfGYcUb',
+        'NAME': 'temp2', 
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': '',
 
     }
 }

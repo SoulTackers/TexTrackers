@@ -18,3 +18,20 @@ class InwardForm(forms.ModelForm):
                 'inward_client_id',
                 'inward_date'
         ]
+
+class InwardPostTypeForm(forms.ModelForm):
+    class Meta:
+        model=Inward
+        fields = [
+                'InwardPostType_name',
+                'InwardPostType_details'
+        ]
+
+
+class InwardTypesForm(forms.ModelForm):
+    class Meta:
+        model=Inward
+        fields = [
+                'InwardTypes_name' ,
+                'InwardTypes_details' 
+        ]

@@ -4,6 +4,9 @@
 
 <form method="POST"> {% csrf_token %}
     {{form | crispy}}
+    {{ipt_form | crispy}}
+    {{it_form | crispy}}
+
 <input type="submit" class="btn btn-info" value='save'>
 </form>
 {% endblock extrainfo %}
