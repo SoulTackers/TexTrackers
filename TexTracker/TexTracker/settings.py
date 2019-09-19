@@ -43,8 +43,16 @@ INSTALLED_APPS = [
     'FeesInward.apps.FeesinwardConfig',
     'Inward.apps.InwardConfig',
     'Outward.apps.OutwardConfig',
-    'PendingWork.apps.PendingworkConfig'
+    'PendingWork.apps.PendingworkConfig',
+    'Client',
 ]
+
+""" 'Employee',
+'FeesInward',
+'Invoice',
+'Inward',
+'Outward',
+'PendingWork',"""
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -84,7 +92,7 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'temp2', 
+        'NAME': 'test',
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',
