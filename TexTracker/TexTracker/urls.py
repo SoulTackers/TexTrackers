@@ -15,7 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from Employee.views import Employee_view
+from FeesInward.views import Feesinward_view
+from Invoice.views import Invoice_view
+from Outward.views import Outward_view
+from PendingWork.views import PendingWork_view
+from Inward.views import Inward_view
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url('feesinward/',Feesinward_view),
+    url('employee/',Employee_view),
+    url('Invoice/',Invoice_view),
+    url('Inward/',Inward_view),
+    url('Outward/',Outward_view),
+    url('PendingWork/',PendingWork_view)
 ]

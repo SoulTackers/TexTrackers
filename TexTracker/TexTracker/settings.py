@@ -33,10 +33,17 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'crispy_forms',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Employee.apps.EmployeeConfig',
+    'Invoice.apps.InvoiceConfig',
+    'FeesInward.apps.FeesinwardConfig',
+    'Inward.apps.InwardConfig',
+    'Outward.apps.OutwardConfig',
+    'PendingWork.apps.PendingworkConfig'
 ]
 
 MIDDLEWARE = [
@@ -77,10 +84,10 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'xKKB9ffb4T', 
-        'HOST': 'remotemysql.com',
-        'USER': 'xKKB9ffb4T',
-        'PASSWORD': 'y2UAfGYcUb',
+        'NAME': 'temp2', 
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': '',
 
     }
 }
@@ -123,3 +130,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

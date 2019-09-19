@@ -14,7 +14,7 @@ class Inward(models.Model):
     inward_posttype = models.CharField(max_length=255)
     inward_returnperiod = models.DateTimeField()
     inward_month = models.DecimalField(max_digits=2, decimal_places=0)
-    inward_year = models.models.IntegerField()  # This field type is a guess.
+    inward_year = models.IntegerField()  # This field type is a guess.
     # inward_uploadfilestatus = models.IntegerField()
     inward_remarks = models.TextField()
     inward_client_id = models.IntegerField()
