@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Inward
+from .models import Inward,InwardTypes,InwardPostType
 
 class InwardForm(forms.ModelForm):
     class Meta:
@@ -21,7 +21,7 @@ class InwardForm(forms.ModelForm):
 
 class InwardPostTypeForm(forms.ModelForm):
     class Meta:
-        model=Inward
+        model=InwardPostType
         fields = [
                 'InwardPostType_name',
                 'InwardPostType_details'
@@ -30,7 +30,7 @@ class InwardPostTypeForm(forms.ModelForm):
 
 class InwardTypesForm(forms.ModelForm):
     class Meta:
-        model=Inward
+        model=InwardTypes
         fields = [
                 'InwardTypes_name' ,
                 'InwardTypes_details' 
