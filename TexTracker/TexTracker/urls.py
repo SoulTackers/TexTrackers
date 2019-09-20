@@ -21,6 +21,8 @@ from Invoice.views import Invoice_view
 from Outward.views import Outward_view
 from PendingWork.views import PendingWork_view
 from Inward.views import Inward_view
+from django.contrib.auth.views import LoginView, LogoutView
+
 
 
 urlpatterns = [
@@ -31,6 +33,7 @@ urlpatterns = [
     url('inward/',Inward_view),
     url('outward/',Outward_view),
     url('pendingwork/',PendingWork_view),
-    url(r'^login/', include('Login.urls')),
+    url('login/', LoginView.as_view(template_name='Login/login.html'), name='login'),
+    url('logout/', LogoutView.as_view(template_name='Login/logout.html'), name='logout'),
     url(r'^employee/', include('Employee.urls')),
 ]
