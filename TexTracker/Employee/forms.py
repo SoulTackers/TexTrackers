@@ -1,5 +1,6 @@
 from django import forms
 
+from django.contrib.auth.forms import User
 from .models import Employee,EmployeePost
 
 class EmployeeForm(forms.ModelForm):

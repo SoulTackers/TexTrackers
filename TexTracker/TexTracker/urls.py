@@ -21,14 +21,16 @@ from Invoice.views import Invoice_view
 from Outward.views import Outward_view
 from PendingWork.views import PendingWork_view
 from Inward.views import Inward_view
+from Login.views import login_employee
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('feesinward/',Feesinward_view),
     url('employee/',Employee_view),
-    url('Invoice/',Invoice_view),
-    url('Inward/',Inward_view),
-    url('Outward/',Outward_view),
-    url('PendingWork/',PendingWork_view)
+    url('invoice/',Invoice_view),
+    url('inward/',Inward_view),
+    url('outward/',Outward_view),
+    url('pendingwork/',PendingWork_view),
+    url('login/',login_employee),
 ]

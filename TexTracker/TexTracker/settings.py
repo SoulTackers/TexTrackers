@@ -44,15 +44,10 @@ INSTALLED_APPS = [
     'Inward.apps.InwardConfig',
     'Outward.apps.OutwardConfig',
     'PendingWork.apps.PendingworkConfig',
-    'Client',
+    'Client.apps.ClientConfig',
+    'Login.apps.LoginConfig',
+    'phone_field',
 ]
-
-""" 'Employee',
-'FeesInward',
-'Invoice',
-'Inward',
-'Outward',
-'PendingWork',"""
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -138,4 +133,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

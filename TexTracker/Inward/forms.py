@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Inward,InwardTypes,InwardPostType
+from .models import Inward,InwardTypes,InwardPostType,InwardImage
 
 class InwardForm(forms.ModelForm):
     class Meta:
@@ -33,5 +33,13 @@ class InwardTypesForm(forms.ModelForm):
         model=InwardTypes
         fields = [
                 'InwardTypes_name' ,
-                'InwardTypes_details' 
+                'InwardTypes_details'
+        ]
+
+class InwardImageForm(forms.ModelForm):
+    class Meta:
+        model=InwardImage
+        fields = [
+            'inward_id',
+            'inward_doc',
         ]
