@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'crispy_forms',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -45,8 +44,12 @@ INSTALLED_APPS = [
     'Outward.apps.OutwardConfig',
     'PendingWork.apps.PendingworkConfig',
     'Client.apps.ClientConfig',
-    'Login.apps.LoginConfig',
+    'Authentication.apps.AuthenticationConfig',
     'phone_field',
+    'rest_framework',
+    'rest_framework.authtoken',
+    #'djoser',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +138,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated', )
+}

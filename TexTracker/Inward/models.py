@@ -45,9 +45,9 @@ class InwardTypes(models.Model):
         managed = True
         db_table = 'inward_types'
 
-class InwardImage(models.Model):
-    inward_id = models.AutoField(primary_key=True)
+class InwardDocument(models.Model):
+    inward_id = models.OneToOneField(Inward, models.CASCADE)
     inward_doc = models.FileField(upload_to='uploads/')
     class Meta:
         managed = True
-        db_table = 'inward_Images'
+        db_table = 'inward_Document'

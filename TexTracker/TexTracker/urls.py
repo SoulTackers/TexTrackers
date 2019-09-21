@@ -33,7 +33,8 @@ urlpatterns = [
     url('inward/',Inward_view),
     url('outward/',Outward_view),
     url('pendingwork/',PendingWork_view),
-    url('login/', LoginView.as_view(template_name='Login/login.html'), name='login'),
-    url('logout/', LogoutView.as_view(template_name='Login/logout.html'), name='logout'),
+    url('login/', LoginView.as_view(template_name='Authentication/login.html'), name='login'),
+    url('logout/', LogoutView.as_view(template_name='Authentication/logout.html'), name='logout'),
     url(r'^employee/', include('Employee.urls')),
+    url(r'^Authentication/', include('Authentication.urls')),
 ]

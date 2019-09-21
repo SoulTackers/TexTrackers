@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .forms import InwardForm,InwardPostTypeForm,InwardTypesForm,InwardImageForm
+from .forms import InwardForm,InwardPostTypeForm,InwardTypesForm,InwardDocumentForm
 from django.shortcuts import render
 from django.contrib import messages
 
