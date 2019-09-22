@@ -90,11 +90,7 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
-<<<<<<< HEAD
-        'NAME': 'test1',
-=======
         'NAME': 'test',
->>>>>>> master
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',
