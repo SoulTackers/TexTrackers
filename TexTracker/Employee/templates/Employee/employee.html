@@ -1,11 +1,67 @@
-{% extends 'Employee/base.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block extrainfo %}
 
 <form method="POST"> {% csrf_token %}
-    {{form | crispy}}
-    {{form1 | crispy}}
-
-<input type="submit" class="btn btn-info" value='save'>
+        <h1 class="hcolor"> EMPLOYEE FORM </h1><hr>
+    <br><div class="container">
+                
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">EMPLOYEE NAME</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{form.employee_name}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">EMPLOYEE POST</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{form.employee_postid}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">EMPLOYEE PHONE NUMBER</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{form.employee_phone}}
+                                    </div>
+                            </div>
+                        </div><br>
+            
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">EMPLOYEE DETAILS</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{form1.ep_details}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">EMPLOYEE POST NAME</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{form1.ep_name}}
+                                    </div>
+                            </div>
+                        </div><br>
+            <div class="form-group">
+                    <button class="btn btn-info" type="submit">Save</button>
+                    <button class="btn btn-info" type="reset">Cancel</button>
+                </div>
+        </div>
 </form>
 {% endblock extrainfo %}

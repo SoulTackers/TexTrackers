@@ -9,7 +9,11 @@ def Inward_view(request):
     inwardform = InwardForm(request.POST or None)
     inwardposttypeform = InwardPostTypeForm(request.POST or None)
     inwardtypesform = InwardTypesForm(request.POST or None)
+<<<<<<< HEAD
     inwardimageform = InwardImageForm(request.POST or None)
+=======
+    inwardimageform = InwardDocumentForm(request.POST or None)
+>>>>>>> master
     if inwardform.is_valid() and inwardposttypeform.is_valid() and inwardtypesform.is_valid():
         inwardform.save()
         inwardposttypeform.save()

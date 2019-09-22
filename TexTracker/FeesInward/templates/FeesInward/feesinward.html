@@ -1,9 +1,109 @@
-{% extends 'Employee/base.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block extrainfo %}
 
 <form method="POST"> {% csrf_token %}
-    {{form | crispy}}
-<input type="submit" class="btn btn-info" value='save'>
+    <h1 class="hcolor">Fees Inward</h1>
+    <hr>
+    <div class="container">
+        <div class="form-group-inner"><br>
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">Employee Name</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.employee_name}}
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">MODE ID</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_inward_mode_id}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">EMPLOYEE ID</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_employee_id}}
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">DISCOUNT</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_discount}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">BALANCE OUTSTANDING</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_balance_outstanding}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">PAYMENT DETAILS</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_paymentdetails}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">PAYMENT TYPE</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_paymenttype}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">AMOUNT</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_amount}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_client_id}}
+                </div>
+            </div>
+        </div> <br>
+        <div>
+            <input type="submit" class="btn btn-info" value='save'>
+        </div><br>
+    </div>
+
+
+
 </form>
 {% endblock extrainfo %}

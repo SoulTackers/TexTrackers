@@ -67,7 +67,7 @@ ROOT_URLCONF = 'TexTracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -90,7 +90,11 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
         'NAME': 'test1',
+=======
+        'NAME': 'test',
+>>>>>>> master
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',

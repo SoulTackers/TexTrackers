@@ -88,22 +88,52 @@
                     </li>
                   </ul>
                   <div class="navbar-nav">
-                      <a class="nav-item nav-link" href="#">Login</a>
+                    {% if user.is_authenticated %}
+                    <a class="nav-item nav-link" href="#">Logout</a>                      
+                    {% else %}
+                    <a class="nav-item nav-link" href="#">Login</a>                                            
+                    {% endif %}
+                    
                       <a class="nav-item nav-link" href="#">Register</a>
                   </div>
                   </div>
               </nav>
 
-              <!-- <div class="p-5"> 
-              
-              </div> -->
-
-              <div class="container">
-                {% block extrainfo %}
-                  
-                {% endblock extrainfo %}
-
+              <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+<<<<<<< HEAD:TexTracker/Employee/templates/Employee/base.html
+                {% block extrainfo %}{% endblock %}
+=======
+                <div class="content-section mt-4">
+                {% block extrainfo %}{% endblock %}
               </div>
+>>>>>>> master:TexTracker/templates/base.html
+            </div>
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3>Our Sidebar</h3>
+                    <p class='text-muted'>You can put any information here you'd like.
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-light">Latest Posts</li>
+                            <li class="list-group-item list-group-item-light">Announcements</li>
+                            <li class="list-group-item list-group-item-light">Calendars</li>
+                            <li class="list-group-item list-group-item-light">etc</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+            
 
               <footer id="sticky-footer" class="py-4 bg-steel text-white-50">
                   <div class="container text-center">

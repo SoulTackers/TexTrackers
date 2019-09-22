@@ -1,9 +1,123 @@
-{% extends 'Employee/base.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block extrainfo %}
 
 <form method="POST"> {% csrf_token %}
-    {{form | crispy}}
-<input type="submit" class="btn btn-info" value='save'>
+  
+    <h1 class="hcolor"> PENDING WORK </h1><hr>
+    <br><div class="container">
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">EMPLOYEE ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.PendingWork_employeeid}}
+                        </div>
+                </div>
+            </div><br>
+            
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">PENDING WORK EMPLOYEE ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.PendingWork_inwardid}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">NAME</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.PendingWork_name}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">POST ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.PendingWork_postid}}
+                        </div>
+                </div>
+            </div><br>
+             <input type="submit" class="btn btn-info" value='save'>
+            </div><br>
 </form>
 {% endblock extrainfo %}
+
+
+{% comment %} {% extends 'Employee/base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+
+<form method="POST"> {% csrf_token %}
+    
+     <table align="center" class="table tbbb1 table-hover">
+    <th colspan="3" style="" >
+        <label for="">PENDING WORK</label>
+    </th>
+    <tr>
+        <td>
+            <label for="">EMPLOYEE ID</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.PendingWork_employeeid}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="">PENDING WORK INWARD ID</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.PendingWork_inwardid}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="">NAME</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.PendingWork_name}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="">POST ID</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.PendingWork_postid}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+           
+        </td>
+        <td>
+        </td>
+        <td>
+            <input type="submit" class="btn btn-info" value='save'>
+        </td>
+    </tr> 
+    
+</form>
+
+{% endblock extrainfo %} {% endcomment %}
