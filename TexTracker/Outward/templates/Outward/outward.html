@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+
+<form method="POST"> {% csrf_token %}
+    {% comment %} <table align="center" class="table tbbb1 table-hover">
+    <th colspan="3" >
+        <label for="">OUTWARD FORM</label>
+    </th>
+    <tr>
+        <td>
+            <label for="">CLEINT ID</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.outward_clientid}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="">DATE</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.outward_date}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="">UPLOAD STATUS</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.outward_uploaddocstatus}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="">INWARD ID</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.outward_inwardid}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+           <input type="submit" class="btn btn-info" value='save'>
+        </td>
+    </tr> {% endcomment %}
+
+<h1 class="hcolor"> Outward </h1><hr>
+    <br><div class="container">
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.outward_clientid}}
+                        </div>
+                </div>
+            </div><br>
+            
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">DATE</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.outward_date}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">UPLOAD DOC STATUS</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.outward_uploaddocstatus}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">INWARD ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.outward_inwardid}}
+                        </div>
+                </div>
+            </div><br>
+            <input type="submit" class="btn btn-info" value='save'>
+        </div><br>
+</form>
+{% endblock extrainfo %}
