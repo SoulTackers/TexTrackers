@@ -10,6 +10,9 @@ class EmployeePost(models.Model):
     ep_details = models.TextField()
     ep_name = models.CharField(max_length=256)
 
+    def __str__(self):
+        return self.ep_name
+
     class Meta:
         managed = True
         db_table = 'employee_post'
