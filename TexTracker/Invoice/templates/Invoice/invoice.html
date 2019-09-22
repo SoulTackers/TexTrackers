@@ -1,9 +1,157 @@
-{% extends 'Employee/base.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block extrainfo %}
 
 <form method="POST"> {% csrf_token %}
-    {{form | crispy}}
-<input type="submit" class="btn btn-info" value='save'>
+    <h1 class="hcolor"> INVOICE FORM </h1><hr>
+    <div class="container">
+        <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">SERVICE TYPE</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.invoice_servicetype}}
+                        </div>
+                </div>
+        </div><br>
+        <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">ADDRESS</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.invoice_address}}
+                        </div>
+                </div>
+        </div><br>
+        <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">AMOUNT</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.invoice_amount}}
+                        </div>
+                </div>
+        </div><br>
+        <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">COMMENTS</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.invoice_comments}}
+                        </div>
+                </div>
+        </div><br>
+        <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.invoice_clientid}}
+                        </div>
+                </div>
+        </div><br>
+        <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">DATE</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.invoice_date}}
+                        </div>
+                </div>
+        </div><br>
+        <input type="submit" class="btn btn-info" value='save'>
+            
+    </div><br>
+
 </form>
+{% comment %} <table align="center" class="table tbbb1 table-hover">
+    <th colspan="3" style="" >
+        <label for="">INVOICE FORM</label>
+    </th>
+    <tr>
+        <td>
+            <label for=""> SERVICE TYPE</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.invoice_servicetype}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for=""> ADDRESS</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.invoice_address}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for=""> AMOUNT</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.invoice_amount}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for=""> COMMENTS</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.invoice_comments}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for=""> CLIENT ID</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.invoice_clientid}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for=""> DATE</label>
+        </td>
+        <td>
+            <label for="">:</label>
+        </td>
+        <td>
+            {{form.invoice_date}}
+        </td>
+    </tr>
+    <tr>
+    <td>
+    </td>
+    <td>
+    </td>
+    
+    <td>
+     <input type="submit" class="btn btn-info" value='save'>
+    </td>
+  
+    </tr>
+    
+    
+</table> {% endcomment %}
 {% endblock extrainfo %}

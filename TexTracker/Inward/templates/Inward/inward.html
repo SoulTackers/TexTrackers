@@ -1,11 +1,176 @@
-{% extends 'Employee/base.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block extrainfo %}
 
 <form method="POST"> {% csrf_token %}
-    {{form | crispy}}
-    {{ipt_form | crispy}}
-    {{it_form | crispy}}
+    <h1 class="hcolor"> INWARD </h1><hr>
+    <br><div class="container">
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">MODE ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.inward_mode_id}}
+                        </div>
+                </div>
+            </div><br>
+            
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">TRACK</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.inward_track}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">EMPLOYEE ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.inward_employeeid}}
+                        </div>
+                </div>
+            </div><br>
+        
+        <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">POST TYPE</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.inward_posttype}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">RETURN PERIOD</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.inward_returnperiod}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">MONTH</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.inward_month}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">YEAR</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.inward_year}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">REMARKS</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.inward_remarks}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.inward_client_id}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                           <label class="login2 pull-right pull-right-pro">DATE</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{form.inward_date}}
+                        </div>
+                </div>
+              </div><br>
+
+            
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                               <label class="login2 pull-right pull-right-pro">INWARD POST TYPE</label>
+                            </div>
+                            <div class="col-lg-9">
+                                 {{ipt_form.InwardPostType_name}}
+                            </div>
+                        </div>
+                </div><br>
+                    <div class="form-group-inner">
+                        <div class="row">
+                                <div class="col-lg-3">
+                                   <label class="login2 pull-right pull-right-pro">INWARD POST DETAILS</label>
+                                </div>
+                                <div class="col-lg-9">
+                                     {{ipt_form.InwardPostType_details}}
+                                </div>
+                        </div>
+                </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">INWARD TYPE</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{it_form.InwardTypes_name}}
+                                    </div>
+                                </div>
+                        </div><br>
+                            <div class="form-group-inner">
+                                <div class="row">
+                                        <div class="col-lg-3">
+                                           <label class="login2 pull-right pull-right-pro">INWARD TYPE DETAILS</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                             {{it_form.InwardTypes_details}}
+                                        </div>
+                                </div>
+                        </div><br>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                            <div class="col-lg-3">
+                                               <label class="login2 pull-right pull-right-pro">INWARD ID</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                 {{image_form.inward_id}}
+                                            </div>
+                                        </div>
+                                </div><br>
+                                    <div class="form-group-inner">
+                                        <div class="row">
+                                                <div class="col-lg-3">
+                                                   <label class="login2 pull-right pull-right-pro">INWARD DOCUMENT UPLOAD</label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                     {{image_form.inward_doc}}
+                                                </div>
+                                        </div>
+                                </div><br>
+                        </div>
+
 
 <input type="submit" class="btn btn-info" value='save'>
 </form>

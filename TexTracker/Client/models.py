@@ -2,8 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from phonenumber_field.modelfield import PhoneNumberField
-
+from phone_field import PhoneField
 # Create your models here.
 class AccountType(models.Model):
     account_type_id = models.AutoField(primary_key=True)
@@ -23,7 +22,7 @@ class Client(models.Model):
     client_office_address2 = models.TextField()
     client_office_pin = models.CharField(max_length=12)
     # https://stackoverflow.com/questions/19130942/whats-the-best-way-to-store-phone-number-in-django-models
-    client_phone = PhoneNumberField()
+    client_phone = PhoneField()
     client_email = models.EmailField()
     client_type_of_dealer = models.IntegerField()
 
@@ -37,10 +36,10 @@ class ClientAccountantInfo(models.Model):
     client_acc_info_accountant_phone = models.BigIntegerField()
     client_acc_info_accountant_email = models.EmailField()
     client_acc_info_accountant_counsultant_name = models.TextField()
-    client_acc_info_accountant_counsultant_phone = PhoneNumberField()
+    client_acc_info_accountant_counsultant_phone = PhoneField()
     client_acc_info_accountant_counsultant_email = models.EmailField()
     client_acc_info_ca_name = models.TextField()
-    client_acc_info_ca_phone = PhoneNumberField()
+    client_acc_info_ca_phone = PhoneField()
     client_acc_info_ca_email = models.EmailField()
     client_id = models.IntegerField()
 

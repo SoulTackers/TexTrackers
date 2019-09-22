@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'crispy_forms',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -43,7 +42,14 @@ INSTALLED_APPS = [
     'FeesInward.apps.FeesinwardConfig',
     'Inward.apps.InwardConfig',
     'Outward.apps.OutwardConfig',
-    'PendingWork.apps.PendingworkConfig'
+    'PendingWork.apps.PendingworkConfig',
+    'Client.apps.ClientConfig',
+    'Authentication.apps.AuthenticationConfig',
+    'phone_field',
+    'rest_framework',
+    'rest_framework.authtoken',
+    #'djoser',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +67,7 @@ ROOT_URLCONF = 'TexTracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +90,7 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'temp2', 
+        'NAME': 'tt',
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',
@@ -130,4 +136,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated', )
+}
