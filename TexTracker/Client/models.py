@@ -17,7 +17,7 @@ class AccountType(models.Model):
 class Client(models.Model):
     client_id = models.AutoField(primary_key=True)
     client_name = models.TextField()
-    client_account_type = models.IntegerField()
+    client_account_type = models.ForeignKey(AccountType, on_delete=models.DO_NOTHING)
     client_office_address1 = models.TextField()
     client_office_address2 = models.TextField()
     client_office_pin = models.CharField(max_length=12)

@@ -36,5 +36,6 @@ urlpatterns = [
     url('login/', LoginView.as_view(template_name='Authentication/login.html'), name='login'),
     url('logout/', LogoutView.as_view(template_name='Authentication/logout.html'), name='logout'),
     url(r'^employee/', include('Employee.urls')),
+    url(r'^client/', include('Client.urls')),
     url(r'^Authentication/', include('Authentication.urls')),
 ]
