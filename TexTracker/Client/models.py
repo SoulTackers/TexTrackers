@@ -41,7 +41,7 @@ class ClientAccountantInfo(models.Model):
     client_acc_info_ca_name = models.TextField()
     client_acc_info_ca_phone = PhoneField()
     client_acc_info_ca_email = models.EmailField()
-    client_id = models.IntegerField()
+    client = models.OneToOneField(Client, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -49,7 +49,7 @@ class ClientAccountantInfo(models.Model):
 
 
 class ClientBankInfo(models.Model):
-    client_id = models.IntegerField()
+    client = models.OneToOneField(Client, on_delete=models.CASCADE, blank=True, null=True)
     client_bank_info_bank_name = models.TextField()
     client_bank_info_account_no = models.BigIntegerField()
     client_bank_info_branch = models.TextField()
@@ -85,7 +85,7 @@ class ClientLegalInfo(models.Model):
 
 
     ###############################################
-    client_id = models.IntegerField()
+    client = models.OneToOneField(Client, on_delete=models.CASCADE, blank=True, null=True)
     ###############################################
 
     class Meta:
@@ -94,7 +94,7 @@ class ClientLegalInfo(models.Model):
 
 
 class ClientPassword(models.Model):
-    client_id = models.IntegerField()
+    client = models.OneToOneField(Client, on_delete=models.CASCADE, blank=True, null=True)
     client_password_vat = models.TextField(db_column='client_password_VAT')  # Field name made lowercase.
     client_password_it = models.TextField(db_column='client_password_IT')  # Field name made lowercase.
     client_passwordclient_password_tds = models.TextField(db_column='client_passwordclient_password_TDS')  # Field name made lowercase.
@@ -108,7 +108,7 @@ class ClientPassword(models.Model):
 
 
 class ClientSevice(models.Model):
-    client_id = models.IntegerField()
+    client = models.OneToOneField(Client, on_delete=models.CASCADE, blank=True, null=True)
     client_service_id = models.IntegerField()
 
     class Meta:
