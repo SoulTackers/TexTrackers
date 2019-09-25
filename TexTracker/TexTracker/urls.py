@@ -17,30 +17,20 @@ from django.conf.urls import url, include
 from django.urls import path
 from django.contrib import admin
 from Employee.views import Employee_view
-from FeesInward.views import feesinward_view,feesinward_update_view
-from Invoice.views import invoice_view,invoice_update_view
-from Outward.views import outward_view,outward_update
-from PendingWork.views import pendingwork_view,pendingwork_update_view
-from Inward.views import Inward_view
 from django.contrib.auth.views import LoginView, LogoutView
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('feesinward/',feesinward_view,name='add-feeinward'),
-    path('feesinward/<int:id>/',feesinward_update_view,name='update-feeinward'),
-    path('employee/',Employee_view),
-    path('invoice/',invoice_view,name='add-invoice'),
-    path('invoice/<int:id>',invoice_update_view,name='update-invoice'),
-    path('inward/',Inward_view,name='add-inward'),
-    path('outward/',outward_view,name='add-outward'),
-    path('outward/<int:id>/',outward_update,name='update-outward'),
-    path('pendingwork/',pendingwork_view,name='add-pendingwork'),
-    path('pendingwork/<int:id>/',pendingwork_update_view,name='update-pendingwork'),
     path('login/', LoginView.as_view(template_name='Authentication/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='Authentication/logout.html'), name='logout'),
+    path('authentication/', include('Authentication.urls')),
+    path('client/', include('client.urls')),
     path('employee/', include('Employee.urls')),
-    
-    path('Authentication/', include('Authentication.urls')),
+    path('feesinward/', include('feesinward.urls')),
+    path('invoice/', include('invoice.urls')),
+    path('inward/', include('inward.urls')),
+    path('outward/', include('outward.urls')),
+    path('pendingwork/', include('pendingwork.urls')),
 ]
