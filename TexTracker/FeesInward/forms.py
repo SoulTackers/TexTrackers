@@ -19,8 +19,7 @@ class FeesinwardForm(forms.ModelForm):
             'feesinward_inward_mode_id',
             'feesinward_employee_id', 
             'feesinward_discount', 
-            'feesinward_balance_outstanding', 
-            'feesinward_paymentdetails', 
+            'feesinward_balance_outstanding',  
             'feesinward_paymenttype', 
             'feesinward_amount',
             'feesinward_client_id'

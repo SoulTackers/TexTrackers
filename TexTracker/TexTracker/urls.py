@@ -21,7 +21,7 @@ from FeesInward.views import feesinward_view,feesinward_update_view
 from Invoice.views import invoice_view,invoice_update_view
 from Outward.views import outward_view,outward_update
 from PendingWork.views import pendingwork_view,pendingwork_update_view
-from Inward.views import Inward_view
+from Inward.views import Inward_view,Inward_update_view
 from Client.views import AddClientView
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -35,6 +35,8 @@ urlpatterns = [
     path('invoice/',invoice_view,name='add-invoice'),
     path('invoice/<int:id>',invoice_update_view,name='update-invoice'),
     path('inward/',Inward_view,name='add-inward'),
+    path('inward/<int:id>',Inward_update_view,name='update-inward'),
+
     path('outward/',outward_view,name='add-outward'),
     path('outward/<int:id>/',outward_update,name='update-outward'),
     path('pendingwork/',pendingwork_view,name='add-pendingwork'),

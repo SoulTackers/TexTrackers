@@ -32,10 +32,20 @@
                                <label class="login2 pull-right pull-right-pro">POST TYPE</label>
                             </div>
                             <div class="col-lg-9">
-                                 {{form.inward_posttype|as_crispy_field}}
+                                 {{form.inward_type|as_crispy_field}}
                             </div>
                     </div>
                 </div><br>
+                <div class="form-group-inner">
+                        <div class="row">
+                                <div class="col-lg-3">
+                                   <label class="login2 pull-right pull-right-pro">POST TYPE</label>
+                                </div>
+                                <div class="col-lg-9">
+                                     {{form.inward_posttype|as_crispy_field}}
+                                </div>
+                        </div>
+                    </div><br>
                 <div class="form-group-inner">
                     <div class="row">
                             <div class="col-lg-3">
@@ -97,47 +107,6 @@
                     </div>
                   </div><br>
     
-                
-                    <div class="form-group-inner">
-                        <div class="row">
-                                <div class="col-lg-3">
-                                   <label class="login2 pull-right pull-right-pro">INWARD POST TYPE</label>
-                                </div>
-                                <div class="col-lg-9">
-                                     {{ipt_form.InwardPostType_name|as_crispy_field}}
-                                </div>
-                            </div>
-                    </div><br>
-                        <div class="form-group-inner">
-                            <div class="row">
-                                    <div class="col-lg-3">
-                                       <label class="login2 pull-right pull-right-pro">INWARD POST DETAILS</label>
-                                    </div>
-                                    <div class="col-lg-9">
-                                         {{ipt_form.InwardPostType_details|as_crispy_field}}
-                                    </div>
-                            </div>
-                    </div><br>
-                            <div class="form-group-inner">
-                                <div class="row">
-                                        <div class="col-lg-3">
-                                           <label class="login2 pull-right pull-right-pro">INWARD TYPE</label>
-                                        </div>
-                                        <div class="col-lg-9">
-                                             {{it_form.InwardTypes_name|as_crispy_field}}
-                                        </div>
-                                    </div>
-                            </div><br>
-                                <div class="form-group-inner">
-                                    <div class="row">
-                                            <div class="col-lg-3">
-                                               <label class="login2 pull-right pull-right-pro">INWARD TYPE DETAILS</label>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                 {{it_form.InwardTypes_details|as_crispy_field}}
-                                            </div>
-                                    </div>
-                            </div><br>
                                     <div class="form-group-inner">
                                         <div class="row">
                                                 <div class="col-lg-3">
