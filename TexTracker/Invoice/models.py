@@ -20,3 +20,11 @@ class Invoice(models.Model):
         managed = True
         db_table = 'invoice'
 
+class Servicetype(models.Model):
+    servicetype_id = models.AutoField(primary_key=True)
+    servicetype_name = models.CharField(max_length=255)
+    servicetype_details = models.TextField()
+
+    class Meta:
+        managed = True
+        db_table = 'servicetype'

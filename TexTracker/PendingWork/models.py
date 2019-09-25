@@ -7,10 +7,8 @@ from django.db import models
 # Create your models here.
 
 class PendingWork(models.Model):
-    PendingWork_employeeid = models.IntegerField(blank=True,null=True) #Employee,on_delete=models.CASCADE, --> foreign key
-    PendingWork_inwardid = models.IntegerField(blank=True,null=True)   #Inward,on_delete=models.CASCADE, --> foreign key
-    PendingWork_name = models.CharField(max_length=256,blank=True,null=True)
-    PendingWork_postid = models.AutoField(primary_key=True)
+    PendingWork_employeeid = models.ForeignKey(Employee,on_delete=models.CASCADE, null=True, blank=True)
+    PendingWork_inwardid = models.OneToOneField(Inward, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         managed = True

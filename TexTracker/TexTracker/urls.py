@@ -27,7 +27,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
-    path(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('feesinward/',feesinward_view,name='add-feeinward'),
     path('feesinward/<int:id>/',feesinward_update_view,name='update-feeinward'),
     path('employee/',Employee_view),
@@ -40,7 +40,7 @@ urlpatterns = [
     path('pendingwork/<int:id>/',pendingwork_update_view,name='update-pendingwork'),
     path('login/', LoginView.as_view(template_name='Authentication/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='Authentication/logout.html'), name='logout'),
-    path(r'^employee/', include('Employee.urls')),
+    path('employee/', include('Employee.urls')),
     
-    path(r'^Authentication/', include('Authentication.urls')),
+    path('Authentication/', include('Authentication.urls')),
 ]

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from .forms import InwardForm,InwardPostTypeForm,InwardTypesForm,InwardDocumentForm
+from PendingWork.forms import PendingWorkForm
 from django.shortcuts import render
 from django.contrib import messages
 
@@ -11,6 +12,7 @@ def Inward_view(request):
         inwardposttypeform = InwardPostTypeForm(request.POST or None)
         inwardtypesform = InwardTypesForm(request.POST or None)
         inwardimageform = InwardDocumentForm(request.POST or None)
+        
         if inwardform.is_valid() and inwardposttypeform.is_valid() and inwardtypesform.is_valid():
             inwardform.save()
             inwardposttypeform.save()

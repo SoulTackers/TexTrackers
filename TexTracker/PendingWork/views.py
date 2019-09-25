@@ -11,7 +11,7 @@ def pendingwork_view(request):
         if form.is_valid():
             form.save()
     else:
-        form = PendingWorkForm(request.POST or None)
+        form = PendingWorkForm()
     context = {
         'form' : form
     }

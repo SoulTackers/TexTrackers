@@ -10,10 +10,10 @@ from django.urls import reverse
 
 class Outward(models.Model):
     outward_id = models.AutoField(primary_key=True)
-    outward_cid = models.IntegerField(blank=True,null=True) #Client,on_delete=models.CASCADE, for foreign key
+    outward_cid = models.ForeignKey(Client,on_delete=models.CASCADE, null=True, blank=True)
     outward_date = models.DateField(blank=True,null=True)
     outward_uploaddocstatus = models.IntegerField(blank=True,null=True)
-    outward_iid = models.IntegerField(blank=True,null=True) #Inward,on_delete=models.CASCADE, for foreign key
+    outward_iid = models.ForeignKey(Inward,on_delete=models.CASCADE,blank=True,null=True) 
     
 
     class Meta:

@@ -1,4 +1,5 @@
 from django import forms
+from crispy_forms.helper import FormHelper
 from .models import (AccountType,
                     Client,
                     ClientAccountantInfo,
@@ -8,6 +9,10 @@ from .models import (AccountType,
                     ClientSevice)
 
 class AccountTypeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model = AccountType
         fields = [
@@ -16,6 +21,10 @@ class AccountTypeForm(forms.ModelForm):
         ]
 
 class ClientForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model = Client
         fields = [
@@ -36,6 +45,10 @@ class ClientForm(forms.ModelForm):
         ]
 
 class ClientBankInfoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model = ClientBankInfo
         fields = [
@@ -45,6 +58,10 @@ class ClientBankInfoForm(forms.ModelForm):
         ]
 
 class ClientAccountantInfoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model = ClientAccountantInfo
         fields = [
@@ -60,6 +77,10 @@ class ClientAccountantInfoForm(forms.ModelForm):
         ]
 
 class ClientLegalInfoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model = ClientLegalInfo
         fields = [
@@ -88,6 +109,10 @@ class ClientLegalInfoForm(forms.ModelForm):
         ]
 
 class ClientPasswordForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model = ClientPassword
         fields = [
@@ -101,6 +126,10 @@ class ClientPasswordForm(forms.ModelForm):
         ]
 
 class ClientSeviceForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model = ClientSevice
         fields = [

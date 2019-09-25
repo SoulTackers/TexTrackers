@@ -11,7 +11,7 @@ class InwardForm(forms.ModelForm):
         model=Inward
         fields = [
                 'inward_id' ,
-                'inward_mode_id' ,
+                #'inward_mode_id',
                 'inward_track',
                 'inward_employeeid',
                 'inward_posttype' ,
