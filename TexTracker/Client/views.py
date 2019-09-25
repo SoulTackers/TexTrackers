@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.views.generic import CreateView, UpdateView
 from django.shortcuts import render
+from .models import AccountType, Client, ClientAccountantInfo, ClientBankInfo, ClientLegalInfo, ClientPassword, ClientSevice
 from .forms import (AccountTypeForm,
                     ClientAccountantInfoForm,
                     ClientBankInfoForm,
@@ -20,9 +21,9 @@ def AddClientView(request):
         clientLegalInfo_Form = ClientLegalInfoForm(request.POST)
         clientPassword_Form = ClientPasswordForm(request.POST)
         clientSevice_Form = ClientSeviceForm(request.POST)
-        if ( clientAccountantInfo_Form.is_valid()
+        if ( client_form.is_valid()
+             and clientAccountantInfo_Form.is_valid()
              and clientBankInfo_Form.is_valid()
-             and client_Form.is_valid()
              and clientLegalInfo_Form.is_valid()
              and clientPassword_Form.is_valid()
              and clientSevice_Form.is_valid()):
@@ -37,7 +38,7 @@ def AddClientView(request):
 
              for form in form_list:
                 if form.client is None:
-                     form.client.client_id = client.client_id
+                     form.client = client
                 form.save()
         
     else:

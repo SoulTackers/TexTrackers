@@ -28,7 +28,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('feesinward/',Feesinward_view),
-    url('employeet/',Employee_view),
+    #url('employeet/',Employee_view),
     url('invoice/',Invoice_view),
     url('inward/',Inward_view),
     url('outward/',Outward_view),
