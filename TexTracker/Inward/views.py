@@ -6,20 +6,25 @@ from django.contrib import messages
 
 # Create your views here.
 def Inward_view(request):
-    inwardform = InwardForm(request.POST or None)
-    inwardposttypeform = InwardPostTypeForm(request.POST or None)
-    inwardtypesform = InwardTypesForm(request.POST or None)
-    inwardimageform = InwardDocumentForm(request.POST or None)
-    if inwardform.is_valid() and inwardposttypeform.is_valid() and inwardtypesform.is_valid():
-        inwardform.save()
-        inwardposttypeform.save()
-        inwardtypesform.save()
-    if inwardimageform.is_valid():
-        inwardimageform.save()
-        messages.success(request, 'image is valid')
+    if request.method == 'POST':
+        inwardform = InwardForm(request.POST or None)
+        inwardposttypeform = InwardPostTypeForm(request.POST or None)
+        inwardtypesform = InwardTypesForm(request.POST or None)
+        inwardimageform = InwardDocumentForm(request.POST or None)
+        if inwardform.is_valid() and inwardposttypeform.is_valid() and inwardtypesform.is_valid():
+            inwardform.save()
+            inwardposttypeform.save()
+            inwardtypesform.save()
+        if inwardimageform.is_valid():
+            inwardimageform.save()
+            messages.success(request, 'image is valid')
+        else:
+            messages.warning(request, 'image is not valid')
     else:
-        messages.warning(request, 'image is not valid')
-
+        inwardform = InwardForm(request.POST or None)
+        inwardposttypeform = InwardPostTypeForm(request.POST or None)
+        inwardtypesform = InwardTypesForm(request.POST or None)
+        inwardimageform = InwardDocumentForm(request.POST or None)
     context = {
         'form' : inwardform,
         'ipt_form' : inwardposttypeform,

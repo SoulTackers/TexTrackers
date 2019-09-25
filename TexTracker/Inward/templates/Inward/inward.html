@@ -11,7 +11,7 @@
                            <label class="login2 pull-right pull-right-pro">MODE ID</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.inward_mode_id}}
+                             {{form.inward_mode_id|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -22,7 +22,7 @@
                             <label class="login2 pull-right pull-right-pro">TRACK</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.inward_track}}
+                             {{form.inward_track|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -32,7 +32,7 @@
                             <label class="login2 pull-right pull-right-pro">EMPLOYEE ID</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.inward_employeeid}}
+                             {{form.inward_employeeid|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -43,7 +43,7 @@
                            <label class="login2 pull-right pull-right-pro">POST TYPE</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.inward_posttype}}
+                             {{form.inward_posttype|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -53,7 +53,7 @@
                            <label class="login2 pull-right pull-right-pro">RETURN PERIOD</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.inward_returnperiod}}
+                             {{form.inward_returnperiod|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -63,7 +63,7 @@
                            <label class="login2 pull-right pull-right-pro">MONTH</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.inward_month}}
+                             {{form.inward_month|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -73,7 +73,7 @@
                            <label class="login2 pull-right pull-right-pro">YEAR</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.inward_year}}
+                             {{form.inward_year|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -83,7 +83,7 @@
                            <label class="login2 pull-right pull-right-pro">REMARKS</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.inward_remarks}}
+                             {{form.inward_remarks|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -93,7 +93,7 @@
                            <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.inward_client_id}}
+                             {{form.inward_client_id|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -103,7 +103,7 @@
                            <label class="login2 pull-right pull-right-pro">DATE</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.inward_date}}
+                             {{form.inward_date|as_crispy_field}}
                         </div>
                 </div>
               </div><br>
@@ -115,7 +115,7 @@
                                <label class="login2 pull-right pull-right-pro">INWARD POST TYPE</label>
                             </div>
                             <div class="col-lg-9">
-                                 {{ipt_form.InwardPostType_name}}
+                                 {{ipt_form.InwardPostType_name|as_crispy_field}}
                             </div>
                         </div>
                 </div><br>
@@ -125,7 +125,7 @@
                                    <label class="login2 pull-right pull-right-pro">INWARD POST DETAILS</label>
                                 </div>
                                 <div class="col-lg-9">
-                                     {{ipt_form.InwardPostType_details}}
+                                     {{ipt_form.InwardPostType_details|as_crispy_field}}
                                 </div>
                         </div>
                 </div><br>
@@ -135,7 +135,7 @@
                                        <label class="login2 pull-right pull-right-pro">INWARD TYPE</label>
                                     </div>
                                     <div class="col-lg-9">
-                                         {{it_form.InwardTypes_name}}
+                                         {{it_form.InwardTypes_name|as_crispy_field}}
                                     </div>
                                 </div>
                         </div><br>
@@ -145,7 +145,7 @@
                                            <label class="login2 pull-right pull-right-pro">INWARD TYPE DETAILS</label>
                                         </div>
                                         <div class="col-lg-9">
-                                             {{it_form.InwardTypes_details}}
+                                             {{it_form.InwardTypes_details|as_crispy_field}}
                                         </div>
                                 </div>
                         </div><br>
@@ -155,7 +155,7 @@
                                                <label class="login2 pull-right pull-right-pro">INWARD ID</label>
                                             </div>
                                             <div class="col-lg-9">
-                                                 {{image_form.inward_id}}
+                                                 {{image_form.inward_id|as_crispy_field}}
                                             </div>
                                         </div>
                                 </div><br>
@@ -165,7 +165,7 @@
                                                    <label class="login2 pull-right pull-right-pro">INWARD DOCUMENT UPLOAD</label>
                                                 </div>
                                                 <div class="col-lg-9">
-                                                     {{image_form.inward_doc}}
+                                                     {{image_form.inward_doc|as_crispy_field}}
                                                 </div>
                                         </div>
                                 </div><br>

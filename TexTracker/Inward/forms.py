@@ -1,8 +1,12 @@
 from django import forms
-
+from crispy_forms.helper import FormHelper
 from .models import Inward,InwardTypes,InwardPostType,InwardDocument
 
 class InwardForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model=Inward
         fields = [
@@ -20,6 +24,10 @@ class InwardForm(forms.ModelForm):
         ]
 
 class InwardPostTypeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model=InwardPostType
         fields = [

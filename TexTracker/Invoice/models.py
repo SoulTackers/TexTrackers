@@ -8,13 +8,13 @@ from django.db import models
 
 class Invoice(models.Model):
     invoice_id = models.AutoField(primary_key=True)
-    invoice_servicetype = models.CharField(max_length=255)
-    invoice_address = models.TextField()
-    invoice_amount = models.FloatField()
+    invoice_servicetype = models.CharField(max_length=255,blank=True,null=True)
+    invoice_address = models.TextField(blank=True,null=True)
+    invoice_amount = models.FloatField(blank=True,null=True)
     # invoice_uploadfilestatus = models.IntegerField()
-    invoice_comments = models.TextField()
-    invoice_clientid = models.IntegerField()
-    invoice_date = models.DateField()
+    invoice_comments = models.TextField(blank=True,null=True)
+    invoice_clientid = models.IntegerField(blank=True,null=True)
+    invoice_date = models.DateField(blank=True,null=True)
 
     class Meta:
         managed = True

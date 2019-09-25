@@ -11,7 +11,7 @@
                            <label class="login2 pull-right pull-right-pro">SERVICE TYPE</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.invoice_servicetype}}
+                             {{form.invoice_servicetype|as_crispy_field}}
                         </div>
                 </div>
         </div><br>
@@ -21,7 +21,7 @@
                            <label class="login2 pull-right pull-right-pro">ADDRESS</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.invoice_address}}
+                             {{form.invoice_address|as_crispy_field}}
                         </div>
                 </div>
         </div><br>
@@ -31,7 +31,7 @@
                            <label class="login2 pull-right pull-right-pro">AMOUNT</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.invoice_amount}}
+                             {{form.invoice_amount|as_crispy_field}}
                         </div>
                 </div>
         </div><br>
@@ -41,7 +41,7 @@
                            <label class="login2 pull-right pull-right-pro">COMMENTS</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.invoice_comments}}
+                             {{form.invoice_comments|as_crispy_field}}
                         </div>
                 </div>
         </div><br>
@@ -51,7 +51,7 @@
                            <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.invoice_clientid}}
+                             {{form.invoice_clientid|as_crispy_field}}
                         </div>
                 </div>
         </div><br>
@@ -61,7 +61,7 @@
                            <label class="login2 pull-right pull-right-pro">DATE</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.invoice_date}}
+                             {{form.invoice_date|as_crispy_field}}
                         </div>
                 </div>
         </div><br>

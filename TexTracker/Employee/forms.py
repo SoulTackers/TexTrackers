@@ -1,10 +1,14 @@
 from django import forms
-
+from crispy_forms.helper import FormHelper
 from .models import Employee,EmployeePost
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class EmployeeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model=Employee
         fields = [
@@ -14,6 +18,10 @@ class EmployeeForm(forms.ModelForm):
         ]
 
 class EmployeePostForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
     class Meta:
         model=EmployeePost
         fields = [

@@ -7,11 +7,15 @@ from django.shortcuts import render
 # Create your views here.
 
 def Employee_view(request):
-    form = EmployeeForm(request.POST or None)
-    form1 = EmployeePostForm(request.POST or None)
-    if form.is_valid() and form1.is_valid():
-        form.save()
-        form1.save()
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST or None)
+        form1 = EmployeePostForm(request.POST or None)
+        if form.is_valid() and form1.is_valid():
+            form.save()
+            form1.save()
+    else:
+        form = EmployeeForm(request.POST or None)
+        form1 = EmployeePostForm(request.POST or None)
     context = {
         'form' : form,
         'form1' : form1

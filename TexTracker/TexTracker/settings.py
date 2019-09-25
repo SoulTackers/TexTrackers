@@ -139,6 +139,9 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,"static_proj"),
+]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',

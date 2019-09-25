@@ -71,7 +71,7 @@
                            <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.outward_clientid}}
+                             {{form.outward_cid |as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -82,7 +82,7 @@
                             <label class="login2 pull-right pull-right-pro">DATE</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.outward_date}}
+                             {{form.outward_date|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -92,7 +92,7 @@
                             <label class="login2 pull-right pull-right-pro">UPLOAD DOC STATUS</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.outward_uploaddocstatus}}
+                             {{form.outward_uploaddocstatus|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
@@ -102,11 +102,12 @@
                             <label class="login2 pull-right pull-right-pro">INWARD ID</label>
                         </div>
                         <div class="col-lg-9">
-                             {{form.outward_inwardid}}
+                             {{form.outward_iid|as_crispy_field}}
                         </div>
                 </div>
             </div><br>
             <input type="submit" class="btn btn-info" value='save'>
         </div><br>
 </form>
+
 {% endblock extrainfo %}
