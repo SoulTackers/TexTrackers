@@ -22,12 +22,13 @@ from Invoice.views import invoice_view,invoice_update_view
 from Outward.views import outward_view,outward_update
 from PendingWork.views import pendingwork_view,pendingwork_update_view
 from Inward.views import Inward_view
+from Client.views import AddClientView
 from django.contrib.auth.views import LoginView, LogoutView
-
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('client/',AddClientView),
     path('feesinward/',feesinward_view,name='add-feeinward'),
     path('feesinward/<int:id>/',feesinward_update_view,name='update-feeinward'),
     path('employee/',Employee_view),

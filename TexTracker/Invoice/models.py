@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from Client.models import Client
 from django.db import models
 
 # Create your models here.
@@ -13,7 +13,7 @@ class Invoice(models.Model):
     invoice_amount = models.FloatField(blank=True,null=True)
     # invoice_uploadfilestatus = models.IntegerField()
     invoice_comments = models.TextField(blank=True,null=True)
-    invoice_clientid = models.IntegerField(blank=True,null=True)
+    invoice_clientid = models.ForeignKey(Client,on_delete=models.CASCADE,blank=True,null=True)
     invoice_date = models.DateField(blank=True,null=True)
 
     class Meta:
