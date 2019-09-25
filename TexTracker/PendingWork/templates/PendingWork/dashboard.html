@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+<h1>List of pending Work</h1>
+{% for instance in work_list  %}
+    <p><a href='/inward/{{instance.PendingWork_inwardid}}/update'>{{instance.Pendingwork_id}}</a></p>
+{% endfor %}
+
+
+
+{% endblock extrainfo %}

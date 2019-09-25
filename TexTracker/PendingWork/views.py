@@ -25,3 +25,8 @@ def pendingwork_update_view(request,id):
         pendingwork_update_form.save()
     
     return render(request,'PendingWork/pendingwork.html',{'form':pendingwork_update_form})
+
+
+def dashboard(request):
+    pendingwork = PendingWork.objects.filter(PendingWork_employeeid = request.user.id)
+    return render(request,'PendingWork/dashboard.html',{'work_list': pendingwork})

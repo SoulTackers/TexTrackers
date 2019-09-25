@@ -15,7 +15,10 @@ def Inward_view(request):
         inwardimageform = InwardDocumentForm(request.POST or None)
         
         if inwardform.is_valid():
-            inwardform.save()
+            form = InwardForm(request.POST)
+            new_inward = form.save(commit=False)
+            new_inward.inward_track = str(request.user.id) + ": Created,"
+            new_inward.save()
         if inwardimageform.is_valid():
             inwardimageform.save()
             messages.success(request, 'image is valid')
@@ -52,3 +55,12 @@ def Inward_update_view(request):
         'image_form' : inwardimageform,
     }
     return render(request,'Inward/inward.html',context)
+
+
+def inward_pass(request):
+    if request.method == 'POST':
+        inward = Inward.objects.get(inward_no = request.POST['inwardno'])
+        inward.inward_employeeid = request.POST['empid']
+        inward.inward_track = inward.inward_track + str(request.user.id)+": "+request.POST['workdone']
+        inward.save()
+    return render(request,'Inward/passinward.html')
