@@ -10,7 +10,6 @@ import datetime
 
 class Inward(models.Model):
     inward_id = models.AutoField(primary_key=True)
-    # inward_mode_id = models.IntegerField(blank=True,null=True)
     inward_track = models.TextField(blank=True,null=True)
     inward_employeeid = models.ForeignKey(Employee,on_delete=models.CASCADE,blank=True,null=True)
     inward_posttype = models.CharField(max_length=255,blank=True,null=True)

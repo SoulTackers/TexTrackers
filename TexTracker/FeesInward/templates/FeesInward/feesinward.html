@@ -5,17 +5,6 @@
 <form method="POST"> {% csrf_token %}
     <h1 class="hcolor">Fees Inward</h1>
     <hr>
-    <div class="container">
-        <div class="form-group-inner"><br>
-            <div class="row">
-                <div class="col-lg-3">
-                    <label class="login2 pull-right pull-right-pro">Employee Name</label>
-                </div>
-                <div class="col-lg-9">
-                    {{form.employee_name|as_crispy_field}}
-                </div>
-            </div>
-        </div>
         <br>
         <div class="form-group-inner">
             <div class="row">
