@@ -90,7 +90,7 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'my_sgp',
+        'NAME': 'test1',
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',
