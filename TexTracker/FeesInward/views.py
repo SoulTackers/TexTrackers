@@ -14,8 +14,8 @@ def feesinward_view(request):
             form.save()
             form1.save()
     else:
-        form = FeesinwardForm(request.POST or None)
-        form1 = PaymenttypeForm(request.POST or None)
+        form = FeesinwardForm()
+        form1 = PaymenttypeForm()
     
     context = {
         'form' : form,

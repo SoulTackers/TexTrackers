@@ -1,23 +1,9 @@
-<<<<<<< HEAD
-{% extends 'Employee/base.html' %}
-=======
 {% extends 'base.html' %}
->>>>>>> master
 {% load crispy_forms_tags %}
 {% block extrainfo %}
 
 <form method="POST"> {% csrf_token %}
-<<<<<<< HEAD
     {{form | crispy}}
 <input type="submit" class="btn btn-info" value='Login'>
-=======
-    <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Log In</legend>
-        {{form | crispy}}
-    </fieldset>
-    <div class="form-group">
-            <button class="btn btn-outlline-info" type="submit">Login</button>
-    </div>
->>>>>>> master
 </form>
 {% endblock extrainfo %}

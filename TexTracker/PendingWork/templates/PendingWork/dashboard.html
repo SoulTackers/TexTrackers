@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+
+<div class="row">
+    <div class="col-md-4">h</div>
+    <div class="col-md-4">h</div>
+    <div class="col-md-4">h</div>
+    <div class="col-md-4">h</div>
+    {% for j in i  %}
+      <p>{{j}}</p>
+    {% endfor %}
+
+
+</div>
+
+
+
+
+{% endblock extrainfo %}

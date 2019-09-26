@@ -1,6 +1,5 @@
-from django.urls import path
-from .views import  AddClientView, UpdateClientView
+from django.conf.urls import url
+from .views import  AddClientView
 urlpatterns = [
-        path('addclient/', AddClientView, name='add-client'),
-        path('<int:id>/update', UpdateClientView, name='update-client'),
+        url('addclient/', AddClientView, name='add-client'),
     ]

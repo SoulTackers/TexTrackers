@@ -2,8 +2,8 @@
 from __future__ import unicode_literals
 from .forms import EmployeeForm,EmployeePostForm
 from .forms import UserRegisterForm
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Employee
+from django.shortcuts import render
+
 # Create your views here.
 
 def Employee_view(request):
@@ -36,12 +36,3 @@ def AddEmployeeView(request):
         form1 = UserRegisterForm()
         form2 = EmployeeForm()
     return render(request, 'Employee/add-employee.html', {'form1': form1, 'form2': form2})
-
-def UpdateEmployeeView(request, id=1):
-    employee = get_object_or_404(Employee, employee_id=id)
-    employee_update_form = EmployeeForm(request.POST or None, instance=employee)
-
-    if employee_update_form.is_valid():
-        employee_update_form.save()
-        return redirect("logout")
-    return render(request, 'Employee/add-employee.html', {'employee_update_form': employee_update_form})
