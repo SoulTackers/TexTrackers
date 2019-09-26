@@ -4,6 +4,7 @@ from .forms import PendingWorkForm
 from django.shortcuts import render
 from django.shortcuts import render,get_object_or_404,render_to_response
 from .models import PendingWork
+from Inward.models import Inward
 # Create your views here.
 def pendingwork_view(request):
     if request.method == 'POST':
@@ -29,4 +30,11 @@ def pendingwork_update_view(request,id):
 
 def dashboard(request):
     pendingwork = PendingWork.objects.filter(PendingWork_employeeid = request.user.id)
-    return render(request,'PendingWork/dashboard.html',{'work_list': pendingwork})
+    inwardlist = []
+    i=5
+    for pw in pendingwork:
+        inward = Inward.objects.get(inward_id = pw.PendingWork_inwardid)
+        inwardlist.append(inward)
+    
+
+    return render(request,'PendingWork/dashboard.html',{'work_list': pendingwork,'inwards':inwardlist,'i':i})
