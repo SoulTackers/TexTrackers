@@ -30,17 +30,18 @@ def pendingwork_update_view(request,id):
 
 
 def dashboard(request):
-    pendingwork = PendingWork.objects.filter(PendingWork_employeeid = request.user.id)
+    pendingwork = PendingWork.objects.filter(PendingWork_employeeid = 1)
     inwardlist = []
-    clientlist = []
+    # clientlist = []
+    print('Hello')
     for pw in pendingwork:
-        inward = Inward.objects.get(inward_id = pw.PendingWork_inwardid)
-        client = Client.objects.get(client_id = inward.inward_client_id)
+        inward = Inward.objects.get(inward_id = pw.PendingWork_inwardid.inward_id)
+        #client = Client.objects.get(client_id = inward.inward_client_id.client_id)
         inwardlist.append(inward)
-        clientlist.append(client)
-    mydata = zip(inwardlist,clientlist)
+        #clientlist.append(client)
+    # mydata = zip(inwardlist,clientlist)
     context = {
-        'data':mydata,
+        'inwards':inwardlist,
         #'inward': inward,
         #'client': client,
     }

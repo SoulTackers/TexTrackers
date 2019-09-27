@@ -4,10 +4,10 @@
 <h3>Pending Works</h3>
 <br>
 <div class="row">
-    {% for inward,client in data  %}
+    {% for inward in inwards  %}
     <div class="card col-md-4" >
             <div class="card-body">
-                    <p>Client Name   {{client.client_name}}</p>
+                    <p>Client Name   {{inward.inward_client_id.client_name}}</p>
                     <p>Inward Post Type   {{inward.inward_posttype}}</p>
                     <p>Inward Date   {{inward.inward_date}}</p>
                     <p>Inward Month   {{inward.inward_month}}</p>
@@ -18,7 +18,7 @@
                     {% else %}
                       <p>Inward Document is not uploaded</p>
                     {% endif %}
-                    <button class="btn btn-info">Show Inward</button>
+                    <button class="btn btn-info" onclick="window.location.href='/inward/{{inward.inward_id}}/show'">Show Inward</button>
               
             </div>
           </div>

@@ -5,6 +5,7 @@ from PendingWork.forms import PendingWorkForm
 from django.shortcuts import render,get_object_or_404
 from django.contrib import messages
 from .models import Inward,InwardTypes,InwardPostType,InwardDocument
+from Outward.forms import OutwardForm
 
 # Create your views here.
 def Inward_view(request):
@@ -37,9 +38,12 @@ def Inward_view(request):
     }
     return render(request,'Inward/inward.html',context)
 
-def Inward_update_view(request):
+def Inward_update_view(request,id):
     inward = get_object_or_404(Inward,inward_id=id)
-    inward_image = get_object_or_404(InwardDocument,inward_id=id)
+    try:
+        inward_image = get_object_or_404(InwardDocument,inward_id=id)
+    except:
+        pass
     inwardform = InwardForm(request.POST or None,instance=inward)
     inwardimageform = InwardDocumentForm(request.POST or None,instance=inward_image)
      
@@ -55,12 +59,21 @@ def Inward_update_view(request):
         'image_form' : inwardimageform,
     }
     return render(request,'Inward/inward.html',context)
+    
 
 
-def inward_pass(request):
+def inward_pass(request,id):
     if request.method == 'POST':
         inward = Inward.objects.get(inward_no = request.POST['inwardno'])
         inward.inward_employeeid = request.POST['empid']
         inward.inward_track = inward.inward_track + str(request.user.id)+": "+request.POST['workdone']
         inward.save()
-    return render(request,'Inward/passinward.html')
+    inward = get_object_or_404(Inward,inward_id=id)
+    outward = OutwardForm(request.POST or None)
+    outward.fields['outward_iid'].initial = inward
+
+    context = {
+        'inward':inward,
+        'outward':outward
+    }    
+    return render(request,'Inward/passinward.html',context)

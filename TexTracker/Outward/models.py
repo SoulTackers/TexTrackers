@@ -13,7 +13,7 @@ class Outward(models.Model):
     outward_cid = models.ForeignKey(Client,on_delete=models.CASCADE, null=True, blank=True)
     outward_date = models.DateField(blank=True,null=True)
     outward_uploaddocstatus = models.IntegerField(blank=True,null=True)
-    outward_iid = models.ForeignKey(Inward,on_delete=models.CASCADE,blank=True,null=True) 
+    outward_iid = models.ForeignKey(Inward,on_delete=models.CASCADE,blank=True,null=True)  
     
 
     class Meta:
