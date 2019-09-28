@@ -7,105 +7,119 @@
         <h1 class="hcolor">Add Employee</h1>
         <hr>
 
-        <p>
-                
-               
-                <div class="alert alert-dark" role="alert" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Client Basic Info
-                      </div>
-              </p>
-              <div class="collapse" id="collapseExample">
-                    <div class="form-group-inner">
-                            <div class="row">
-                                    <div class="col-lg-3">
-                                       <label class="login2 pull-right pull-right-pro">Client ID</label>
-                                    </div>
-                                    <div class="col-lg-9">
-                                         {{client_form.client_name|as_crispy_field}}
-                                    </div>
+        <div id="accordion">
+        <div class="card">
+            <div class="card-header " id="heading-2">
+              <h5 class="mb-0">
+                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                    Client Basic Info<i class="fa ml-5" aria-hidden="true"></i>
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
+              <div class="card-body">
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                               <label class="login2 pull-right pull-right-pro">Client ID</label>
                             </div>
-                        </div><br>
-                        <div class="form-group-inner">
-                            <div class="row">
-                                    <div class="col-lg-3">
-                                       <label class="login2 pull-right pull-right-pro">Client Name</label>
-                                    </div>
-                                    <div class="col-lg-9">
-                                         {{client_form.client_name|as_crispy_field}}
-                                    </div>
+                            <div class="col-lg-9">
+                                 {{client_form.client_name|as_crispy_field}}
                             </div>
-                        </div><br>
-                        <div class="form-group-inner">
-                            <div class="row">
-                                    <div class="col-lg-3">
-                                       <label class="login2 pull-right pull-right-pro">Client Account Type</label>
-                                    </div>
-                                    <div class="col-lg-9">
-                                         {{client_form.client_account_type|as_crispy_field}}
-                                    </div>
+                    </div>
+                </div><br>
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                               <label class="login2 pull-right pull-right-pro">Client Name</label>
                             </div>
-                        </div><br>
-                        <div class="form-group-inner">
-                            <div class="row">
-                                    <div class="col-lg-3">
-                                       <label class="login2 pull-right pull-right-pro">Client Office Address 1</label>
-                                    </div>
-                                    <div class="col-lg-9">
-                                         {{client_form.client_office_address1|as_crispy_field}}
-                                    </div>
+                            <div class="col-lg-9">
+                                 {{client_form.client_name|as_crispy_field}}
                             </div>
-                        </div><br>
-                        <div class="form-group-inner">
-                            <div class="row">
-                                    <div class="col-lg-3">
-                                       <label class="login2 pull-right pull-right-pro">Client Office Address 2</label>
-                                    </div>
-                                    <div class="col-lg-9">
-                                         {{client_form.client_office_address2|as_crispy_field}}
-                                    </div>
+                    </div>
+                </div><br>
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                               <label class="login2 pull-right pull-right-pro">Client Account Type</label>
                             </div>
-                        </div><br>
-                        <div class="form-group-inner">
-                            <div class="row">
-                                    <div class="col-lg-3">
-                                       <label class="login2 pull-right pull-right-pro">Client Office Pin</label>
-                                    </div>
-                                    <div class="col-lg-9">
-                                         {{client_form.client_office_pin|as_crispy_field}}
-                                    </div>
+                            <div class="col-lg-9">
+                                 {{client_form.client_account_type|as_crispy_field}}
                             </div>
-                        </div><br>
-                        <div class="form-group-inner">
-                            <div class="row">
-                                    <div class="col-lg-3">
-                                       <label class="login2 pull-right pull-right-pro">Client Phone</label>
-                                    </div>
-                                    <div class="col-lg-9">
-                                         {{client_form.client_phone|as_crispy_field}}
-                                    </div>
+                    </div>
+                </div><br>
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                               <label class="login2 pull-right pull-right-pro">Client Office Address 1</label>
                             </div>
-                        </div><br>
-                        <div class="form-group-inner">
-                            <div class="row">
-                                    <div class="col-lg-3">
-                                       <label class="login2 pull-right pull-right-pro">Client Email</label>
-                                    </div>
-                                    <div class="col-lg-9">
-                                         {{client_form.client_email|as_crispy_field}}
-                                    </div>
+                            <div class="col-lg-9">
+                                 {{client_form.client_office_address1|as_crispy_field}}
                             </div>
-                        </div><br>
-                        <div class="form-group-inner">
-                            <div class="row">
-                                    <div class="col-lg-3">
-                                       <label class="login2 pull-right pull-right-pro">Type of Dealer</label>
-                                    </div>
-                                    <div class="col-lg-9">
-                                         {{client_form.client_type_of_dealer|as_crispy_field}}
-                                    </div>
+                    </div>
+                </div><br>
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                               <label class="login2 pull-right pull-right-pro">Client Office Address 2</label>
                             </div>
-                        </div><br>
+                            <div class="col-lg-9">
+                                 {{client_form.client_office_address2|as_crispy_field}}
+                            </div>
+                    </div>
+                </div><br>
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                               <label class="login2 pull-right pull-right-pro">Client Office Pin</label>
+                            </div>
+                            <div class="col-lg-9">
+                                 {{client_form.client_office_pin|as_crispy_field}}
+                            </div>
+                    </div>
+                </div><br>
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                               <label class="login2 pull-right pull-right-pro">Client Phone</label>
+                            </div>
+                            <div class="col-lg-9">
+                                 {{client_form.client_phone|as_crispy_field}}
+                            </div>
+                    </div>
+                </div><br>
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                               <label class="login2 pull-right pull-right-pro">Client Email</label>
+                            </div>
+                            <div class="col-lg-9">
+                                 {{client_form.client_email|as_crispy_field}}
+                            </div>
+                    </div>
+                </div><br>
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                               <label class="login2 pull-right pull-right-pro">Type of Dealer</label>
+                            </div>
+                            <div class="col-lg-9">
+                                 {{client_form.client_type_of_dealer|as_crispy_field}}
+                            </div>
+                    </div>
+                </div><br>
               </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
 
 
 
