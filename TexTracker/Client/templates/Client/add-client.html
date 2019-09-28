@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block extrainfo %}
@@ -6,12 +7,526 @@
         <h1 class="hcolor">Add Employee</h1>
         <hr>
 
-        {{client_form | crispy}}
-        {{clientBankInfo_Form | crispy}}
-        {{clientAccountantInfo_Form | crispy}}
-        {{clientLegalInfo_Form | crispy}}
-        {{clientPassword_Form | crispy}}
-        {{clientSevice_Form | crispy}}
+        <p>
+                
+               
+                <div class="alert alert-dark" role="alert" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Client Basic Info
+                      </div>
+              </p>
+              <div class="collapse" id="collapseExample">
+                    <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">Client ID</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{client_form.client_name|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">Client Name</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{client_form.client_name|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">Client Account Type</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{client_form.client_account_type|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">Client Office Address 1</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{client_form.client_office_address1|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">Client Office Address 2</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{client_form.client_office_address2|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">Client Office Pin</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{client_form.client_office_pin|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">Client Phone</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{client_form.client_phone|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">Client Email</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{client_form.client_email|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">Type of Dealer</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{client_form.client_type_of_dealer|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+              </div>
+
+
+
+
+
+
+        
+           
+            
+            
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Bank Name</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientBankInfo_Form.client_bank_info_bank_name|as_crispy_field}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Bank Account Number</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientBankInfo_Form.client_bank_info_account_no|as_crispy_field}}
+                        </div>
+                </div>
+            </div><br>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Bank Branch</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientBankInfo_Form.client_bank_info_branch|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Accountant Name</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientAccountantInfo_Form.client_acc_info_accountant_name|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Accountant Phone</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientAccountantInfo_Form.client_acc_info_accountant_phone|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Accountant Email</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientAccountantInfo_Form.client_acc_info_accountant_email|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Accountant Consultant Name</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientAccountantInfo_Form.client_acc_info_accountant_counsultant_name|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Accountant Consultant Phone</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientAccountantInfo_Form.client_acc_info_accountant_counsultant_phone|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Accountant Email</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientAccountantInfo_Form.client_acc_info_accountant_counsultant_email|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client CA Name</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientAccountantInfo_Form.client_acc_info_ca_name|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client CA Email</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientAccountantInfo_Form.client_acc_info_ca_email|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client CA Phone</label>
+                        </div>
+                        <div class="col-lg-9">
+                             {{clientAccountantInfo_Form.client_acc_info_ca_phone|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client date of Incorporation</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_date_of_incorporation | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client ST File No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_st_file_no | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client IT File No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_it_file_no | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client TDS File No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_tds_file_no | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client VAT File No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_vat_file_no | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client VAT Audit File No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_vat_audit_file_no | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Exercise File No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_exercise_file_no | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client VAT TIN No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_vat_tin_no | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Date 1</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_date1 | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client CST TIN No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_cst_tin_no | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Date 2</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_date2|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Service Tax No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_service_tax_no|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Date 3</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_date3|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client ECC No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_ecc_no|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Date 4</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_date4|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Pancard No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_pancard_no|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client TDS No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_tds_no|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Firm Registration</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_firm_registration|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client IEC No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_iec_no|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Election Card No</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_elect_no|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client PTE 1</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_pte1|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client PTE 2</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientLegalInfo_Form.client_leg_info_pte2|as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Password VAT</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientPassword_Form.client_password_vat | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Password IT</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientPassword_Form.client_password_it | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Password TDS</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientPassword_Form.client_passwordclient_password_tds | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Password ST</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientPassword_Form.client_password_st | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Password Excise</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientPassword_Form.client_password_excise | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Password VAT Unique ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientPassword_Form.client_password_vat_unique_id | as_crispy_field}}
+                        </div>
+                </div>
+            </div>
+            <div class="form-group-inner">
+                <div class="row">
+                        <div class="col-lg-3">
+                            <label class="login2 pull-right pull-right-pro">Client Service ID</label>
+                        </div>
+                        <div class="col-lg-9">
+                            {{clientSevice_Form.client_service_id | as_crispy_field}}
+                        </div>
+                </div>
+            </div>  
 
 
 <input type="submit" class="btn btn-info" value='save'>
