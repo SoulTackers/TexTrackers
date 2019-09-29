@@ -14,9 +14,11 @@ from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
 
-from .serializers import InwardDocumentUploadSerializer
-
+from .serializers import InwardDocumentUploadSerializer, InwardPendingDocumentSerializer
+from Inward.models import InwardPendingDocument
 
 # Create your views here.from django.contrib.auth import authenticate
 
@@ -39,16 +41,27 @@ def login_restApi(request):
 
 
 
-
 class InwardDocumentUploadView(APIView):
     parser_class = (FileUploadParser,)
 
     def post(self, request, *args, **kwargs):
 
-      file_serializer = FileSerializer(data=request.data)
+      file_serializer = InwardDocumentUploadSerializer(data=request.data)
 
       if file_serializer.is_valid():
           file_serializer.save()
           return Response(file_serializer.data, status=status.HTTP_201_CREATED)
       else:
           return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class InwardPendingDocumentView(APIView):
+   # lookup_field = 'name'
+    serializer_class = InwardPendingDocumentSerializer
+    authentication_classes = (SessionAuthentication, TokenAuthentication)
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request,  *args, **kwargs):
+        inwards = InwardPendingDocument.objects.all()
+        serializer = InwardPendingDocumentSerializer(inwards, many=True)
+        return Response(serializer.data)

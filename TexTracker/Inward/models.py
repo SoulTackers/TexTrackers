@@ -36,7 +36,7 @@ class Inward(models.Model):
     inward_returnperiod = models.DateTimeField(default=datetime.date.today,blank=True,null=True)
     inward_month = models.DecimalField(max_digits=2, decimal_places=0,blank=True,null=True)
     inward_year = models.IntegerField()  # This field type is a guess.
-    inward_uploadfilestatus = models.IntegerField()
+    inward_uploadfilestatus = models.BooleanField()
     inward_remarks = models.TextField(blank=True,null=True)
     inward_client_id = models.ForeignKey(Client,on_delete=models.CASCADE,blank=True,null=True)
     inward_date = models.DateField(default=datetime.date.today,blank=True,null=True)
@@ -46,13 +46,17 @@ class Inward(models.Model):
         db_table = 'inward'
 
 
-
-
-
-
 class InwardDocument(models.Model):
     inward_id = models.OneToOneField(Inward, models.CASCADE,blank=True,null=True)
     inward_doc = models.FileField(upload_to='uploads/',blank=True,null=True)
     class Meta:
         managed = True
         db_table = 'inward_Document'
+
+
+class InwardPendingDocument(models.Model):
+    inward = models.OneToOneField(Inward, models.CASCADE,blank=True,null=True)
+    class meta:
+        managed = True
+        db_table = 'pending_inward_document'
+

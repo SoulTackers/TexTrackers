@@ -1,6 +1,6 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from .models import Inward,InwardTypes,InwardPostType,InwardDocument
+from .models import Inward,InwardTypes,InwardPostType,InwardDocument, InwardPendingDocument
 
 class InwardForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -52,3 +52,11 @@ class InwardDocumentForm(forms.ModelForm):
             'inward_id',
             'inward_doc',
         ]
+
+class InwardPendingDocumentForm(forms.ModelForm):
+    class Meta:
+        model = InwardPendingDocument
+        fields = [
+            'inward',
+        ]
+        
