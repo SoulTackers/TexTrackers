@@ -90,7 +90,11 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
         'NAME': 'test1',
+=======
+        'NAME': 'my_sgp',
+>>>>>>> origin/project-final
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',

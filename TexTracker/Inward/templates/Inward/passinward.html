@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+
+
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+                <label class="login2 pull-right pull-right-pro">Inward Track</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_track}}
+            </div>
+    </div>
+</div><br>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+                <label class="login2 pull-right pull-right-pro">Employee Name</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_employeeid.employee_name}}
+            </div>
+    </div>
+</div><br>
+
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Inward type</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_type}}
+            </div>
+    </div>
+</div><br>
+<div class="form-group-inner">
+        <div class="row">
+                <div class="col-lg-3">
+                   <label class="login2 pull-right pull-right-pro">Inward Posttype</label>
+                </div>
+                <div class="col-lg-9">
+                     {{inward.inward_posttype}}
+                </div>
+        </div>
+    </div><br>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Inward Return Period</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_returnperiod}}
+            </div>
+    </div>
+</div><br>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Inward Month</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_month}}
+            </div>
+    </div>
+</div><br>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Year</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_year}}
+            </div>
+    </div>
+</div><br>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Remarks</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_remarks}}
+            </div>
+    </div>
+</div><br>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Client Name</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_client_id.client_name}}
+            </div>
+    </div>
+</div><br>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Inward Date</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_date}}
+            </div>
+    </div>
+  </div><br>
+
+
+
+<h2>Pass to Form</h2>
+<form method="POST"> {% csrf_token %}
+    <p>
+    Inward No <input type="number" name="inwardno">
+</p>
+<p>
+    Work Done 
+    <textarea name="workdone" id="" cols="30" rows="10"></textarea>
+</p>
+
+<p>
+    Pass Employee Id : 
+    <input type="number" name="empid">
+</p>
+
+<input type="submit" class="btn btn-info" value='save'>
+</form>
+<br>
+
+<h2>Convert to Outward</h2>
+<br><div class="container">
+    <div class="form-group-inner">
+        <div class="row">
+                <div class="col-lg-3">
+                   <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
+                </div>
+                <div class="col-lg-9">
+                     {{outward.outward_cid |as_crispy_field}}
+                </div>
+        </div>
+    </div><br>
+    
+    <div class="form-group-inner">
+        <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">DATE</label>
+                </div>
+                <div class="col-lg-9">
+                     {{outward.outward_date|as_crispy_field}}
+                </div>
+        </div>
+    </div><br>
+    <div class="form-group-inner">
+        <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">UPLOAD DOC STATUS</label>
+                </div>
+                <div class="col-lg-9">
+                     {{outward.outward_uploaddocstatus|as_crispy_field}}
+                </div>
+        </div>
+    </div><br>
+    <div class="form-group-inner">
+        <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">INWARD ID</label>
+                </div>
+                <div class="col-lg-9">
+                     {{outward.outward_iid|as_crispy_field}}
+                </div>
+        </div>
+    </div><br>
+    <input type="submit" class="btn btn-info" value='save'>
+</div><br>
+</form>
+{% endblock extrainfo %}

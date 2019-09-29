@@ -32,16 +32,29 @@ class Migration(migrations.Migration):
             fields=[
                 ('feesinward_id', models.AutoField(primary_key=True, serialize=False)),
                 ('feesinward_date', models.DateField(blank=True, null=True)),
+                ('feesinward_inward_mode_id', models.IntegerField(blank=True, null=True)),
+                ('feesinward_employee_id', models.IntegerField(blank=True, null=True)),
                 ('feesinward_discount', models.FloatField(blank=True, null=True)),
                 ('feesinward_balance_outstanding', models.FloatField(blank=True, null=True)),
+                ('feesinward_paymentdetails', models.TextField(blank=True, null=True)),
+                ('feesinward_paymenttype', models.CharField(blank=True, max_length=255, null=True)),
                 ('feesinward_amount', models.FloatField(blank=True, null=True)),
-                ('feesinward_client_id', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='Client.Client')),
-                ('feesinward_employee_id', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='Employee.Employee')),
-                ('feesinward_inward_mode_id', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='Inward.InwardTypes')),
-                ('feesinward_paymenttype', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='FeesInward.PaymentType')),
+                ('feesinward_client_id', models.IntegerField(blank=True, null=True)),
             ],
             options={
                 'db_table': 'feesinward',
+                'managed': True,
+            },
+        ),
+        migrations.CreateModel(
+            name='PaymentType',
+            fields=[
+                ('paymenttype_id', models.AutoField(primary_key=True, serialize=False)),
+                ('paymenttype_details', models.TextField(blank=True, null=True)),
+                ('paymenttype_name', models.CharField(blank=True, max_length=255, null=True)),
+            ],
+            options={
+                'db_table': 'paymenttype',
                 'managed': True,
             },
         ),

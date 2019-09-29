@@ -29,15 +29,27 @@ class Migration(migrations.Migration):
             name='Invoice',
             fields=[
                 ('invoice_id', models.AutoField(primary_key=True, serialize=False)),
+                ('invoice_servicetype', models.CharField(blank=True, max_length=255, null=True)),
                 ('invoice_address', models.TextField(blank=True, null=True)),
                 ('invoice_amount', models.FloatField(blank=True, null=True)),
                 ('invoice_comments', models.TextField(blank=True, null=True)),
+                ('invoice_clientid', models.IntegerField(blank=True, null=True)),
                 ('invoice_date', models.DateField(blank=True, null=True)),
-                ('invoice_clientid', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='Client.Client')),
-                ('invoice_servicetype', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='Invoice.Servicetype')),
             ],
             options={
                 'db_table': 'invoice',
+                'managed': True,
+            },
+        ),
+        migrations.CreateModel(
+            name='Servicetype',
+            fields=[
+                ('servicetype_id', models.AutoField(primary_key=True, serialize=False)),
+                ('servicetype_name', models.CharField(max_length=255)),
+                ('servicetype_details', models.TextField()),
+            ],
+            options={
+                'db_table': 'servicetype',
                 'managed': True,
             },
         ),
