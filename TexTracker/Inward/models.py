@@ -11,8 +11,6 @@ class InwardTypes(models.Model):       # Here inward mode = inward type
     InwardTypes_id = models.AutoField(primary_key=True)
     InwardTypes_name = models.CharField(max_length=255,blank=True,null=True)
     InwardTypes_details = models.CharField(max_length=255,blank=True,null=True)
-<<<<<<< HEAD
-=======
 
     class Meta:
         managed = True

@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 from django.views.generic import CreateView, UpdateView
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.mail import send_mail
+from django.conf import settings
 from .models import AccountType, Client, ClientAccountantInfo, ClientBankInfo, ClientLegalInfo, ClientPassword, ClientSevice
 from .forms import (AccountTypeForm,
                     ClientAccountantInfoForm,
@@ -40,6 +42,13 @@ def AddClientView(request):
                 if form.client is None:
                      form.client = client
                 form.save()
+             # Begin Mail..............
+             subject = 'Work On Your Application has been started..'
+             message = ' It Will be Completed soon '
+             email_from = settings.EMAIL_HOST_USER
+             recipient_list = ['',] #inwardform.inward_client_id.client_email
+             send_mail( subject, message, email_from, recipient_list,fail_silently=False)
+             # End Mail.................
         
     else:
         client_form = ClientForm()

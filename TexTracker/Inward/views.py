@@ -6,6 +6,8 @@ from django.shortcuts import render,get_object_or_404
 from django.contrib import messages
 from .models import Inward,InwardTypes,InwardPostType,InwardDocument,InwardPendingDocument
 from Outward.forms import OutwardForm
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 # Create your views here.
@@ -20,7 +22,14 @@ def Inward_view(request):
             form = InwardForm(request.POST)
             new_inward = form.save(commit=False)
             new_inward.inward_track = str(request.user.id) + ": Created,"
-            new_inward.save()
+            inward_created = new_inward.save()
+            if inward_created :
+                subject = 'Work On Your Application has been started..'
+                message = ' It Will be Completed soon '
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = ['',] #inwardform.inward_client_id.client_email
+                send_mail( subject, message, email_from, recipient_list,fail_silently=False)
+
         if inwardDocumentForm.is_valid():
             inwardDocumentForm.save()
             #messages.success(request, 'Document is valid')
@@ -61,46 +70,22 @@ def Inward_update_view(request):
     return render(request,'Inward/inward.html',context)
 
 
-def inward_pass(request):
-=======
-        'image_form' : inwardimageform,
-    }
-    return render(request,'Inward/inward.html',context)
-
-def Inward_update_view(request,id):
-    inward = get_object_or_404(Inward,inward_id=id)
-    try:
-        inward_image = get_object_or_404(InwardDocument,inward_id=id)
-    except:
-        pass
-    inwardform = InwardForm(request.POST or None,instance=inward)
-    inwardimageform = InwardDocumentForm(request.POST or None,instance=inward_image)
-
-    if inwardform.is_valid():
-        inwardform.save()
-        if inwardimageform.is_valid():
-            inwardimageform.save()
-            messages.success(request, 'image is valid')
-        else:
-            messages.warning(request, 'image is not valid')
-    context = {
-        'form' : inwardform,
-        'image_form' : inwardimageform,
-    }
-    return render(request,'Inward/inward.html',context)
-
-
 
 def inward_pass(request,id):
->>>>>>> origin/project-final
     if request.method == 'POST':
         inward = Inward.objects.get(inward_no = request.POST['inwardno'])
         inward.inward_employeeid = request.POST['empid']
         inward.inward_track = inward.inward_track + str(request.user.id)+": "+request.POST['workdone']
         inward.save()
-<<<<<<< HEAD
-    return render(request,'Inward/passinward.html')
-=======
+
+        # Begin Mail..............
+        subject = 'Work On Your Application has been started..'
+        message = ' It Will be Completed soon '
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['',] #inwardform.inward_client_id.client_email
+        send_mail( subject, message, email_from, recipient_list,fail_silently=False)
+        # End Mail.................
+
     inward = get_object_or_404(Inward,inward_id=id)
     outward = OutwardForm(request.POST or None)
     outward.fields['outward_iid'].initial = inward
@@ -108,6 +93,6 @@ def inward_pass(request,id):
     context = {
         'inward':inward,
         'outward':outward
-    }
+    }    
     return render(request,'Inward/passinward.html',context)
->>>>>>> origin/project-final
+
