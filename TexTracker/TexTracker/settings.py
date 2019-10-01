@@ -90,7 +90,7 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test1',
+        'NAME': 'test2',
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',
@@ -138,14 +138,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+#AUTH_USER_MODEL = "Authentication.CustomUser" 
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,"static_proj"),
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        #'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated', )
+        #'rest_framework.permissions.IsAuthenticated', 
+        )
 }
