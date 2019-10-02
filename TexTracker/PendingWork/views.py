@@ -25,7 +25,7 @@ def pendingwork_update_view(request,id):
 
     if pendingwork_update_form.is_valid():
         pendingwork_update_form.save()
-    
+
     return render(request,'PendingWork/pendingwork.html',{'form':pendingwork_update_form})
 
 
@@ -45,6 +45,6 @@ def dashboard(request):
         #'inward': inward,
         #'client': client,
     }
-    
+
 
     return render(request,'PendingWork/dashboard.html',context)

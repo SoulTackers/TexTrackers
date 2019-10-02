@@ -16,7 +16,7 @@ class AccountType(models.Model):
 
 class Client(models.Model):
     client_id = models.AutoField(primary_key=True)
-    client_name = models.TextField()
+    client_name = models.CharField(max_length=60)
     client_account_type = models.ForeignKey(AccountType, on_delete=models.DO_NOTHING, null=True, blank=True)
     client_office_address1 = models.TextField(null=True, blank=True)
     client_office_address2 = models.TextField(null=True, blank=True)
@@ -32,13 +32,13 @@ class Client(models.Model):
 
 
 class ClientAccountantInfo(models.Model):
-    client_acc_info_accountant_name = models.TextField(null=True, blank=True)
+    client_acc_info_accountant_name = models.CharField(max_length=60,null=True, blank=True)
     client_acc_info_accountant_phone = models.BigIntegerField(null=True, blank=True)
     client_acc_info_accountant_email = models.EmailField(null=True, blank=True)
-    client_acc_info_accountant_counsultant_name = models.TextField(null=True, blank=True)
+    client_acc_info_accountant_counsultant_name = models.CharField(max_length=60,null=True, blank=True)
     client_acc_info_accountant_counsultant_phone = PhoneField(null=True, blank=True)
     client_acc_info_accountant_counsultant_email = models.EmailField(null=True, blank=True)
-    client_acc_info_ca_name = models.TextField(null=True, blank=True)
+    client_acc_info_ca_name = models.CharField(max_length=60,null=True, blank=True)
     client_acc_info_ca_phone = PhoneField(null=True, blank=True)
     client_acc_info_ca_email = models.EmailField(null=True, blank=True)
     client = models.OneToOneField(Client, on_delete=models.CASCADE, blank=True, null=True)
@@ -49,9 +49,9 @@ class ClientAccountantInfo(models.Model):
 
 class ClientBankInfo(models.Model):
     client = models.OneToOneField(Client, on_delete=models.CASCADE, blank=True, null=True)
-    client_bank_info_bank_name = models.TextField(null=True, blank=True)
+    client_bank_info_bank_name = models.CharField(max_length=60,null=True, blank=True)
     client_bank_info_account_no = models.BigIntegerField(null=True, blank=True)
-    client_bank_info_branch = models.TextField(null=True, blank=True)
+    client_bank_info_branch = models.CharField(max_length=60,null=True, blank=True)
 
     class Meta:
         managed = True
@@ -94,12 +94,12 @@ class ClientLegalInfo(models.Model):
 
 class ClientPassword(models.Model):
     client = models.OneToOneField(Client, on_delete=models.CASCADE, blank=True, null=True)
-    client_password_vat = models.TextField(db_column='client_password_VAT', null=True, blank=True)  # Field name made lowercase.
-    client_password_it = models.TextField(db_column='client_password_IT', null=True, blank=True)  # Field name made lowercase.
-    client_passwordclient_password_tds = models.TextField(db_column='client_passwordclient_password_TDS', null=True, blank=True)  # Field name made lowercase.
-    client_password_st = models.TextField(db_column='client_password_ST', null=True, blank=True)  # Field name made lowercase.
-    client_password_excise = models.TextField(null=True, blank=True)
-    client_password_vat_unique_id = models.TextField(db_column='client_password_VAT_unique_id', null=True, blank=True)  # Field name made lowercase.
+    client_password_vat = models.CharField(max_length=60,db_column='client_password_VAT', null=True, blank=True)  # Field name made lowercase.
+    client_password_it = models.CharField(max_length=60,db_column='client_password_IT', null=True, blank=True)  # Field name made lowercase.
+    client_passwordclient_password_tds = models.CharField(max_length=60,db_column='client_passwordclient_password_TDS', null=True, blank=True)  # Field name made lowercase.
+    client_password_st = models.CharField(max_length=60,db_column='client_password_ST', null=True, blank=True)  # Field name made lowercase.
+    client_password_excise = models.CharField(max_length=60,null=True, blank=True)
+    client_password_vat_unique_id = models.CharField(max_length=60,db_column='client_password_VAT_unique_id', null=True, blank=True)  # Field name made lowercase.
 
     class Meta:
         managed = True

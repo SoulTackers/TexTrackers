@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+
+<form method="POST"> {% csrf_token %}
+        <h1 class="hcolor">Add Employee</h1>
+        <hr>
+    {{form3 | as_crispy_field}}
+<input type="submit" class="btn btn-info" value='save'>
+</form>
+{% endblock extrainfo %}

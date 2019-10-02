@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'Employee/main.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    
+
 
     <title>Starter Page</title>
   </head>
@@ -35,8 +35,8 @@
                           <a class="dropdown-item" href="#">Client Work</a>
                         </div>
                       </li>
-  
-  
+
+
                       <li class="nav-item dropdown">
                         <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Employee
@@ -48,7 +48,7 @@
                           <a class="dropdown-item" href="#">Profile</a>
                         </div>
                       </li>
-  
+
                       <li class="nav-item dropdown">
                         <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Inward
@@ -58,7 +58,7 @@
                           <a class="dropdown-item" href="#">Update</a>
                         </div>
                       </li>
-  
+
                       <li class="nav-item dropdown">
                         <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Outward
@@ -68,7 +68,7 @@
                           <a class="dropdown-item" href="#">Update</a>
                         </div>
                       </li>
-  
+
                       <li class="nav-item dropdown">
                         <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Invoice
@@ -79,7 +79,7 @@
                           <a class="dropdown-item" href="#">Delete</a>
                         </div>
                       </li>
-  
+
                       <li class="nav-item dropdown">
                         <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Inward Bill
@@ -99,14 +99,14 @@
                   <div class="navbar-nav">
                     <a class="nav-item nav-link" href="{% url 'login'%}">Login</a>
                     {% endif %}
-                      
+
                   </div>
                   </div>
               </nav>
 
               <main role="main" class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10 mx-auto">
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags }}">
@@ -118,27 +118,14 @@
                 {% block extrainfo %}{% endblock %}
               </div>
             </div>
-            <div class="col-md-4 mt-4">
-                <div class="content-section">
-                    <h3>Our Sidebar</h3>
-                    <p class='text-muted'>You can put any information here you'd like.
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-light">Latest Posts</li>
-                            <li class="list-group-item list-group-item-light">Announcements</li>
-                            <li class="list-group-item list-group-item-light">Calendars</li>
-                            <li class="list-group-item list-group-item-light">etc</li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
         </div>
     </main>
 
-            
+
 
               <footer id="sticky-footer" class="py-4 bg-steel text-white-50">
                   <div class="container text-center">
-                    <small>Copyright &#169; 2019 KM Kothari Pvt. Ltd. All rights reserved.</small>
+                    <small style="color: white">Copyright &#169; 2019 KM Kothari Pvt. Ltd. All rights reserved.</small>
                   </div>
                 </footer>
 

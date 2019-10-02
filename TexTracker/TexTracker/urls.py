@@ -30,7 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(template_name='Authentication/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='Authentication/logout.html'), name='logout'),
-    path('authentication/', include('Authentication.urls')),
+    # path('authentication/', include('Authentication.urls')),
     path('client/', include('Client.urls')),
     path('employee/', include('Employee.urls')),
     path('feesinward/', include('FeesInward.urls')),
@@ -38,6 +38,7 @@ urlpatterns = [
     path('inward/', include('Inward.urls')),
     path('outward/', include('Outward.urls')),
     path('pendingwork/', include('PendingWork.urls')),
+    path('restapi/', include('RestApi.urls')),
     path('',dashboard),
 
 
