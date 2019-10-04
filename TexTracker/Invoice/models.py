@@ -9,6 +9,9 @@ class Servicetype(models.Model):
     servicetype_name = models.CharField(max_length=255)
     servicetype_details = models.TextField()
 
+    def __str__(self):
+        return self.servicetype_name
+
     class Meta:
         managed = True
         db_table = 'servicetype'

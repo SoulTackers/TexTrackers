@@ -12,6 +12,9 @@ class PaymentType(models.Model):
     paymenttype_details = models.TextField(blank=True,null=True)
     paymenttype_name = models.CharField(max_length=255,blank=True,null=True)
 
+    def __str__(self):
+        return self.paymenttype_name
+
     class Meta:
         managed=True
         db_table = 'paymenttype'

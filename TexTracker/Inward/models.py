@@ -12,6 +12,9 @@ class InwardTypes(models.Model):       # Here inward mode = inward type
     InwardTypes_name = models.CharField(max_length=255,blank=True,null=True)
     InwardTypes_details = models.CharField(max_length=255,blank=True,null=True)
 
+    def __str__(self):
+        return self.InwardTypes_name
+
     class Meta:
         managed = True
         db_table = 'inward_types'
@@ -21,6 +24,9 @@ class InwardPostType(models.Model):
     InwardPostType_id = models.AutoField(primary_key=True)
     InwardPostType_name = models.CharField(max_length=255,blank=True,null=True)
     InwardPostType_details = models.CharField(max_length=255,blank=True,null=True)
+
+    def __str__(self):
+        return self.InwardPostType_name
 
     class Meta:
         managed = True

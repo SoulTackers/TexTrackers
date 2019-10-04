@@ -10,6 +10,9 @@ class EmployeePost(models.Model):
     ep_details = models.TextField(blank=True,null=True)
     ep_name = models.CharField(max_length=256,blank=True,null=True)
 
+    def __str__(self):
+        return self.ep_name
+
     class Meta:
         managed = True
         db_table = 'employee_post'
@@ -20,6 +23,9 @@ class Employee(models.Model):
     employee_name = models.CharField(max_length=256,blank=True,null=True)
     employee_postid = models.ForeignKey(EmployeePost, on_delete=models.CASCADE,blank=True,null=True)
     employee_phone = models.CharField(max_length=10,blank=True,null=True)
+
+    def __str__(self):
+        return self.employee_name
     class Meta:
         managed = True
         db_table = 'employee'
