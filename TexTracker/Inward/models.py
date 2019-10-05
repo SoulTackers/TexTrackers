@@ -36,8 +36,8 @@ class Inward(models.Model):
     inward_posttype = models.ForeignKey(InwardPostType,on_delete=models.CASCADE,blank=True,null=True)
     inward_returnperiod = models.DateTimeField(default=datetime.date.today,blank=True,null=True)
     inward_month = models.DecimalField(max_digits=2, decimal_places=0,blank=True,null=True)
-    inward_year = models.IntegerField()  # This field type is a guess.
-    inward_uploadfilestatus = models.BooleanField()
+    inward_year = models.IntegerField(blank=True,null=True)  # This field type is a guess.
+    inward_uploadfilestatus = models.BooleanField(blank=True,null=True)
     inward_remarks = models.TextField(blank=True,null=True)
     inward_client_id = models.ForeignKey(Client,on_delete=models.CASCADE,blank=True,null=True)
     inward_date = models.DateField(default=datetime.date.today,blank=True,null=True)

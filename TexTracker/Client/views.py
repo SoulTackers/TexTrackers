@@ -42,14 +42,14 @@ def AddClientView(request):
                 if form.client is None:
                      form.client = client
                 form.save()
-             # Begin Mail..............
+             """ # Begin Mail..............
              subject = 'Work On Your Application has been started..'
              message = ' It Will be Completed soon '
              email_from = settings.EMAIL_HOST_USER
              recipient_list = ['',] #inwardform.inward_client_id.client_email
-             send_mail( subject, message, email_from, recipient_list,fail_silently=False)
+             send_mail( subject, message, email_from, recipient_list,fail_silently=False)"""
              # End Mail.................
-        
+
     else:
         client_form = ClientForm()
         clientBankInfo_Form = ClientBankInfoForm()
@@ -67,7 +67,7 @@ def AddClientView(request):
             'clientPassword_Form': clientPassword_Form,
             'clientSevice_Form': clientSevice_Form,
         }
-    return render(request, 'Client/add-client.html', context)   
+    return render(request, 'Client/add-client.html', context)
 
 def UpdateClientView(request, id):
 
@@ -95,7 +95,7 @@ def UpdateClientView(request, id):
           and clientLegalInfo_Form.is_valid()
           and clientPassword_Form.is_valid()
           and clientSevice_Form.is_valid()):
-          
+
           client = client_form.save()
           clientBankInfo_Form = clientBankInfo_Form.save()
           clientAccountantInfo_Form = clientAccountantInfo_Form.save()
