@@ -12,7 +12,7 @@ class InwardForm(forms.ModelForm):
         fields = [
                 'inward_id' ,
                 #'inward_mode_id',
-                'inward_track',
+                #'inward_track',
                 'inward_employeeid',
                 'inward_type' ,
                 'inward_posttype',

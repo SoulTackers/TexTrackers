@@ -26,6 +26,9 @@ class Client(models.Model):
     client_email = models.EmailField(null=True, blank=True)
     client_type_of_dealer = models.IntegerField(null=True, blank=True)
 
+    def __str__(self):
+        return self.client_name
+
     class Meta:
         managed = True
         db_table = 'client'

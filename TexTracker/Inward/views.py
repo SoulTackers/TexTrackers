@@ -11,18 +11,21 @@ from django.conf import settings
 
 
 # Create your views here.
+# Create your views here.
 def Inward_view(request):
     if request.method == 'POST':
         inwardform = InwardForm(request.POST or None)
         # inwardposttypeform = InwardPostTypeForm(request.POST or None)
         # inwardtypesform = InwardTypesForm(request.POST or None)
         inwardDocumentForm = InwardDocumentForm(request.POST or None)
+        inwardPendingDocumentForm = InwardPendingDocumentForm(request.POST or None)
 
         if inwardform.is_valid():
             form = InwardForm(request.POST)
             new_inward = form.save(commit=False)
             new_inward.inward_track = str(request.user.id) + ": Created,"
             inward_created = new_inward.save()
+            print(new_inward)
             if inward_created :
                 subject = 'Work On Your Application has been started..'
                 message = ' It Will be Completed soon '
@@ -31,11 +34,16 @@ def Inward_view(request):
                 send_mail( subject, message, email_from, recipient_list,fail_silently=False)
 
         if inwardDocumentForm.is_valid():
-            inwardDocumentForm.save()
+            documentform = inwardDocumentForm.save(commit=False)
+            if documentform.inward_doc == None:
+                temp = inwardPendingDocumentForm.save(commit=False)
+                temp.inward = new_inward
+                temp.save()
+            documentform.save()
             #messages.success(request, 'Document is valid')
         else:
-            InwardPendingDocumentForm.inward = inwardform
-            messages.warning(request, 'Document is not valid')
+            InwardPendingDocumentForm.inward = new_inward
+            messages.warning(request, 'Document is not valid')            
     else:
         inwardform = InwardForm(request.POST or None)
         # inwardposttypeform = InwardPostTypeForm(request.POST or None)
@@ -48,6 +56,7 @@ def Inward_view(request):
         'image_form' : inwardDocumentForm,
     }
     return render(request,'Inward/inward.html',context)
+
 
 def Inward_update_view(request):
     inward = get_object_or_404(Inward,inward_id=id)
