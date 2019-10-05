@@ -28,8 +28,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', LoginView.as_view(template_name='Authentication/login.html'), name='login'),
-    path('logout/', LogoutView.as_view(template_name='Authentication/logout.html'), name='logout'),
+    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
     # path('authentication/', include('Authentication.urls')),
     path('client/', include('Client.urls')),
     path('employee/', include('Employee.urls')),
