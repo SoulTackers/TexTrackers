@@ -105,3 +105,63 @@ def inward_pass(request,id):
     }    
     return render(request,'Inward/passinward.html',context)
 
+
+# inward types views.........................................................................
+
+
+def AddInwardTypesView(request):
+    if request.method == 'POST':
+        inwardTypesForm = InwardTypesForm(request.POST or None)
+        if inwardTypesForm.is_valid():
+            inwardTypesForm.save()
+        return redirect('added')
+    else:
+        inwardTypesForm = InwardTypesForm(request.POST or None)
+        return render(request, 'Client/add-service.html', {'form': inwardTypesForm})
+
+def UpdateInwardTypesView(request, id):
+    service = get_object_or_404(InwardTypes, pk=id)
+    inwardTypesForm = InwardTypesForm(request.POST or None, instance=service)
+    if inwardTypesForm.is_valid():
+        inwardTypesForm.save()
+    return render(request, 'Client/add-service.html', {'form': inwardTypesForm})
+
+def DeleteInwardTypesView(request, id):
+    try:
+        obj = InwardTypes.objects.get(account_type_id=id)
+        name = str(obj)
+        obj.delete()
+        return render(request, 'delete_success.html', {'object':'InwardTypes', 'name':name})
+    except:
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'}) 
+
+
+# inward post types views.........................................................................
+
+
+def AddInwardPostTypesView(request):
+    if request.method == 'POST':
+        inwardPostTypesForm = InwardPostTypesForm(request.POST or None)
+        if inwardPostTypesForm.is_valid():
+            inwardPostTypesForm.save()
+        return redirect('added')
+    else:
+        inwardPostTypesForm = InwardPostTypesForm(request.POST or None)
+        return render(request, 'Client/add-service.html', {'form': inwardPostTypesForm})
+
+def UpdateInwardPostTypesView(request, id):
+    service = get_object_or_404(InwardPostTypes, pk=id)
+    inwardPostTypesForm = InwardPostTypesForm(request.POST or None, instance=service)
+    if inwardPostTypesForm.is_valid():
+        inwardPostTypesForm.save()
+    return render(request, 'Client/add-service.html', {'form': inwardPostTypesForm})
+
+def DeleteInwardPostTypesView(request, id):
+    try:
+        obj = InwardPostTypes.objects.get(account_type_id=id)
+        name = str(obj)
+        obj.delete()
+        return render(request, 'delete_success.html', {'object':'InwardPostTypes', 'name':name})
+    except:
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'}) 
+

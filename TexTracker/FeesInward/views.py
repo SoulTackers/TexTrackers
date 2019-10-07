@@ -36,4 +36,30 @@ def feesinward_update_view(request,id):
     return render(request,'FeesInward/feesinward.html',{'form':feesinward_update_form,'payment_form':paymenttype_update_form})
 
 
-# PaymentType...............................................................................................
+# PaymentType views.....................................................................................
+
+def AddPaymentTypeView(request):
+    if request.method == 'POST':
+        paymentTypeForm = PaymentTypeForm(request.POST or None)
+        if paymentTypeForm.is_valid():
+            paymentTypeForm.save()
+        return redirect('added')
+    else:
+        paymentTypeForm = PaymentTypeForm(request.POST or None)
+        return render(request, 'Client/add-service.html', {'form': paymentTypeForm})
+
+def UpdatePaymentTypeView(request, id):
+    service = get_object_or_404(PaymentType, pk=id)
+    paymentTypeForm = PaymentTypeForm(request.POST or None, instance=service)
+    if paymentTypeForm.is_valid():
+        paymentTypeForm.save()
+    return render(request, 'Client/add-service.html', {'form': paymentTypeForm})
+
+def DeletePaymentTypeView(request, id):
+    try:
+        obj = PaymentType.objects.get(account_type_id=id)
+        name = str(obj)
+        obj.delete()
+        return render(request, 'delete_success.html', {'object':'PaymentType', 'name':name})
+    except:
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'}) 

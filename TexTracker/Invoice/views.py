@@ -9,27 +9,49 @@ from .models import Invoice,Servicetype
 def invoice_view(request):
     if request.method == 'POST':
         form = InvoiceForm(request.POST or None)
-        form1 = ServicetypeForm(request.POST or None)
-        if form.is_valid() and form1.is_valid():
+        if form.is_valid():
             form.save()
-            form1.save()
     else:
         form = InvoiceForm(request.POST or None)
-        form1 = ServicetypeForm(request.POST or None)
     context = {
         'form' : form,
-        'servicetype_form' : form1
     }
     return render(request,'Invoice/invoice.html',context)
 
 def invoice_update_view(request,id):
     invoice = get_object_or_404(Invoice,outward_id=id)
-    servicetype = get_object_or_404(Servicetype,servicetype_id=id)
     invoice_update_form = InvoiceForm(request.POST or None,instance=invoice)
-    servicetype_update_form = ServicetypeForm(request.POST or None,instance=servicetype)
 
-    if invoice_update_form.is_valid() and servicetype_update_form.is_valid():
+    if invoice_update_form.is_valid():
         invoice_update_form.save()
-        servicetype_update_form.save()
     
-    return render(request,'Invoice/invoice.html',{'form':invoice_update_form,'servicetype_form' : servicetype_update_form})
+    return render(request,'Invoice/invoice.html',{'form':invoice_update_form})
+
+
+#Servicetype views......................................................................................
+
+def AddServiceTypeView(request):
+    if request.method == 'POST':
+        serviceTypeForm = ServiceTypeForm(request.POST or None)
+        if serviceTypeForm.is_valid():
+            serviceTypeForm.save()
+        return redirect('added')
+    else:
+        serviceTypeForm = ServiceTypeForm(request.POST or None)
+        return render(request, 'Client/add-service.html', {'form': serviceTypeForm})
+
+def UpdateServiceTypeView(request, id):
+    service = get_object_or_404(ServiceType, pk=id)
+    serviceTypeForm = ServiceTypeForm(request.POST or None, instance=service)
+    if serviceTypeForm.is_valid():
+        serviceTypeForm.save()
+    return render(request, 'Client/add-service.html', {'form': serviceTypeForm})
+
+def DeleteServiceTypeView(request, id):
+    try:
+        obj = ServiceType.objects.get(account_type_id=id)
+        name = str(obj)
+        obj.delete()
+        return render(request, 'delete_success.html', {'object':'ServiceType', 'name':name})
+    except:
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'}) 
