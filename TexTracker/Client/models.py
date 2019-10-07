@@ -9,10 +9,26 @@ class AccountType(models.Model):
     account_type_name = models.CharField(max_length=60)
     account_type_details = models.TextField(null=True, blank=True)
 
+    def __str__(self):
+        return self.account_type_name
+    
+
     class Meta:
         managed = True
         db_table = 'account_type'
+\
+class Services(models.Model):
+    service_id = models.AutoField(primary_key=True)
+    service_name = models.CharField(max_length=60)
+    service_details = models.TextField()
 
+    def __str__(self):
+        return self.service_name
+    
+
+    class Meta:
+        managed = True
+        db_table = 'Services'
 
 class Client(models.Model):
     client_id = models.AutoField(primary_key=True)
@@ -25,6 +41,8 @@ class Client(models.Model):
     client_phone = PhoneField(null=True, blank=True)
     client_email = models.EmailField(null=True, blank=True)
     client_type_of_dealer = models.IntegerField(null=True, blank=True)
+    client_service_id = models.ForeignKey(Services, on_delete=models.DO_NOTHING, null=True, blank=True)
+
 
     def __str__(self):
         return self.client_name
@@ -107,21 +125,3 @@ class ClientPassword(models.Model):
     class Meta:
         managed = True
         db_table = 'client_password'
-
-class Services(models.Model):
-    service_id = models.AutoField(primary_key=True)
-    service_name = models.CharField(max_length=60)
-    service_details = models.TextField()
-
-    class Meta:
-        managed = True
-        db_table = 'Services'
-
-
-class ClientSevice(models.Model):
-    client = models.OneToOneField(Client, on_delete=models.CASCADE, blank=True, null=True)
-    client_service_id = models.ForeignKey(Services, on_delete=models.DO_NOTHING, null=True, blank=True)
-
-    class Meta:
-        managed = True
-        db_table = 'client_sevice'

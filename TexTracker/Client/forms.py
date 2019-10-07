@@ -6,7 +6,7 @@ from .models import (AccountType,
                     ClientBankInfo,
                     ClientLegalInfo,
                     ClientPassword,
-                    ClientSevice)
+                    Services,)
 
 class AccountTypeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -39,8 +39,9 @@ class ClientForm(forms.ModelForm):
             'client_phone',
             ########################
             'client_email',
+            'client_service_id',
             ######## selection #########
-            'client_type_of_dealer'
+            'client_type_of_dealer',
             ############################
         ]
 
@@ -125,13 +126,15 @@ class ClientPasswordForm(forms.ModelForm):
 
         ]
 
-class ClientSeviceForm(forms.ModelForm):
+
+class ServicesForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = False
     class Meta:
-        model = ClientSevice
-        fields = [
-            'client_service_id',
-        ]
+            model = Services
+            fields = [
+                'service_name',
+                'service_details',
+            ]

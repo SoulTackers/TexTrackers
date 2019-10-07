@@ -50,7 +50,10 @@ class InwardDocumentUploadView(APIView):
 
         file_serializer = InwardDocumentUploadSerializer(data=request.data)
         if file_serializer.is_valid():
-            file_serializer.save()
+            obj = file_serializer.save(commit=False)
+            obj.inward_id.inward_uploadfilestatus = True
+            obj = file_serializer.save()
+            InwardPendingDocument.objects.filter(inward=obj.inward_id).delete()
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -66,3 +66,11 @@ def AddEmployeeView(request):
         form1 = UserRegisterForm()
         form2 = EmployeeForm()
     return render(request, 'Employee/add-employee.html', {'form1': form1, 'form2': form2})
+
+def DeleteEmployeeView(request, id):
+    try:
+        user = Employee.objects.get(employee_id=id).user
+        user.delete()
+        return render(request, 'delete_success.html', {'object':'AccountType', 'name':name})
+    except e:
+        return render(request, 'delete_unsuccess.html', {'object':'AccountType', 'name':name})

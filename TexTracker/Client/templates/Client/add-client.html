@@ -4,7 +4,7 @@
 {% block extrainfo %}
 
 <form method="POST"> {% csrf_token %}
-        <h1 class="hcolor">Add Employee</h1>
+        <h1 class="hcolor">Add Client</h1>
         <hr>
 
         <div id="accordion">
@@ -48,6 +48,16 @@
                             </div>
                     </div>
                 </div><br>
+                <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                                <label class="login2 pull-right pull-right-pro">Client Service ID</label>
+                            </div>
+                            <div class="col-lg-9">
+                                {{client_form.client_service_id | as_crispy_field}}
+                            </div>
+                    </div>
+                </div>  
                 <div class="form-group-inner">
                     <div class="row">
                             <div class="col-lg-3">
@@ -597,21 +607,7 @@
                           </a>
                         </h5>
                       </div>
-            <div id="collapse-7" class="collapse" data-parent="#accordion" aria-labelledby="heading-7">
-                <div class="card-body">
-                  <div class="form-group-inner">
-                    <div class="row">
-                            <div class="col-lg-3">
-                                <label class="login2 pull-right pull-right-pro">Client Service ID</label>
-                            </div>
-                            <div class="col-lg-9">
-                                {{clientSevice_Form.client_service_id | as_crispy_field}}
-                            </div>
-                    </div>
-                  </div>  
-                    
-              </div>
-            </div>
+            
           </div>
         </div>
 

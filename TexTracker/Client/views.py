@@ -4,14 +4,15 @@ from django.views.generic import CreateView, UpdateView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import AccountType, Client, ClientAccountantInfo, ClientBankInfo, ClientLegalInfo, ClientPassword, ClientSevice
+from .models import AccountType, Client, ClientAccountantInfo, ClientBankInfo, ClientLegalInfo, ClientPassword, Services, AccountType
 from .forms import (AccountTypeForm,
                     ClientAccountantInfoForm,
                     ClientBankInfoForm,
                     ClientForm,
                     ClientLegalInfoForm,
                     ClientPasswordForm,
-                    ClientSeviceForm)
+                    ServicesForm,
+                    AccountTypeForm,)
 
 # Create your views here.
 def AddClientView(request):
@@ -22,13 +23,11 @@ def AddClientView(request):
         clientAccountantInfo_Form = ClientAccountantInfoForm(request.POST)
         clientLegalInfo_Form = ClientLegalInfoForm(request.POST)
         clientPassword_Form = ClientPasswordForm(request.POST)
-        clientSevice_Form = ClientSeviceForm(request.POST)
         if ( client_form.is_valid()
              and clientAccountantInfo_Form.is_valid()
              and clientBankInfo_Form.is_valid()
              and clientLegalInfo_Form.is_valid()
-             and clientPassword_Form.is_valid()
-             and clientSevice_Form.is_valid()):
+             and clientPassword_Form.is_valid()):
 
              client = client_form.save()
              form_list = []
@@ -36,7 +35,6 @@ def AddClientView(request):
              form_list.append(clientBankInfo_Form.save(commit=False))
              form_list.append(clientLegalInfo_Form.save(commit=False))
              form_list.append(clientPassword_Form.save(commit=False))
-             form_list.append(clientSevice_Form.save(commit=False))
 
              for form in form_list:
                 if form.client is None:
@@ -56,7 +54,6 @@ def AddClientView(request):
         clientAccountantInfo_Form = ClientAccountantInfoForm()
         clientLegalInfo_Form = ClientLegalInfoForm()
         clientPassword_Form = ClientPasswordForm()
-        clientSevice_Form = ClientSeviceForm()
 
 
     context = {
@@ -65,7 +62,6 @@ def AddClientView(request):
             'clientAccountantInfo_Form': clientAccountantInfo_Form,
             'clientLegalInfo_Form': clientLegalInfo_Form,
             'clientPassword_Form': clientPassword_Form,
-            'clientSevice_Form': clientSevice_Form,
         }
     return render(request, 'Client/add-client.html', context)   
 
@@ -86,23 +82,17 @@ def UpdateClientView(request, id):
     clientPassword = get_object_or_404(ClientPassword, client=id)
     clientPassword_Form = ClientPasswordForm(request.POST or None, instance=clientPassword)
 
-    clientSevice = get_object_or_404(ClientSevice, client=id)
-    clientSevice_Form = ClientSeviceForm(request.POST or None, instance=clientSevice)
-
     if ( client_form.is_valid()
           and clientAccountantInfo_Form.is_valid()
           and clientBankInfo_Form.is_valid()
           and clientLegalInfo_Form.is_valid()
-          and clientPassword_Form.is_valid()
-          and clientSevice_Form.is_valid()):
+          and clientPassword_Form.is_valid()):
           
           client = client_form.save()
           clientBankInfo_Form = clientBankInfo_Form.save()
           clientAccountantInfo_Form = clientAccountantInfo_Form.save()
           clientLegalInfo_Form = clientLegalInfo_Form.save()
           clientPassword_Form = clientPassword_Form.save()
-          clientSevice_Form = clientSevice_Form.save()
-
           return redirect('login')
 
     context = {
@@ -111,7 +101,66 @@ def UpdateClientView(request, id):
             'clientAccountantInfo_Form': clientAccountantInfo_Form,
             'clientLegalInfo_Form': clientLegalInfo_Form,
             'clientPassword_Form': clientPassword_Form,
-            'clientSevice_Form': clientSevice_Form,
         }
 
     return render(request, 'Client/add-client.html', context)
+
+def DeleteClientView(request, id):
+    obj = Client.objects.filter(service_id=id)
+    name = str(obj[0])
+    obj.delete()
+    return render(request, 'delete_success.html', {'object':'Client', 'name':name})
+
+
+# service views.............................................................................................
+
+
+def AddServiceView(request):
+    if request.method == 'POST':
+        serviceForm = ServicesForm(request.POST or None)
+        if serviceForm.is_valid():
+            serviceForm.save()
+        return redirect('added')
+    else:
+        serviceForm = ServicesForm(request.POST or None)
+        return render(request, 'Client/add-service.html', {'form': serviceForm})
+
+def UpdateServiceView(request, id):
+    service = get_object_or_404(Services, pk=id)
+    serviceForm = ServicesForm(request.POST or None, instance=service)
+    if serviceForm.is_valid():
+        serviceForm.save()
+    return render(request, 'Client/add-service.html', {'form': serviceForm})
+
+def DeleteServiceView(request, id):
+    obj = Services.objects.filter(service_id=id)
+    name = str(obj[0])
+    obj.delete()
+    return render(request, 'delete_success.html', {'object':'Service', 'name':name})
+
+
+# AccountType View ..................................................................................
+
+
+def AddAccountTypeView(request):
+    if request.method == 'POST':
+        acountTypeForm = AccountTypeForm(request.POST or None)
+        if acountTypeForm.is_valid():
+            acountTypeForm.save()
+        return redirect('added')
+    else:
+        acountTypeForm = AccountTypeForm(request.POST or None)
+        return render(request, 'Client/add-service.html', {'form': acountTypeForm})
+
+def UpdateAccountTypeView(request, id):
+    service = get_object_or_404(AccountType, pk=id)
+    acountTypeForm = AccountTypeForm(request.POST or None, instance=service)
+    if acountTypeForm.is_valid():
+        acountTypeForm.save()
+    return render(request, 'Client/add-service.html', {'form': acountTypeForm})
+
+def DeleteAccountTypeView(request, id):
+    obj = AccountType.objects.filter(service_id=id)
+    name = str(obj[0])
+    obj.delete()
+    return render(request, 'delete_success.html', {'object':'AccountType', 'name':name})
