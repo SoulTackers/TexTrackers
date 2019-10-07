@@ -34,3 +34,6 @@ def feesinward_update_view(request,id):
         paymenttype_update_form.save()
     
     return render(request,'FeesInward/feesinward.html',{'form':feesinward_update_form,'payment_form':paymenttype_update_form})
+
+
+# PaymentType...............................................................................................

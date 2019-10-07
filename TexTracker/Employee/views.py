@@ -42,7 +42,7 @@ def AdminAddEmployeeView(request):
         form3 = AdminEmployeeAddForm()
     return render(request, 'Employee/add-employee-admin.html', {'form3': form3['username']})
 
-def UpdateEmployeeView(request, id=1):
+def UpdateEmployeeView(request, id):
     employee = get_object_or_404(Employee, employee_id=id)
     employee_update_form = EmployeeForm(request.POST or None, instance=employee)
 
@@ -69,8 +69,40 @@ def AddEmployeeView(request):
 
 def DeleteEmployeeView(request, id):
     try:
-        user = Employee.objects.get(employee_id=id).user
+        emp = Employee.objects.get(employee_id=id)
+        user = emp.user
+        name = str(emp)
         user.delete()
-        return render(request, 'delete_success.html', {'object':'AccountType', 'name':name})
+        return render(request, 'delete_success.html', {'object':'Employee', 'name':name})
     except e:
-        return render(request, 'delete_unsuccess.html', {'object':'AccountType', 'name':name})
+        return render(request, 'delete_unsuccess.html', {'object':'Employee', 'name':'Employee not found'})
+
+
+# Employee Post Views..........................................................................................
+
+
+def AddEmployeePostView(request):
+    if request.method == 'POST':
+        employeePostForm = EmployeePostForm(request.POST or None)
+        if employeePostForm.is_valid():
+            employeePostForm.save()
+        return redirect('added')
+    else:
+        employeePostForm = EmployeePostForm(request.POST or None)
+        return render(request, 'Client/add-service.html', {'form': employeePostForm})
+
+def UpdateEmployeePostView(request, id):
+    service = get_object_or_404(EmployeePost, pk=id)
+    employeePostForm = EmployeePostForm(request.POST or None, instance=service)
+    if employeePostForm.is_valid():
+        employeePostForm.save()
+    return render(request, 'Client/add-service.html', {'form': employeePostForm})
+
+def DeleteEmployeePostView(request, id):
+    try:
+        obj = EmployeePost.objects.get(account_type_id=id)
+        name = str(obj)
+        obj.delete()
+        return render(request, 'delete_success.html', {'object':'EmployeePost', 'name':name})
+    except:
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'}) 

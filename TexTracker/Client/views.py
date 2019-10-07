@@ -133,10 +133,13 @@ def UpdateServiceView(request, id):
     return render(request, 'Client/add-service.html', {'form': serviceForm})
 
 def DeleteServiceView(request, id):
-    obj = Services.objects.filter(service_id=id)
-    name = str(obj[0])
-    obj.delete()
-    return render(request, 'delete_success.html', {'object':'Service', 'name':name})
+    try:
+        obj = Services.objects.get(service_id=id)
+        name = str(obj)
+        obj.delete()
+        return render(request, 'delete_success.html', {'object':'Service', 'name':name})
+    except:
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
 
 
 # AccountType View ..................................................................................
@@ -160,7 +163,11 @@ def UpdateAccountTypeView(request, id):
     return render(request, 'Client/add-service.html', {'form': acountTypeForm})
 
 def DeleteAccountTypeView(request, id):
-    obj = AccountType.objects.filter(service_id=id)
-    name = str(obj[0])
-    obj.delete()
-    return render(request, 'delete_success.html', {'object':'AccountType', 'name':name})
+    try:
+        obj = AccountType.objects.get(account_type_id=id)
+        name = str(obj)
+        obj.delete()
+        return render(request, 'delete_success.html', {'object':'AccountType', 'name':name})
+    except:
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
+        
