@@ -43,7 +43,7 @@ def Inward_view(request):
             #messages.success(request, 'Document is valid')
         else:
             InwardPendingDocumentForm.inward = new_inward
-            messages.warning(request, 'Document is not valid')            
+            messages.warning(request, 'Document is not valid')
     else:
         inwardform = InwardForm(request.POST or None)
         # inwardposttypeform = InwardPostTypeForm(request.POST or None)
@@ -78,6 +78,15 @@ def Inward_update_view(request):
     }
     return render(request,'Inward/inward.html',context)
 
+def DeleteInwardView(request, id):
+    try:
+        obj = Inward.objects.get(account_type_id=id)
+        name = str(obj)
+        obj.delete()
+        return render(request, 'delete_success.html', {'object':'Inward', 'name':name})
+    except:
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
+
 
 
 def inward_pass(request,id):
@@ -102,7 +111,7 @@ def inward_pass(request,id):
     context = {
         'inward':inward,
         'outward':outward
-    }    
+    }
     return render(request,'Inward/passinward.html',context)
 
 
@@ -133,7 +142,7 @@ def DeleteInwardTypesView(request, id):
         obj.delete()
         return render(request, 'delete_success.html', {'object':'InwardTypes', 'name':name})
     except:
-        return render(request, 'delete_success.html', {'object':'e', 'name':'error'}) 
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
 
 
 # inward post types views.........................................................................
@@ -163,5 +172,4 @@ def DeleteInwardPostTypesView(request, id):
         obj.delete()
         return render(request, 'delete_success.html', {'object':'InwardPostTypes', 'name':name})
     except:
-        return render(request, 'delete_success.html', {'object':'e', 'name':'error'}) 
-
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'})

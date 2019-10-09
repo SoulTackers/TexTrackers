@@ -33,5 +33,14 @@ def outward_update(request,id):
 
     if outward_update_form.is_valid():
         outward_update_form.save()
-    
+
     return render(request,'Outward/outward.html',{'form':outward_update_form})
+
+def DeleteOutwardView(request, id):
+    try:
+        obj = OutwardTypes.objects.get(account_type_id=id)
+        name = str(obj)
+        obj.delete()
+        return render(request, 'delete_success.html', {'object':'OutwardTypes', 'name':name})
+    except:
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'})

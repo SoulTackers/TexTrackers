@@ -25,7 +25,10 @@ SECRET_KEY = '&^474fti*m!man1c-@+le(xouhx-hyb_7+kudg-c(i0vl9u(xn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    '0.0.0.0',
+]
 
 
 # Application definition
@@ -90,10 +93,10 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
+        'NAME': 'try1',
         'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': '',
+        'USER': 'and',
+        'PASSWORD': 'and',
 
     }
 }
@@ -138,7 +141,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-#AUTH_USER_MODEL = "Authentication.CustomUser" 
+#AUTH_USER_MODEL = "Authentication.CustomUser"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,"static_proj"),
@@ -148,6 +151,6 @@ REST_FRAMEWORK = {
         #'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        #'rest_framework.permissions.IsAuthenticated', 
+        #'rest_framework.permissions.IsAuthenticated',
         )
 }

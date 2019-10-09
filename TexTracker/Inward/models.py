@@ -52,6 +52,12 @@ class Inward(models.Model):
         managed = True
         db_table = 'inward'
 
+class InwardPendingDocument(models.Model):
+    inward = models.OneToOneField(Inward, models.CASCADE,blank=True,null=True)
+    class meta:
+        managed = True
+        db_table = 'pending_inward_document'
+
 
 class InwardDocument(models.Model):
     inward_id = models.OneToOneField(Inward, models.CASCADE,blank=True,null=True)
@@ -59,10 +65,3 @@ class InwardDocument(models.Model):
     class Meta:
         managed = True
         db_table = 'inward_Document'
-
-
-class InwardPendingDocument(models.Model):
-    inward = models.OneToOneField(Inward, models.CASCADE,blank=True,null=True)
-    class meta:
-        managed = True
-        db_table = 'pending_inward_document'

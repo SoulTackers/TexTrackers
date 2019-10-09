@@ -10,8 +10,8 @@ class OutwardForm(forms.ModelForm):
     class Meta:
         model=Outward
         fields = [
-            'outward_cid', 
-            'outward_date', 
+            'outward_cid',
+            'outward_date',
             'outward_uploaddocstatus',
-            'outward_iid'
+            'outward_iid',
         ]

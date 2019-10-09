@@ -42,28 +42,27 @@ def login_restApi(request):
 class InwardDocumentUploadView(APIView):
     parser_class = (FileUploadParser,)
 
-    def post(self, request, *args, **kwargs):
+    def put(self, request, *args, **kwargs):
 
         serializer_class = InwardPendingDocumentSerializer
-        authentication_classes = (SessionAuthentication, TokenAuthentication)
-        permission_classes = (IsAuthenticated,)
-
+        #authentication_classes = (SessionAuthentication, TokenAuthentication)
+        #permission_classes = (IsAuthenticated,)
         file_serializer = InwardDocumentUploadSerializer(data=request.data)
         if file_serializer.is_valid():
-            obj = file_serializer.save(commit=False)
-            obj.inward_id.inward_uploadfilestatus = True
-            obj = file_serializer.save()
-            InwardPendingDocument.objects.filter(inward=obj.inward_id).delete()
+            # obj = file_serializer.validated_data()
+            #obj.inward.inward_uploadfilestatus = True
+            file_serializer.save()
+            #InwardPendingDocument.objects.filter(inward=obj.inward_id).delete()
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response('error', status=status.HTTP_400_BAD_REQUEST) #file_serializer.errors
 
 
 class InwardPendingDocumentView(APIView):
-   # lookup_field = 'name'
+   # lookup_field = 'name'status
     serializer_class = InwardPendingDocumentSerializer
-    authentication_classes = (SessionAuthentication, TokenAuthentication)
-    permission_classes = (IsAuthenticated,)
+    #authentication_classes = (SessionAuthentication, TokenAuthentication)
+    #permission_classes = (IsAuthenticated,)
 
     def get(self, request,  *args, **kwargs):
         inwards = InwardPendingDocument.objects.all()

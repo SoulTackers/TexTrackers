@@ -24,8 +24,17 @@ def invoice_update_view(request,id):
 
     if invoice_update_form.is_valid():
         invoice_update_form.save()
-    
+
     return render(request,'Invoice/invoice.html',{'form':invoice_update_form})
+
+def DeleteInvoiceView(request, id):
+    try:
+        obj = Invoice.objects.get(account_type_id=id)
+        name = str(obj)
+        obj.delete()
+        return render(request, 'delete_success.html', {'object':'Invoice', 'name':name})
+    except:
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
 
 
 #Servicetype views......................................................................................
@@ -54,4 +63,4 @@ def DeleteServiceTypeView(request, id):
         obj.delete()
         return render(request, 'delete_success.html', {'object':'ServiceType', 'name':name})
     except:
-        return render(request, 'delete_success.html', {'object':'e', 'name':'error'}) 
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
