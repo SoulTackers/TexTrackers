@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+
+<form method="POST"> {% csrf_token %}
+    <h1 class="hcolor">Fees Inward</h1>
+    <hr>
+    <div class="container">
+        <div class="form-group-inner"><br>
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">Employee Name</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_employee_id|as_crispy_field}}
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">MODE ID</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_inward_mode_id|as_crispy_field}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">EMPLOYEE ID</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_employee_id|as_crispy_field}}
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">DISCOUNT</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_discount|as_crispy_field}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">BALANCE OUTSTANDING</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_balance_outstanding|as_crispy_field}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">PAYMENT TYPE</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_paymenttype|as_crispy_field}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">AMOUNT</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_amount|as_crispy_field}}
+                </div>
+            </div>
+        </div><br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
+                </div>
+                <div class="col-lg-9">
+                    {{form.feesinward_client_id|as_crispy_field}}
+                </div>
+            </div>
+        </div> <br>
+
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
+                </div>
+                <div class="col-lg-9">
+                    {{payment_form.paymenttype_details |as_crispy_field}}
+                </div>
+            </div>
+        </div> <br>
+        <div class="form-group-inner">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label class="login2 pull-right pull-right-pro">CLIENT ID</label>
+                </div>
+                <div class="col-lg-9">
+                    {{payment_form.paymenttype_name |as_crispy_field}}
+                </div>
+            </div>
+        </div> <br>
+        <div>
+            <input type="submit" class="btn btn-info" value='save'>
+        </div><br>
+    </div>
+
+
+
+</form>
+{% endblock extrainfo %}

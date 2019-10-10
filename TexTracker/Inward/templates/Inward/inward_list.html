@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+<h3>All Inwards</h3>
+<br>
+<div class="row">
+    {% for inward in inwards  %}
+    <div class="card col-md-4" >
+            <div class="card-body">
+              
+                    <p>Inward Created By   {{inward.inward_employeeid.employee_name}}</p>
+                    <p>Inward Type   {{inward.inward_type}}</p>
+                    <p>Inward Date   {{inward.inward_date}}</p>
+                    <p>Inward Return Period {{inward.inward_returnperiod}}</p>
+                    <p>Client Name {{inward.inward_client_id.client_name}}</p>
+                    {% if inward.inward_uploadfilestatus %}
+                      <p>Inward Document is uploaded</p>
+                    {% else %}
+                      <p>Inward Document is not uploaded</p>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-md-6"><button class="btn btn-info" onclick="window.location.href='inward/{{inward.inward_id}}/update'">Update</button></div>
+                        <div class="col-md-6"><button class="btn btn-danger" onclick="">Delete</button></div>
+                </div>
+            </div>
+          </div>
+    {% endfor %}
+</div>
+{% endblock extrainfo %}

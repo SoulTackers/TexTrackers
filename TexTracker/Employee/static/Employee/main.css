@@ -1,0 +1,25 @@
+body{
+    padding: 0;
+    margin: 0;
+  }
+    .bg-steel {
+      background-color: #5f788a;
+    }
+    .content-section {
+      background: #ffffff;
+      padding: 10px 20px;
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      margin-bottom: 20px;
+    }
+    .hcolor{
+      color: darkred;
+    }
+
+    [data-toggle="collapse"] .fa:before {  
+      content: "\f139";
+    }
+    
+    [data-toggle="collapse"].collapsed .fa:before {
+      content: "\f13a";
+    }

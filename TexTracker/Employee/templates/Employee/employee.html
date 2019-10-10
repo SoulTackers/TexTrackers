@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+
+<form method="POST"> {% csrf_token %}
+        <h1 class="hcolor"> EMPLOYEE FORM </h1><hr>
+    <br><div class="container">
+                
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                       <label class="login2 pull-right pull-right-pro">EMPLOYEE NAME</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{form.employee_name|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">EMPLOYEE POST</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{form.employee_postid|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">EMPLOYEE PHONE NUMBER</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{form.employee_phone|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+            
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">EMPLOYEE DETAILS</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{form1.ep_details|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">EMPLOYEE POST NAME</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                         {{form1.ep_name|as_crispy_field}}
+                                    </div>
+                            </div>
+                        </div><br>
+            <div class="form-group">
+                    <button class="btn btn-info" type="submit">Save</button>
+                    <button class="btn btn-info" type="reset">Cancel</button>
+                </div>
+        </div>
+</form>
+{% endblock extrainfo %}

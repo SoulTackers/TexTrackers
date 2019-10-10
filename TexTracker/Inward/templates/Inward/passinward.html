@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+
+<h2>Inward Info</h2>
+<hr>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+                <label class="login2 pull-right pull-right-pro">Inward Track</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_track}}
+            </div>
+    </div>
+</div>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+                <label class="login2 pull-right pull-right-pro">Employee Name</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_employeeid.employee_name}}
+            </div>
+    </div>
+</div>
+
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Inward type</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_type}}
+            </div>
+    </div>
+</div>
+<div class="form-group-inner">
+        <div class="row">
+                <div class="col-lg-3">
+                   <label class="login2 pull-right pull-right-pro">Inward Posttype</label>
+                </div>
+                <div class="col-lg-9">
+                     {{inward.inward_posttype}}
+                </div>
+        </div>
+    </div>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Inward Return Period</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_returnperiod}}
+            </div>
+    </div>
+</div>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Inward Month</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_month}}
+            </div>
+    </div>
+</div>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Year</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_year}}
+            </div>
+    </div>
+</div>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Remarks</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_remarks}}
+            </div>
+    </div>
+</div>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Client Name</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_client_id.client_name}}
+            </div>
+    </div>
+</div>
+<div class="form-group-inner">
+    <div class="row">
+            <div class="col-lg-3">
+               <label class="login2 pull-right pull-right-pro">Inward Date</label>
+            </div>
+            <div class="col-lg-9">
+                 {{inward.inward_date}}
+            </div>
+    </div>
+  </div>
+
+
+
+
+<div id="accordion" class="mb-2">
+        <div class="card">
+            <div class="card-header bg-info" id="heading-7">
+              <h5 class="mb-0" >
+                <a class="collapsed" style="color: white; text-decoration:none" role="button" data-toggle="collapse" href="#collapse-7" aria-expanded="false" aria-controls="collapse-7">
+                    Pass Inward<i class="fa ml-5" style="float: right" aria-hidden="true"></i>
+                </a>
+              </h5>
+            </div>
+            <div id="collapse-7" class="collapse" data-parent="#accordion" aria-labelledby="heading-7">
+                <div class="card-body">
+                <form method="POST"> {% csrf_token %}
+                  <div class="form-group-inner">
+                    <div class="row">
+                            <div class="col-lg-3">
+                                <label class="login2 pull-right pull-right-pro">Inward No</label>
+                            </div>
+                            <div class="col-lg-9">
+                                    <input type="number" name="inwardno">
+                            </div>
+                    </div>
+                  </div>  
+                  <div class="form-group-inner">
+                        <div class="row">
+                                <div class="col-lg-3">
+                                    <label class="login2 pull-right pull-right-pro">Work Done</label>
+                                </div>
+                                <div class="col-lg-9">
+                                        <textarea name="workdone" id="" cols="30" rows="10"></textarea>
+                                </div>
+                        </div>
+                      </div>
+                      <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">Pass Employee Id</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                            <input type="number" name="empid">
+                                    </div>
+                            </div>
+                          </div>
+                        <input type="submit" class="btn btn-info" value='save'>
+                    </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="accordion" >
+                <div class="card">
+                        <div class="card-header bg-info" id="heading-7">
+                                <h5 class="mb-0" >
+                                  <a class="collapsed" style="color: white; text-decoration:none" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                                      Convert to Outward<i class="fa ml-5" style="float: right" aria-hidden="true"></i>
+                                  </a>
+                                </h5>
+                              </div>
+                    <div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-7">
+                        <div class="card-body">
+                        <form method="POST"> {% csrf_token %}
+                          <div class="form-group-inner">
+                            <div class="row">
+                                    <div class="col-lg-3">
+                                        <label class="login2 pull-right pull-right-pro">Client Id</label>
+                                    </div>
+                                    <div class="col-lg-9">
+                                            {{outward.outward_cid |as_crispy_field}}
+                                    </div>
+                            </div>
+                          </div>  
+                          <div class="form-group-inner">
+                                <div class="row">
+                                        <div class="col-lg-3">
+                                            <label class="login2 pull-right pull-right-pro">Date</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                                {{outward.outward_date|as_crispy_field}}
+                                        </div>
+                                </div>
+                              </div>
+                              <div class="form-group-inner">
+                                    <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="login2 pull-right pull-right-pro">Uploaded Document Status</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                    {{outward.outward_uploaddocstatus|as_crispy_field}}
+                                            </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group-inner">
+                                        <div class="row">
+                                                <div class="col-lg-3">
+                                                    <label class="login2 pull-right pull-right-pro">Inward Id</label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                        {{outward.outward_iid|as_crispy_field}}
+                                                </div>
+                                        </div>
+                                      </div>
+                                <input type="submit" class="btn btn-info" value='save'>
+                            </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+{% endblock extrainfo %}

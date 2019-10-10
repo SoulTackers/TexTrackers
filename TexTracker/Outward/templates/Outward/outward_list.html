@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+<h3>All Outwards</h3>
+<br>
+<div class="row">
+    {% for outward in outwards  %}
+    <div class="card col-md-4" >
+            <div class="card-body">
+              
+                    <p>Outward No.   {{outward.outward_id}}</p>
+                    <p>Client   {{outward.outward_cid.client_name}}</p>
+                    <p>Outward Date   {{outward.outward_date}}</p>
+        
+                    {% if outward.outward_uploaddocstatus %}
+                      <p>Outward Document is uploaded</p>
+                    {% else %}
+                      <p>Outward Document is not uploaded</p>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-md-6"><button class="btn btn-info" onclick="window.location.href='outward/{{outward.outward_id}}/update'">Update</button></div>
+                        <div class="col-md-6"><button class="btn btn-danger" onclick="">Delete</button></div>
+                </div>
+            </div>
+          </div>
+    {% endfor %}
+</div>
+{% endblock extrainfo %}

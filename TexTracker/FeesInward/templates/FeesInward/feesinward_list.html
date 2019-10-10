@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block extrainfo %}
+<h3>All Feesinward</h3>
+<br>
+<div class="row">
+    {% for feesinward in feesinwards  %}
+    <div class="card col-md-4" >
+            <div class="card-body">
+                    <p>Inward Type   {{feesinward.feesinward_inward_mode_id.InwardTypes_name}}</p>
+                    <p>Feesinward Discount   {{feesinward.feesinward_discount}}</p>
+                    <p>Feesinward Date {{feesinward.feesinward_date}}</p>
+                    <p>Feesinward Balance {{feesinward.feesinward_balance_outstanding}}</p>
+                    <p>Feesinward PaymentType {{feesinward.feesinward_paymenttype.paymenttype_name}}</p>
+                    <p>Feesinward Amount {{feesinward.feesinward_amount}}</p>
+                    <p>CLient Name {{feesinward.feesinward_client_id.client_name}}</p>
+                    <div class="row">
+                        <div class="col-md-6"><button class="btn btn-info" onclick="window.location.href='feesinward/{{feesinward.feesinward_id}}/update'">Update</button></div>
+                        <div class="col-md-6"><button class="btn btn-danger" onclick="">Delete</button></div>
+                </div>
+            </div>
+          </div>
+    {% endfor %}
+</div>
+{% endblock extrainfo %}
