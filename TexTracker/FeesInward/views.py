@@ -4,8 +4,10 @@ from .forms import FeesinwardForm,PaymenttypeForm
 from django.shortcuts import render,get_object_or_404,render_to_response
 from django.shortcuts import render
 from .models import Feesinward,PaymentType
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def feesinward_view(request):
     if request.method == 'POST':
         form = FeesinwardForm(request.POST or None)
@@ -16,13 +18,14 @@ def feesinward_view(request):
     else:
         form = FeesinwardForm()
         form1 = PaymenttypeForm()
-    
+
     context = {
         'form' : form,
         'payment_form':form1
     }
     return render(request,'FeesInward/feesinward.html',context)
 
+@login_required
 def feesinward_update_view(request,id):
     feesinward = get_object_or_404(Feesinward,outward_id=id)
     paymenttype = get_object_or_404(PaymentType,paymenttype_id=id)
@@ -32,12 +35,12 @@ def feesinward_update_view(request,id):
     if feesinward_update_form.is_valid() and paymenttype_update_form.is_valid():
         feesinward_update_form.save()
         paymenttype_update_form.save()
-    
+
     return render(request,'FeesInward/feesinward.html',{'form':feesinward_update_form,'payment_form':paymenttype_update_form})
 
 
 # PaymentType views.....................................................................................
-
+@login_required
 def AddPaymentTypeView(request):
     if request.method == 'POST':
         paymentTypeForm = PaymentTypeForm(request.POST or None)
@@ -48,6 +51,7 @@ def AddPaymentTypeView(request):
         paymentTypeForm = PaymentTypeForm(request.POST or None)
         return render(request, 'Client/add-service.html', {'form': paymentTypeForm})
 
+@login_required
 def UpdatePaymentTypeView(request, id):
     service = get_object_or_404(PaymentType, pk=id)
     paymentTypeForm = PaymentTypeForm(request.POST or None, instance=service)
@@ -55,6 +59,7 @@ def UpdatePaymentTypeView(request, id):
         paymentTypeForm.save()
     return render(request, 'Client/add-service.html', {'form': paymentTypeForm})
 
+@login_required
 def DeletePaymentTypeView(request, id):
     try:
         obj = PaymentType.objects.get(account_type_id=id)
@@ -62,4 +67,4 @@ def DeletePaymentTypeView(request, id):
         obj.delete()
         return render(request, 'delete_success.html', {'object':'PaymentType', 'name':name})
     except:
-        return render(request, 'delete_success.html', {'object':'e', 'name':'error'}) 
+        return render(request, 'delete_success.html', {'object':'e', 'name':'error'})

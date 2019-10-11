@@ -26,7 +26,7 @@
                   <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
-                        <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button role="button" type="button" class="btn nav-item nav-link" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Client
                         </button>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -38,12 +38,12 @@
 
 
                       <li class="nav-item dropdown">
-                        <button role="button" type="button" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button role="button" type="button" class="btn nav-item nav-link" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Employee
                         </button>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'add-employee' %}">Add</a>
-                          <a class="dropdown-item" href="#">Update</a>
+                          <a class="dropdown-item" href="">Update</a>
                           <a class="dropdown-item" href="#">Employee Work</a>
                           <a class="dropdown-item" href="#">Profile</a>
                         </div>

@@ -6,7 +6,9 @@ from django.shortcuts import render,get_object_or_404,render_to_response
 from .models import PendingWork
 from Inward.models import Inward
 from Client.models import Client
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required
 def pendingwork_view(request):
     if request.method == 'POST':
         form = PendingWorkForm(request.POST or None)
@@ -19,6 +21,7 @@ def pendingwork_view(request):
     }
     return render(request,'PendingWork/pendingwork.html',context)
 
+@login_required
 def pendingwork_update_view(request,id):
     pendingwork = get_object_or_404(PendingWork,PendingWork_postid=id)
     pendingwork_update_form = PendingWorkForm(request.POST or None,instance=pendingwork)
@@ -28,7 +31,7 @@ def pendingwork_update_view(request,id):
 
     return render(request,'PendingWork/pendingwork.html',{'form':pendingwork_update_form})
 
-
+@login_required
 def dashboard(request):
     pendingwork = PendingWork.objects.filter(PendingWork_employeeid = 1)
     inwardlist = []

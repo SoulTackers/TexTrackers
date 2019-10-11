@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     '0.0.0.0',
-'192.168.43.35',
+    '192.168.43.35',
+    'localhost',
 ]
 
 
@@ -143,6 +144,9 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #AUTH_USER_MODEL = "Authentication.CustomUser"
+
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_URL = ''
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,"static_proj"),

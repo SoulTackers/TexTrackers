@@ -28,7 +28,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
     # path('authentication/', include('Authentication.urls')),
     path('client/', include('Client.urls')),
@@ -39,7 +39,7 @@ urlpatterns = [
     path('outward/', include('Outward.urls')),
     path('pendingwork/', include('PendingWork.urls')),
     path('restapi/', include('RestApi.urls')),
-    path('',dashboard),
+    path('dashboard/',dashboard),
 
 
 

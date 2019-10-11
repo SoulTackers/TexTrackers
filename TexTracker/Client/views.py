@@ -13,8 +13,10 @@ from .forms import (AccountTypeForm,
                     ClientPasswordForm,
                     ServicesForm,
                     AccountTypeForm,)
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def AddClientView(request):
 
     if request.method == 'POST':
@@ -47,7 +49,7 @@ def AddClientView(request):
              recipient_list = ['',] #inwardform.inward_client_id.client_email
              send_mail( subject, message, email_from, recipient_list,fail_silently=False)
              # End Mail.................
-        
+
     else:
         client_form = ClientForm()
         clientBankInfo_Form = ClientBankInfoForm()
@@ -63,8 +65,9 @@ def AddClientView(request):
             'clientLegalInfo_Form': clientLegalInfo_Form,
             'clientPassword_Form': clientPassword_Form,
         }
-    return render(request, 'Client/add-client.html', context)   
+    return render(request, 'Client/add-client.html', context)
 
+@login_required
 def UpdateClientView(request, id):
 
     client = get_object_or_404(Client, client_id=id)
@@ -87,7 +90,7 @@ def UpdateClientView(request, id):
           and clientBankInfo_Form.is_valid()
           and clientLegalInfo_Form.is_valid()
           and clientPassword_Form.is_valid()):
-          
+
           client = client_form.save()
           clientBankInfo_Form = clientBankInfo_Form.save()
           clientAccountantInfo_Form = clientAccountantInfo_Form.save()
@@ -105,6 +108,7 @@ def UpdateClientView(request, id):
 
     return render(request, 'Client/add-client.html', context)
 
+@login_required
 def DeleteClientView(request, id):
     obj = Client.objects.filter(service_id=id)
     name = str(obj[0])
@@ -114,7 +118,7 @@ def DeleteClientView(request, id):
 
 # service views.............................................................................................
 
-
+@login_required
 def AddServiceView(request):
     if request.method == 'POST':
         serviceForm = ServicesForm(request.POST or None)
@@ -125,6 +129,7 @@ def AddServiceView(request):
         serviceForm = ServicesForm(request.POST or None)
         return render(request, 'Client/add-service.html', {'form': serviceForm})
 
+@login_required
 def UpdateServiceView(request, id):
     service = get_object_or_404(Services, pk=id)
     serviceForm = ServicesForm(request.POST or None, instance=service)
@@ -132,6 +137,7 @@ def UpdateServiceView(request, id):
         serviceForm.save()
     return render(request, 'Client/add-service.html', {'form': serviceForm})
 
+@login_required
 def DeleteServiceView(request, id):
     try:
         obj = Services.objects.get(service_id=id)
@@ -144,7 +150,7 @@ def DeleteServiceView(request, id):
 
 # AccountType View ..................................................................................
 
-
+@login_required
 def AddAccountTypeView(request):
     if request.method == 'POST':
         acountTypeForm = AccountTypeForm(request.POST or None)
@@ -155,6 +161,7 @@ def AddAccountTypeView(request):
         acountTypeForm = AccountTypeForm(request.POST or None)
         return render(request, 'Client/add-service.html', {'form': acountTypeForm})
 
+@login_required
 def UpdateAccountTypeView(request, id):
     service = get_object_or_404(AccountType, pk=id)
     acountTypeForm = AccountTypeForm(request.POST or None, instance=service)
@@ -162,6 +169,7 @@ def UpdateAccountTypeView(request, id):
         acountTypeForm.save()
     return render(request, 'Client/add-service.html', {'form': acountTypeForm})
 
+@login_required
 def DeleteAccountTypeView(request, id):
     try:
         obj = AccountType.objects.get(account_type_id=id)
@@ -170,4 +178,3 @@ def DeleteAccountTypeView(request, id):
         return render(request, 'delete_success.html', {'object':'AccountType', 'name':name})
     except:
         return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
-        
