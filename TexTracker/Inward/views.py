@@ -58,9 +58,9 @@ def Inward_view(request):
     return render(request,'Inward/inward.html',context)
 
 
-def Inward_update_view(request):
+def Inward_update_view(request, id):
     inward = get_object_or_404(Inward,inward_id=id)
-    inward_image = get_object_or_404(InwardDocument,inward_id=id)
+    inward_image = InwardDocument.objects.filter(inward_id=id)
     inwardform = InwardForm(request.POST or None,instance=inward)
     inwardDocumentForm = InwardDocumentForm(request.POST or None,instance=inward_image)
 
