@@ -20,7 +20,7 @@ def invoice_view(request):
     }
     return render(request,'Invoice/invoice.html',context)
 
-@login_required
+@login_required(login_url='')
 def invoice_update_view(request,id):
     invoice = get_object_or_404(Invoice,outward_id=id)
     invoice_update_form = InvoiceForm(request.POST or None,instance=invoice)

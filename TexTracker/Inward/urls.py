@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Inward_view,Inward_update_view,inward_pass, DeleteInwardView
+from .views import Inward_view,Inward_update_view,inward_pass, DeleteInwardView,AdddocumentView
 from .views import AddInwardTypesView, UpdateInwardTypesView, DeleteInwardTypesView
 from .views import AddInwardPostTypesView, UpdateInwardPostTypesView, DeleteInwardPostTypesView
 
@@ -16,4 +16,5 @@ urlpatterns = [
     path('inwardposttypes/addinwardposttypes/', AddInwardPostTypesView, name='add-inwardposttypes'),
     path('inwardposttypes/<int:id>/update/', UpdateInwardPostTypesView, name='update-inwardposttypes'),
     path('inwardposttypes/<int:id>/delete/', DeleteInwardPostTypesView, name='delete-inwardposttypes'),
+    path('docupload/', AdddocumentView, name='add-doc-view')
 ]

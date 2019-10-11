@@ -5,7 +5,7 @@ from .views import AddServiceTypeView, UpdateServiceTypeView, DeleteServiceTypeV
 
 
 urlpatterns = [
-    path('',invoice_view,name='add-invoice'),
+    path('addinvoice',invoice_view,name='add-invoice'),
     path('<int:id>/update',invoice_update_view,name='update-invoice'),
     path('<int:id>/delete',DeleteInvoiceView,name='delete-invoice'),
     path('servicetype/addservicetype/', AddServiceTypeView, name='add-servicetype'),

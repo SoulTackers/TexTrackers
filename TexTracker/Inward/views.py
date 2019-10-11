@@ -5,17 +5,24 @@ from PendingWork.forms import PendingWorkForm
 from django.shortcuts import render,get_object_or_404
 from django.contrib import messages
 from .models import Inward,InwardTypes,InwardPostType,InwardDocument,InwardPendingDocument
+from PendingWork.models import PendingWork
 from Outward.forms import OutwardForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.http import HttpResponse
 
 
 # Create your views here.
-@login_required
+def handle_uploaded_file(f):
+    with open('myapp/static/upload/'+'abc.c', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
 def Inward_view(request):
     if request.method == 'POST':
-        inwardform = InwardForm(request.POST or None)
+        inwardform = InwardForm(request.POST or None, request.FILES or None)
         # inwardposttypeform = InwardPostTypeForm(request.POST or None)
         # inwardtypesform = InwardTypesForm(request.POST or None)
         inwardDocumentForm = InwardDocumentForm(request.POST or None)
@@ -40,11 +47,15 @@ def Inward_view(request):
                 temp = inwardPendingDocumentForm.save(commit=False)
                 temp.inward = new_inward
                 temp.save()
+            """else:
+                handle_uploaded_file(documentform.inward_doc)"""
             documentform.save()
             #messages.success(request, 'Document is valid')
         else:
             InwardPendingDocumentForm.inward = new_inward
             messages.warning(request, 'Document is not valid')
+        return redirect('add-inward')
+
     else:
         inwardform = InwardForm(request.POST or None)
         # inwardposttypeform = InwardPostTypeForm(request.POST or None)
@@ -58,8 +69,8 @@ def Inward_view(request):
     }
     return render(request,'Inward/inward.html',context)
 
-@login_required
-def Inward_update_view(request):
+
+def Inward_update_view(request, id):
     inward = get_object_or_404(Inward,inward_id=id)
     inward_image = get_object_or_404(InwardDocument,inward_id=id)
     inwardform = InwardForm(request.POST or None,instance=inward)
@@ -79,7 +90,7 @@ def Inward_update_view(request):
     }
     return render(request,'Inward/inward.html',context)
 
-@login_required
+
 def DeleteInwardView(request, id):
     try:
         obj = Inward.objects.get(account_type_id=id)
@@ -89,7 +100,7 @@ def DeleteInwardView(request, id):
     except:
         return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
 
-@login_required
+
 def inward_pass(request,id):
     if request.method == 'POST':
         inward = Inward.objects.get(inward_no = request.POST['inwardno'])
@@ -117,7 +128,7 @@ def inward_pass(request,id):
 
 
 # inward types views.........................................................................
-@login_required
+
 def AddInwardTypesView(request):
     if request.method == 'POST':
         inwardTypesForm = InwardTypesForm(request.POST or None)
@@ -128,7 +139,7 @@ def AddInwardTypesView(request):
         inwardTypesForm = InwardTypesForm(request.POST or None)
         return render(request, 'Client/add-service.html', {'form': inwardTypesForm})
 
-@login_required
+
 def UpdateInwardTypesView(request, id):
     service = get_object_or_404(InwardTypes, pk=id)
     inwardTypesForm = InwardTypesForm(request.POST or None, instance=service)
@@ -136,7 +147,7 @@ def UpdateInwardTypesView(request, id):
         inwardTypesForm.save()
     return render(request, 'Client/add-service.html', {'form': inwardTypesForm})
 
-@login_required
+
 def DeleteInwardTypesView(request, id):
     try:
         obj = InwardTypes.objects.get(account_type_id=id)
@@ -149,7 +160,7 @@ def DeleteInwardTypesView(request, id):
 
 # inward post types views.........................................................................
 
-@login_required
+
 def AddInwardPostTypesView(request):
     if request.method == 'POST':
         inwardPostTypesForm = InwardPostTypesForm(request.POST or None)
@@ -160,7 +171,7 @@ def AddInwardPostTypesView(request):
         inwardPostTypesForm = InwardPostTypesForm(request.POST or None)
         return render(request, 'Client/add-service.html', {'form': inwardPostTypesForm})
 
-@login_required
+
 def UpdateInwardPostTypesView(request, id):
     service = get_object_or_404(InwardPostTypes, pk=id)
     inwardPostTypesForm = InwardPostTypesForm(request.POST or None, instance=service)
@@ -168,7 +179,7 @@ def UpdateInwardPostTypesView(request, id):
         inwardPostTypesForm.save()
     return render(request, 'Client/add-service.html', {'form': inwardPostTypesForm})
 
-@login_required
+
 def DeleteInwardPostTypesView(request, id):
     try:
         obj = InwardPostTypes.objects.get(account_type_id=id)
@@ -177,3 +188,21 @@ def DeleteInwardPostTypesView(request, id):
         return render(request, 'delete_success.html', {'object':'InwardPostTypes', 'name':name})
     except:
         return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
+
+#..................................................................................................................
+
+def AdddocumentView(request):
+    if request.method == 'POST':
+        docupload = InwardDocumentForm(request.POST, request.FILES)
+        #doc = docupload.save(commit=False)
+        print(request.POST)
+        # if post.inward_doc == None:
+            #return HttpResponse("File not found")
+        if docupload.is_valid():
+            #handle_uploaded_file(request.POST['inward_doc']) # request.FILES['inward_doc'])
+            docupload.save()
+            return HttpResponse("File uploaded successfuly")
+        #return redirect('added')
+    else:
+        docupload = InwardDocumentForm(request.POST or None)
+        return render(request, 'Inward/addfile.html', {'form': docupload})

@@ -33,7 +33,7 @@ def pendingwork_update_view(request,id):
 
 @login_required
 def dashboard(request):
-    pendingwork = PendingWork.objects.filter(PendingWork_employeeid = 1)
+    pendingwork = PendingWork.objects.all()
     inwardlist = []
     # clientlist = []
     print('Hello')

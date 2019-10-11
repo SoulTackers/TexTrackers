@@ -11,5 +11,4 @@ class PendingWorkForm(forms.ModelForm):
         fields = [
                 'PendingWork_employeeid',
                 'PendingWork_inwardid' ,
-                
         ]
