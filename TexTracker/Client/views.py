@@ -11,7 +11,6 @@ from .forms import (AccountTypeForm,
                     ClientForm,
                     ClientLegalInfoForm,
                     ClientPasswordForm,
-                    ClientSeviceForm,
                     AccountTypeForm,)
 
 # Create your views here.
