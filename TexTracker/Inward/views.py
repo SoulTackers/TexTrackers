@@ -11,8 +11,7 @@ from django.conf import settings
 from django.http import HttpResponse
 
 
-# Create your views here.
-# Create your views here.
+##########COpy THIsss........................................................
 def Inward_view(request):
     if request.method == 'POST':
         inwardform = InwardForm(request.POST or None)
@@ -34,17 +33,18 @@ def Inward_view(request):
                 recipient_list = ['',] #inwardform.inward_client_id.client_email
                 send_mail( subject, message, email_from, recipient_list,fail_silently=False)
 
-        if inwardDocumentForm.is_valid():
-            documentform = inwardDocumentForm.save(commit=False)
-            if documentform.inward_doc == None:
-                temp = inwardPendingDocumentForm.save(commit=False)
-                temp.inward = new_inward
-                temp.save()
-            documentform.save()
-            #messages.success(request, 'Document is valid')
-        else:
-            InwardPendingDocumentForm.inward = new_inward
-            messages.warning(request, 'Document is not valid')
+            if inwardDocumentForm.is_valid():
+                documentform = inwardDocumentForm.save(commit=False)
+                documentform.inward_id = new_inward
+                if documentform.inward_doc == None:
+                    temp = inwardPendingDocumentForm.save(commit=False)
+                    temp.inward = new_inward
+                    temp.save()
+                documentform.save()
+                #messages.success(request, 'Document is valid')
+            else:
+                InwardPendingDocumentForm.inward = new_inward
+                messages.warning(request, 'Document is not valid')
     else:
         inwardform = InwardForm(request.POST or None)
         # inwardposttypeform = InwardPostTypeForm(request.POST or None)
@@ -84,6 +84,8 @@ def Inward_update_view(request, id):
         'image_form' : inwardDocumentForm,
     }
     return render(request,'Inward/inward.html',context)
+
+#####################tilll THiss...........................................................
 
 def DeleteInwardView(request, id):
     try:
