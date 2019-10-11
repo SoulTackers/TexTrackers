@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block extrainfo %}
 
-<form method="POST"> {% csrf_token %}
+<form method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
 {{form|crispy}}
 <input type="submit" class="btn btn-info" value='save'>
