@@ -16,7 +16,7 @@ class AccountType(models.Model):
     class Meta:
         managed = True
         db_table = 'account_type'
-\
+
 class Services(models.Model):
     service_id = models.AutoField(primary_key=True)
     service_name = models.CharField(max_length=60)

@@ -6,7 +6,7 @@ from .views import AddEmployeePostView, UpdateEmployeePostView, DeleteEmployeePo
 urlpatterns = [
         path('addemployee/',AddEmployeeView, name='add-employee'),
         #url('',Employee_view,name='employee')
-        path('<int:id>/update/', UpdateEmployeeView, name='update-employee'),
+        path('update/', UpdateEmployeeView, name='update-employee'),
         path('admin-addemployee/',AdminAddEmployeeView, name='admin-add-employee'),
         path('employeepost/addemployeepost/', AddEmployeePostView, name='add-employeepost'),
         path('employeepost/<int:id>/update/', UpdateEmployeePostView, name='update-employeepost'),

@@ -4,14 +4,14 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="{% static 'Employee/main.css'%}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <meta charset="utf-8"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <title>Starter Page</title>
@@ -26,13 +26,13 @@
                   <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
-                        <button role="button" type="button" style="background-color:#5f788a" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Client
-                        </button>
+                      <button role="button" type="button" style="background-color:#5f788a" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Client
+                      </button>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">Add</a>
-                          <a class="dropdown-item" href="#">Show</a>
-                          <a class="dropdown-item" href="#">Client Work</a>
+                          <a class="dropdown-item" href="{% url 'add-client' %}">Add</a>
+                          <a class="dropdown-item" href="{% url 'list-client' %}">Show</a>
+                          <!-- <a class="dropdown-item" href="#">Client Work</a> -->
                         </div>
                       </li>
 
@@ -43,9 +43,8 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'add-employee' %}">Add</a>
-                          <a class="dropdown-item" href="#">Update</a>
-                          <a class="dropdown-item" href="#">Employee Work</a>
-                          <a class="dropdown-item" href="#">Profile</a>
+                          <!-- <a class="dropdown-item" href="#">Employee Work</a> -->
+                          <a class="dropdown-item" href="{% url 'update-employee' %}">Profile</a>
                         </div>
                       </li>
 
@@ -55,7 +54,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'add-inward'%}">Add</a>
-                          <a class="dropdown-item" href="#">Show</a>
+                          <a class="dropdown-item" href="{% url 'list-inward' %}">Show</a>
                         </div>
                       </li>
 
@@ -65,7 +64,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'add-outward'%}">Add</a>
-                          <a class="dropdown-item" href="#">Show</a>
+                          <a class="dropdown-item" href="{% url 'list-outward' %}">Show</a>
                         </div>
                       </li>
 
@@ -75,11 +74,11 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'add-invoice'%}">Add</a>
-                          <a class="dropdown-item" href="#">Show</a>
+                          <a class="dropdown-item" href="{% url 'list-invoice' %}">Show</a>
                         </div>
                       </li>
 
-                      <li class="nav-item dropdown">
+                      <!-- <li class="nav-item dropdown">
                         <button role="button" type="button" style="background-color:#5f788a" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Inward Bill
                         </button>
@@ -87,7 +86,7 @@
                           <a class="dropdown-item" href="#">Add</a>
                           <a class="dropdown-item" href="#">Show</a>
                         </div>
-                      </li>
+                      </li> -->
                     </ul>
                   <div class="navbar-nav">
                     <a class="nav-item nav-link" href="#">Register</a>

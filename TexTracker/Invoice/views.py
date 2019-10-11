@@ -4,8 +4,10 @@ from django.shortcuts import render,get_object_or_404,render_to_response
 from .forms import InvoiceForm,ServicetypeForm
 from django.shortcuts import render
 from .models import Invoice,Servicetype
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='login')
 def invoice_view(request):
     if request.method == 'POST':
         form = InvoiceForm(request.POST or None)
@@ -18,6 +20,7 @@ def invoice_view(request):
     }
     return render(request,'Invoice/invoice.html',context)
 
+@login_required(login_url='login')
 def invoice_update_view(request,id):
     invoice = get_object_or_404(Invoice,outward_id=id)
     invoice_update_form = InvoiceForm(request.POST or None,instance=invoice)
@@ -27,6 +30,7 @@ def invoice_update_view(request,id):
 
     return render(request,'Invoice/invoice.html',{'form':invoice_update_form})
 
+@login_required(login_url='login')
 def DeleteInvoiceView(request, id):
     try:
         obj = Invoice.objects.get(account_type_id=id)
@@ -36,14 +40,14 @@ def DeleteInvoiceView(request, id):
     except:
         return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
 
-
+@login_required(login_url='login')
 def invoice_list_view(request):
     invoices = Invoice.objects.all()
     return render(request,'Invoice/invoice_list.html',{'invoices':invoices})
 
 
 #Servicetype views......................................................................................
-
+@login_required(login_url='login')
 def AddServiceTypeView(request):
     if request.method == 'POST':
         serviceTypeForm = ServiceTypeForm(request.POST or None)
@@ -54,6 +58,7 @@ def AddServiceTypeView(request):
         serviceTypeForm = ServiceTypeForm(request.POST or None)
         return render(request, 'Client/add-service.html', {'form': serviceTypeForm})
 
+@login_required(login_url='login')
 def UpdateServiceTypeView(request, id):
     service = get_object_or_404(ServiceType, pk=id)
     serviceTypeForm = ServiceTypeForm(request.POST or None, instance=service)
@@ -61,6 +66,7 @@ def UpdateServiceTypeView(request, id):
         serviceTypeForm.save()
     return render(request, 'Client/add-service.html', {'form': serviceTypeForm})
 
+@login_required(login_url='login')
 def DeleteServiceTypeView(request, id):
     try:
         obj = ServiceType.objects.get(account_type_id=id)

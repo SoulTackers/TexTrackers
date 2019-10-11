@@ -4,25 +4,27 @@ from .forms import EmployeeForm,EmployeePostForm, AdminEmployeeAddForm
 from .models import Employee, EmployeePost
 from .forms import UserRegisterForm
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+@login_required(login_url='login')
 def Employee_view(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST or None)
-        form1 = EmployeePostForm(request.POST or None)
-        if form.is_valid() and form1.is_valid():
+        # form1 = EmployeePostForm(request.POST or None)
+        if form.is_valid() :  #and form1.is_valid()
             form.save()
-            form1.save()
+            # form1.save()
     else:
         form = EmployeeForm(request.POST or None)
-        form1 = EmployeePostForm(request.POST or None)
+        # form1 = EmployeePostForm(request.POST or None)
     context = {
         'form' : form,
-        'form1' : form1
+        # 'form1' : form1
     }
     return render(request,'Employee/employee.html',context)
 
+@login_required(login_url='login')
 def AdminAddEmployeeView(request):
     if request.method == 'POST':
         form2 = EmployeeForm(request.POST)
@@ -42,15 +44,17 @@ def AdminAddEmployeeView(request):
         form3 = AdminEmployeeAddForm()
     return render(request, 'Employee/add-employee-admin.html', {'form3': form3['username']})
 
-def UpdateEmployeeView(request, id=1):
-    employee = get_object_or_404(Employee, employee_id=id)
+@login_required(login_url='login')
+def UpdateEmployeeView(request):
+    employee = get_object_or_404(Employee, employee_id=request.user.id)
     employee_update_form = EmployeeForm(request.POST or None, instance=employee)
 
     if employee_update_form.is_valid():
         employee_update_form.save()
-        return redirect("logout")
+        return redirect("dashboard")
     return render(request, 'Employee/update-employee.html', {'form': employee_update_form})
 
+@login_required(login_url='login')
 def AddEmployeeView(request):
     if request.method == 'POST':
         form1 = UserRegisterForm(request.POST)
@@ -69,7 +73,7 @@ def AddEmployeeView(request):
 
 
 
-
+@login_required(login_url='login')
 def DeleteEmployeeView(request, id):
     try:
         emp = Employee.objects.get(employee_id=id)
@@ -83,7 +87,7 @@ def DeleteEmployeeView(request, id):
 
 # Employee Post Views..........................................................................................
 
-
+@login_required(login_url='login')
 def AddEmployeePostView(request):
     if request.method == 'POST':
         employeePostForm = EmployeePostForm(request.POST or None)
@@ -94,6 +98,7 @@ def AddEmployeePostView(request):
         employeePostForm = EmployeePostForm(request.POST or None)
         return render(request, 'Client/add-service.html', {'form': employeePostForm})
 
+@login_required(login_url='login')
 def UpdateEmployeePostView(request, id):
     service = get_object_or_404(EmployeePost, pk=id)
     employeePostForm = EmployeePostForm(request.POST or None, instance=service)
@@ -101,6 +106,7 @@ def UpdateEmployeePostView(request, id):
         employeePostForm.save()
     return render(request, 'Client/add-service.html', {'form': employeePostForm})
 
+@login_required(login_url='login')
 def DeleteEmployeePostView(request, id):
     try:
         obj = EmployeePost.objects.get(account_type_id=id)

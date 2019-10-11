@@ -4,8 +4,10 @@ from .forms import FeesinwardForm,PaymenttypeForm
 from django.shortcuts import render,get_object_or_404,render_to_response
 from django.shortcuts import render
 from .models import Feesinward,PaymentType
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='login')
 def feesinward_view(request):
     if request.method == 'POST':
         form = FeesinwardForm(request.POST or None)
@@ -23,6 +25,7 @@ def feesinward_view(request):
     }
     return render(request,'FeesInward/feesinward.html',context)
 
+@login_required(login_url='login')
 def feesinward_update_view(request,id):
     feesinward = get_object_or_404(Feesinward,outward_id=id)
     paymenttype = get_object_or_404(PaymentType,paymenttype_id=id)
@@ -36,7 +39,7 @@ def feesinward_update_view(request,id):
     return render(request,'FeesInward/feesinward.html',{'form':feesinward_update_form,'payment_form':paymenttype_update_form})
 
 
-
+@login_required(login_url='login')
 def feesinward_list_view(request):
     feesinwards = Feesinward.objects.all()
     return render(request,'FeesInward/feesinward_list.html',{'feesinwards':feesinwards})
@@ -44,7 +47,7 @@ def feesinward_list_view(request):
 
 
 # PaymentType views.....................................................................................
-
+@login_required(login_url='login')
 def AddPaymentTypeView(request):
     if request.method == 'POST':
         paymentTypeForm = PaymentTypeForm(request.POST or None)
@@ -55,6 +58,7 @@ def AddPaymentTypeView(request):
         paymentTypeForm = PaymentTypeForm(request.POST or None)
         return render(request, 'Client/add-service.html', {'form': paymentTypeForm})
 
+@login_required(login_url='login')
 def UpdatePaymentTypeView(request, id):
     service = get_object_or_404(PaymentType, pk=id)
     paymentTypeForm = PaymentTypeForm(request.POST or None, instance=service)
@@ -62,6 +66,7 @@ def UpdatePaymentTypeView(request, id):
         paymentTypeForm.save()
     return render(request, 'Client/add-service.html', {'form': paymentTypeForm})
 
+@login_required(login_url='login')
 def DeletePaymentTypeView(request, id):
     try:
         obj = PaymentType.objects.get(account_type_id=id)

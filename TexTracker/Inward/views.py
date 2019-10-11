@@ -8,10 +8,11 @@ from .models import Inward,InwardTypes,InwardPostType,InwardDocument,InwardPendi
 from Outward.forms import OutwardForm
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-# Create your views here.
+@login_required(login_url='login')
 def Inward_view(request):
     if request.method == 'POST':
         inwardform = InwardForm(request.POST or None)
@@ -57,7 +58,7 @@ def Inward_view(request):
     }
     return render(request,'Inward/inward.html',context)
 
-
+@login_required(login_url='login')
 def Inward_update_view(request):
     inward = get_object_or_404(Inward,inward_id=id)
     inward_image = get_object_or_404(InwardDocument,inward_id=id)
@@ -78,6 +79,7 @@ def Inward_update_view(request):
     }
     return render(request,'Inward/inward.html',context)
 
+@login_required(login_url='login')
 def DeleteInwardView(request, id):
     try:
         obj = Inward.objects.get(account_type_id=id)
@@ -88,7 +90,7 @@ def DeleteInwardView(request, id):
         return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
 
 
-
+@login_required(login_url='login')
 def inward_pass(request,id):
     if request.method == 'POST':
         inward = Inward.objects.get(inward_no = request.POST['inwardno'])
@@ -117,7 +119,7 @@ def inward_pass(request,id):
 
 # inward types views.........................................................................
 
-
+@login_required(login_url='login')
 def AddInwardTypesView(request):
     if request.method == 'POST':
         inwardTypesForm = InwardTypesForm(request.POST or None)
@@ -128,6 +130,7 @@ def AddInwardTypesView(request):
         inwardTypesForm = InwardTypesForm(request.POST or None)
         return render(request, 'Client/add-service.html', {'form': inwardTypesForm})
 
+@login_required(login_url='login')
 def UpdateInwardTypesView(request, id):
     service = get_object_or_404(InwardTypes, pk=id)
     inwardTypesForm = InwardTypesForm(request.POST or None, instance=service)
@@ -135,6 +138,7 @@ def UpdateInwardTypesView(request, id):
         inwardTypesForm.save()
     return render(request, 'Client/add-service.html', {'form': inwardTypesForm})
 
+@login_required(login_url='login')
 def DeleteInwardTypesView(request, id):
     try:
         obj = InwardTypes.objects.get(account_type_id=id)
@@ -147,7 +151,7 @@ def DeleteInwardTypesView(request, id):
 
 # inward post types views.........................................................................
 
-
+@login_required(login_url='login')
 def AddInwardPostTypesView(request):
     if request.method == 'POST':
         inwardPostTypesForm = InwardPostTypesForm(request.POST or None)
@@ -158,6 +162,7 @@ def AddInwardPostTypesView(request):
         inwardPostTypesForm = InwardPostTypesForm(request.POST or None)
         return render(request, 'Client/add-service.html', {'form': inwardPostTypesForm})
 
+@login_required(login_url='login')
 def UpdateInwardPostTypesView(request, id):
     service = get_object_or_404(InwardPostTypes, pk=id)
     inwardPostTypesForm = InwardPostTypesForm(request.POST or None, instance=service)
@@ -165,6 +170,7 @@ def UpdateInwardPostTypesView(request, id):
         inwardPostTypesForm.save()
     return render(request, 'Client/add-service.html', {'form': inwardPostTypesForm})
 
+@login_required(login_url='login')
 def DeleteInwardPostTypesView(request, id):
     try:
         obj = InwardPostTypes.objects.get(account_type_id=id)
@@ -175,7 +181,7 @@ def DeleteInwardPostTypesView(request, id):
         return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
 
 
-
+@login_required(login_url='login')
 def inward_list_view(request):
     inwards = Inward.objects.all()
     return render(request,'Inward/inward_list.html',{'inwards':inwards})

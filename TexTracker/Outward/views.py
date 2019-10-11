@@ -5,8 +5,9 @@ from django.shortcuts import render,get_object_or_404,render_to_response
 from .models import Outward
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
-
+@login_required(login_url='login')
 def outward_view(request):
     if request.method == 'POST':
         form = OutwardForm(request.POST or None)
@@ -27,6 +28,7 @@ def outward_view(request):
     }
     return render(request,'Outward/outward.html',context)
 
+@login_required(login_url='login')
 def outward_update(request,id):
     outward = get_object_or_404(Outward,outward_id=id)
     outward_update_form = OutwardForm(request.POST or None,instance=outward)
@@ -36,6 +38,7 @@ def outward_update(request,id):
 
     return render(request,'Outward/outward.html',{'form':outward_update_form})
 
+@login_required(login_url='login')
 def DeleteOutwardView(request, id):
     try:
         obj = OutwardTypes.objects.get(account_type_id=id)
@@ -46,7 +49,7 @@ def DeleteOutwardView(request, id):
         return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
 
 
-
+@login_required(login_url='login')
 def outward_list_view(request):
     outwards = Outward.objects.all()
     return render(request,'Outward/outward_list.html',{'outwards':outwards})
