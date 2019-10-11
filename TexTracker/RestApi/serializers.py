@@ -2,9 +2,10 @@ from rest_framework import serializers
 from Inward.models import InwardDocument, InwardPendingDocument
 
 class InwardDocumentUploadSerializer(serializers.ModelSerializer):
+    #inward = serializers.
     class Meta:
         model = InwardDocument
-        fields = "__all__"
+        fields = ('__all__')
 
 class InwardPendingDocumentSerializer(serializers.ModelSerializer):
     client_name = serializers.ReadOnlyField(source='inward.inward_client_id.client_name')
