@@ -5,6 +5,7 @@ from .models import Employee, EmployeePost
 from .forms import UserRegisterForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 @login_required(login_url='login')
@@ -14,9 +15,11 @@ def Employee_view(request):
         # form1 = EmployeePostForm(request.POST or None)
         if form.is_valid() :  #and form1.is_valid()
             form.save()
+            messages.add_message(request, messages.SUCCESS, 'Employee is added')
+            form = EmployeeForm()
             # form1.save()
     else:
-        form = EmployeeForm(request.POST or None)
+        form = EmployeeForm()
         # form1 = EmployeePostForm(request.POST or None)
     context = {
         'form' : form,
@@ -51,6 +54,7 @@ def UpdateEmployeeView(request):
 
     if employee_update_form.is_valid():
         employee_update_form.save()
+        messages.add_message(request, messages.SUCCESS, 'Employee Profile is updated')
         return redirect("dashboard")
     return render(request, 'Employee/update-employee.html', {'form': employee_update_form})
 

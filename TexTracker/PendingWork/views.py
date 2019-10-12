@@ -2,11 +2,12 @@
 from __future__ import unicode_literals
 from .forms import PendingWorkForm
 from django.shortcuts import render
-from django.shortcuts import render,get_object_or_404,render_to_response
+from django.shortcuts import render,get_object_or_404,render_to_response,redirect
 from .models import PendingWork
 from Inward.models import Inward
 from Client.models import Client
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 @login_required(login_url='login')
 def pendingwork_view(request):
@@ -28,6 +29,9 @@ def pendingwork_update_view(request,id):
 
     if pendingwork_update_form.is_valid():
         pendingwork_update_form.save()
+        messages.add_message(request, messages.SUCCESS, 'Pending work is updated')
+        return redirect('dashboard')
+        return 
 
     return render(request,'PendingWork/pendingwork.html',{'form':pendingwork_update_form})
 

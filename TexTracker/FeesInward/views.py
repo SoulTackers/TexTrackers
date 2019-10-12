@@ -5,38 +5,43 @@ from django.shortcuts import render,get_object_or_404,render_to_response
 from django.shortcuts import render
 from .models import Feesinward,PaymentType
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 @login_required(login_url='login')
 def feesinward_view(request):
     if request.method == 'POST':
         form = FeesinwardForm(request.POST or None)
-        form1 = PaymenttypeForm(request.POST or None)
-        if form.is_valid() and form1.is_valid():
+        #form1 = PaymenttypeForm(request.POST or None)
+        if form.is_valid(): # and form1.is_valid()
             form.save()
-            form1.save()
+            messages.add_message(request, messages.SUCCESS, 'Feesinward is added')
+            form = FeesinwardForm()
+           # form1.save()
     else:
-        form = FeesinwardForm()
-        form1 = PaymenttypeForm()
+        form = FeesinwardForm()       
+        messages.add_message(request, messages.ERROR, 'Feesinward is not added')
+      #  form1 = PaymenttypeForm()
     
     context = {
         'form' : form,
-        'payment_form':form1
+      #  'payment_form':form1
     }
     return render(request,'FeesInward/feesinward.html',context)
 
 @login_required(login_url='login')
 def feesinward_update_view(request,id):
     feesinward = get_object_or_404(Feesinward,outward_id=id)
-    paymenttype = get_object_or_404(PaymentType,paymenttype_id=id)
+    #paymenttype = get_object_or_404(PaymentType,paymenttype_id=id)
     feesinward_update_form = FeesinwardForm(request.POST or None,instance=feesinward)
-    paymenttype_update_form = PaymenttypeForm(request.POST or None,instance=paymenttype)
+    #paymenttype_update_form = PaymenttypeForm(request.POST or None,instance=paymenttype)
 
-    if feesinward_update_form.is_valid() and paymenttype_update_form.is_valid():
+    if feesinward_update_form.is_valid() : #and paymenttype_update_form.is_valid()
         feesinward_update_form.save()
-        paymenttype_update_form.save()
+        messages.add_message(request, messages.SUCCESS, 'Feesinward is updated')
+       # paymenttype_update_form.save()
     
-    return render(request,'FeesInward/feesinward.html',{'form':feesinward_update_form,'payment_form':paymenttype_update_form})
+    return render(request,'FeesInward/feesinward.html',{'form':feesinward_update_form})
 
 
 @login_required(login_url='login')

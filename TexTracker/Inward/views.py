@@ -2,13 +2,15 @@
 from __future__ import unicode_literals
 from .forms import InwardForm,InwardPostTypeForm,InwardTypesForm,InwardDocumentForm,InwardPendingDocumentForm
 from PendingWork.forms import PendingWorkForm
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
 from .models import Inward,InwardTypes,InwardPostType,InwardDocument,InwardPendingDocument
 from Outward.forms import OutwardForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -26,12 +28,12 @@ def Inward_view(request):
             new_inward = form.save(commit=False)
             new_inward.inward_track = str(request.user.id) + ": Created,"
             inward_created = new_inward.save()
-            print(new_inward)
+            form = InwardForm()
             if inward_created :
                 subject = 'Work On Your Application has been started..'
                 message = ' It Will be Completed soon '
                 email_from = settings.EMAIL_HOST_USER
-                recipient_list = ['',] #inwardform.inward_client_id.client_email
+                recipient_list = ['meetsuthar64@gmail.com'] #inwardform.inward_client_id.client_email
                 send_mail( subject, message, email_from, recipient_list,fail_silently=False)
 
         if inwardDocumentForm.is_valid():
@@ -39,17 +41,20 @@ def Inward_view(request):
             if documentform.inward_doc == None:
                 temp = inwardPendingDocumentForm.save(commit=False)
                 temp.inward = new_inward
-                temp.save()
-            documentform.save()
-            #messages.success(request, 'Document is valid')
+                #temp.save()
+            else:
+                documentform.save()
+            inwardDocumentForm = InwardDocumentForm()
+            messages.add_message(request, messages.SUCCESS, 'Inward successfuly added with documents')
         else:
             InwardPendingDocumentForm.inward = new_inward
             messages.warning(request, 'Document is not valid')
     else:
-        inwardform = InwardForm(request.POST or None)
+        inwardform = InwardForm()
         # inwardposttypeform = InwardPostTypeForm(request.POST or None)
         # inwardtypesform = InwardTypesForm(request.POST or None)
-        inwardDocumentForm = InwardDocumentForm(request.POST or None)
+        inwardDocumentForm = InwardDocumentForm()
+        messages.add_message(request, messages.ERROR, 'Inward not added')
     context = {
         'form' : inwardform,
         # 'ipt_form' : inwardposttypeform,
@@ -59,20 +64,28 @@ def Inward_view(request):
     return render(request,'Inward/inward.html',context)
 
 @login_required(login_url='login')
-def Inward_update_view(request):
+def Inward_update_view(request, id):
     inward = get_object_or_404(Inward,inward_id=id)
     inward_image = get_object_or_404(InwardDocument,inward_id=id)
-    inwardform = InwardForm(request.POST or None,instance=inward)
-    inwardDocumentForm = InwardDocumentForm(request.POST or None,instance=inward_image)
 
-    if inwardform.is_valid():
-        inwardform.save()
-        if inwardDocumentForm.is_valid():
-            inwardDocumentForm.save()
-            #messages.success(request, 'Document is valid')
-        else:
-            InwardPendingDocumentForm.inward = inwardform
-            messages.warning(request, 'Document is not valid')
+    if request.method == 'POST':
+        inwardform = InwardForm(request.POST or None,instance=inward)
+        inwardDocumentForm = InwardDocumentForm(request.POST or None,instance=inward_image)
+
+        if inwardform.is_valid():
+            inwardform.save()
+            if inwardDocumentForm.is_valid():
+                inwardDocumentForm.save()
+                messages.add_message(request, messages.SUCCESS, 'Inward Successfully updated with documents')
+                return redirect('list-inward')
+            else:
+                InwardPendingDocumentForm.inward = inwardform
+                messages.warning(request, 'Document is not valid')
+                return redirect('list-inward')
+
+    else:
+        inwardform = InwardForm(request.POST or None,instance=inward)
+        inwardDocumentForm = InwardDocumentForm(request.POST or None,instance=inward_image)
     context = {
         'form' : inwardform,
         'image_form' : inwardDocumentForm,
@@ -185,3 +198,20 @@ def DeleteInwardPostTypesView(request, id):
 def inward_list_view(request):
     inwards = Inward.objects.all()
     return render(request,'Inward/inward_list.html',{'inwards':inwards})
+
+def AdddocumentView(request):
+    if request.method == 'POST':
+        p_form = InwardDocumentForm(request.POST, request.FILES)
+        if p_form.is_valid():
+            p_form.save()
+            messages.success(
+                request, f'Your account has been Updated!')
+            return HttpResponse("Done!")
+    else:
+        p_form = InwardDocumentForm(request.POST, request.FILES)
+
+    context = {
+        'form': p_form,
+    }
+
+    return render(request, 'Inward/addfile.html', context)

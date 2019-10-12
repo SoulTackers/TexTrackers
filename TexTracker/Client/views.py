@@ -13,12 +13,14 @@ from .forms import (AccountTypeForm,
                     ClientPasswordForm,
                     AccountTypeForm,)
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 @login_required(login_url='login')
 def AddClientView(request):
 
     if request.method == 'POST':
+        messages.add_message(request, messages.SUCCESS, 'Client is added')
         client_form = ClientForm(request.POST)
         clientBankInfo_Form = ClientBankInfoForm(request.POST)
         clientAccountantInfo_Form = ClientAccountantInfoForm(request.POST)
@@ -41,6 +43,11 @@ def AddClientView(request):
                 if form.client is None:
                      form.client = client
                 form.save()
+             client_form = ClientForm()
+             clientBankInfo_Form = ClientBankInfoForm()
+             clientAccountantInfo_Form = ClientAccountantInfoForm()
+             clientLegalInfo_Form = ClientLegalInfoForm()
+             clientPassword_Form = ClientPasswordForm()
              # Begin Mail..............
              subject = 'Work On Your Application has been started..'
              message = ' It Will be Completed soon '
@@ -50,6 +57,7 @@ def AddClientView(request):
              # End Mail.................
         
     else:
+        messages.add_message(request, messages.ERROR, 'Client is not added')
         client_form = ClientForm()
         clientBankInfo_Form = ClientBankInfoForm()
         clientAccountantInfo_Form = ClientAccountantInfoForm()
@@ -95,7 +103,8 @@ def UpdateClientView(request, id):
           clientAccountantInfo_Form = clientAccountantInfo_Form.save()
           clientLegalInfo_Form = clientLegalInfo_Form.save()
           clientPassword_Form = clientPassword_Form.save()
-          return redirect('login')
+          messages.add_message(request, messages.SUCCESS, 'Client is updated')
+          return redirect('list-client')
 
     context = {
             'client_form': client_form,
@@ -109,7 +118,7 @@ def UpdateClientView(request, id):
 
 @login_required(login_url='login')
 def DeleteClientView(request, id):
-    obj = Client.objects.filter(service_id=id)
+    obj = Client.objects.filter(client_id=id)
     name = str(obj[0])
     obj.delete()
     return render(request, 'delete_success.html', {'object':'Client', 'name':name})

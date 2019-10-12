@@ -6,6 +6,7 @@ from .models import Outward
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 @login_required(login_url='login')
 def outward_view(request):
@@ -13,6 +14,8 @@ def outward_view(request):
         form = OutwardForm(request.POST or None)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS, 'Outward is added')
+            form = OutwardForm()
             # Begin Mail..............
             subject = 'Work On Your Application has been started..'
             message = ' It Will be Completed soon '
@@ -21,7 +24,7 @@ def outward_view(request):
             send_mail( subject, message, email_from, recipient_list,fail_silently=False)
             # End Mail.................
     else:
-        form = OutwardForm(request.POST or None)
+        form = OutwardForm()
         print(Outward.objects.all())
     context = {
         'form' : form
@@ -35,6 +38,7 @@ def outward_update(request,id):
 
     if outward_update_form.is_valid():
         outward_update_form.save()
+        messages.add_message(request, messages.SUCCESS, 'Outward Updated')
 
     return render(request,'Outward/outward.html',{'form':outward_update_form})
 

@@ -5,6 +5,7 @@ from .forms import InvoiceForm,ServicetypeForm
 from django.shortcuts import render
 from .models import Invoice,Servicetype
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 @login_required(login_url='login')
@@ -13,8 +14,11 @@ def invoice_view(request):
         form = InvoiceForm(request.POST or None)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS, 'Invoice is added')
+            form = InvoiceForm()
     else:
-        form = InvoiceForm(request.POST or None)
+        form = InvoiceForm()
+        messages.add_message(request, messages.ERROR, 'Invoice is not added')
     context = {
         'form' : form,
     }
@@ -22,11 +26,12 @@ def invoice_view(request):
 
 @login_required(login_url='login')
 def invoice_update_view(request,id):
-    invoice = get_object_or_404(Invoice,outward_id=id)
+    invoice = get_object_or_404(Invoice,invoice_id=id)
     invoice_update_form = InvoiceForm(request.POST or None,instance=invoice)
 
     if invoice_update_form.is_valid():
         invoice_update_form.save()
+        messages.add_message(request, messages.SUCCESS, 'Invoice is updated')
 
     return render(request,'Invoice/invoice.html',{'form':invoice_update_form})
 

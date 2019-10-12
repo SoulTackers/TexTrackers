@@ -138,8 +138,28 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGIN_URL = ''
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+"""
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+MAIL_USE_TLS = True
+MAIL_USE_SSL = True
+MAIL_USERNAME = <Username>
+MAIL_PASSWORD = <Password>
+"""
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_USER = 'meetsuthar64@gmail.com'
+EMAIL_USE_PASSWORD = 'meets12345'
+
+
+
+
+
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/media/'
+MEDIA_URL = os.path.join(BASE_DIR, 'media/')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #AUTH_USER_MODEL = "Authentication.CustomUser" 
 

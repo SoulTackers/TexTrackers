@@ -32,7 +32,7 @@ class Services(models.Model):
 
 class Client(models.Model):
     client_id = models.AutoField(primary_key=True)
-    client_name = models.CharField(max_length=60)
+    client_name = models.CharField(max_length=60, default='client')
     client_account_type = models.ForeignKey(AccountType, on_delete=models.DO_NOTHING, null=True, blank=True)
     client_office_address1 = models.TextField(null=True, blank=True)
     client_office_address2 = models.TextField(null=True, blank=True)
