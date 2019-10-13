@@ -41,9 +41,9 @@ def Inward_view(request):
             if documentform.inward_doc == None:
                 temp = inwardPendingDocumentForm.save(commit=False)
                 temp.inward = new_inward
-                #temp.save()
-            else:
-                documentform.save()
+                temp.save()
+            documentform.inward_id = new_inward            
+            documentform.save()
             inwardDocumentForm = InwardDocumentForm()
             messages.add_message(request, messages.SUCCESS, 'Inward successfuly added with documents')
         else:
@@ -85,20 +85,21 @@ def Inward_update_view(request, id):
 
     else:
         inwardform = InwardForm(request.POST or None,instance=inward)
-        inwardDocumentForm = InwardDocumentForm(request.POST or None,instance=inward_image)
+        # inwardDocumentForm = InwardDocumentForm(request.POST or None,instance=inward_image)
     context = {
         'form' : inwardform,
-        'image_form' : inwardDocumentForm,
+        # 'image_form' : inwardDocumentForm,
     }
     return render(request,'Inward/inward.html',context)
 
 @login_required(login_url='login')
 def DeleteInwardView(request, id):
     try:
-        obj = Inward.objects.get(account_type_id=id)
+        obj = Inward.objects.get(inward_id=id)
         name = str(obj)
         obj.delete()
-        return render(request, 'delete_success.html', {'object':'Inward', 'name':name})
+        messages.add_message(request, messages.SUCCESS, 'Inward Deleted')
+        return redirect('list-inward')
     except:
         return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render,get_object_or_404,render_to_response
+from django.shortcuts import render,get_object_or_404,render_to_response, redirect
 from .forms import InvoiceForm,ServicetypeForm
 from django.shortcuts import render
 from .models import Invoice,Servicetype
@@ -38,10 +38,10 @@ def invoice_update_view(request,id):
 @login_required(login_url='login')
 def DeleteInvoiceView(request, id):
     try:
-        obj = Invoice.objects.get(account_type_id=id)
+        obj = Invoice.objects.get(invoice_id=id)
         name = str(obj)
         obj.delete()
-        return render(request, 'delete_success.html', {'object':'Invoice', 'name':name})
+        return redirect('list-invoice')
     except:
         return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
 

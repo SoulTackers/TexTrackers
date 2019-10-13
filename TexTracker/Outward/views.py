@@ -7,6 +7,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.shortcuts import redirect
+from .models import Outward
 
 @login_required(login_url='login')
 def outward_view(request):
@@ -39,19 +41,22 @@ def outward_update(request,id):
     if outward_update_form.is_valid():
         outward_update_form.save()
         messages.add_message(request, messages.SUCCESS, 'Outward Updated')
+        return redirect('list-outward')
 
     return render(request,'Outward/outward.html',{'form':outward_update_form})
 
 @login_required(login_url='login')
 def DeleteOutwardView(request, id):
     try:
-        obj = OutwardTypes.objects.get(account_type_id=id)
+        obj = Outward.objects.get(outward_id=id)
         name = str(obj)
         obj.delete()
-        return render(request, 'delete_success.html', {'object':'OutwardTypes', 'name':name})
+        messages.add_message(request, messages.SUCCESS, 'Outward Deleted')
+        return redirect('list-outward')
     except:
-        return render(request, 'delete_success.html', {'object':'e', 'name':'error'})
-
+        pass
+    
+        
 
 @login_required(login_url='login')
 def outward_list_view(request):

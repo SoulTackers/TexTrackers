@@ -150,8 +150,8 @@ MAIL_PASSWORD = <Password>
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_USE_USER = 'meetsuthar64@gmail.com'
-EMAIL_USE_PASSWORD = 'meets12345'
+EMAIL_USE_USER = ''
+EMAIL_USE_PASSWORD = ''
 
 
 

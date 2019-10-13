@@ -7,8 +7,8 @@ from .views import AddInwardPostTypesView, UpdateInwardPostTypesView, DeleteInwa
 
 urlpatterns = [
     path('addinward',Inward_view,name='add-inward'),
-    path('<int:id>/update',Inward_update_view,name='update-inward'),
-    path('<int:id>/delete',DeleteInwardView,name='delete-inward'),
+    path('listinwards/inward/<int:id>/update',Inward_update_view,name='update-inward'),
+    path('listinwards/inward/<int:id>/delete',DeleteInwardView,name='delete-inward'),
     path('<int:id>/show',inward_pass,name='show-inward'),
     path('inwardtypes/addinwardtypes/', AddInwardTypesView, name='add-inwardtypes'),
     path('inwardtypes/<int:id>/update/', UpdateInwardTypesView, name='update-inwardtypes'),
