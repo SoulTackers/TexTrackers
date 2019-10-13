@@ -15,7 +15,7 @@ from django.http import HttpResponse
 def Inward_view(request):
     if request.method == 'POST':
         inwardform = InwardForm(request.POST or None)
-        # inwardposttypeform = InwardPostTypeForm(request.POST or None)
+        # inwardposttypeform = InwardPostTypeForm(reImageFieldquest.POST or None)
         # inwardtypesform = InwardTypesForm(request.POST or None)
         inwardDocumentForm = InwardDocumentForm(request.POST or None)
         inwardPendingDocumentForm = InwardPendingDocumentForm(request.POST or None)
@@ -25,7 +25,6 @@ def Inward_view(request):
             new_inward = form.save(commit=False)
             new_inward.inward_track = str(request.user.id) + ": Created,"
             inward_created = new_inward.save()
-            print(new_inward)
             if inward_created :
                 subject = 'Work On Your Application has been started..'
                 message = ' It Will be Completed soon '
