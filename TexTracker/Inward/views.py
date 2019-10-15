@@ -126,18 +126,11 @@ def DeleteInwardView(request, id):
 @login_required(login_url='login')
 def inward_pass(request,id):
     if request.method == 'POST':
-        inward = Inward.objects.get(inward_no = request.POST['inwardno'])
-        inward.inward_employeeid = request.POST['empid']
-        inward.inward_track = inward.inward_track + str(request.user.id)+": "+request.POST['workdone']
-        inward.save()
+        # inward = Inward.objects.get(inward_no = request.POST['inwardno'])
+        PendingWork.objects.get(PendingWork_inwardid=id).delete()
+        return redirect('dashboard')
 
-        # Begin Mail..............
-        subject = 'Work Progress'
-        message = request.POST['workdone']+'Done by '+inward.inward_employeeid.employee_name
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['',] #inwardform.inward_client_id.client_email
-        send_mail( subject, message, email_from, recipient_list,fail_silently=False)
-        # End Mail.................
+
 
     inward = get_object_or_404(Inward,inward_id=id)
     outward = OutwardForm(request.POST or None)
@@ -160,6 +153,13 @@ def pass_inward_real(request,id):
         inward.inward_employeeid = Employee.objects.get(employee_id=request.POST['emp_id'])
         inward.inward_track = inward.inward_track + str(inward.inward_employeeid.employee_id)+": "+request.POST['workdone']
         inward.save()
+        # Begin Mail..............
+        subject = 'Work Progress'
+        message = request.POST['workdone']+'Done by '+inward.inward_employeeid.employee_name
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['',] #inwardform.inward_client_id.client_email
+        send_mail( subject, message, email_from, recipient_list,fail_silently=False)
+        # End Mail.................
         return redirect('dashboard')
     else:
         pass
