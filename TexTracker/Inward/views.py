@@ -5,7 +5,9 @@ from PendingWork.forms import PendingWorkForm
 from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
 from .models import Inward,InwardTypes,InwardPostType,InwardDocument,InwardPendingDocument
+from PendingWork.models import PendingWork
 from Outward.forms import OutwardForm
+from Employee.models import Employee
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -22,19 +24,35 @@ def Inward_view(request):
         # inwardtypesform = InwardTypesForm(request.POST or None)
         inwardDocumentForm = InwardDocumentForm(request.POST or None)
         inwardPendingDocumentForm = InwardPendingDocumentForm(request.POST or None)
+        
 
         if inwardform.is_valid():
-            form = InwardForm(request.POST)
-            new_inward = form.save(commit=False)
+            # form = InwardForm(request.POST)
+            new_inward = inwardform.save(commit=False)
+            # emp = Employee.objects.get(user=new)
+
             new_inward.inward_track = str(request.user.id) + ": Created,"
-            inward_created = new_inward.save()
+            new_inward.save()
+            pendingwork = PendingWorkForm(request.POST or None) #,PendingWork_employeeid=new_inward.inward_employeeid,PendingWork_inwardid=new_inward)
+            
+            if pendingwork.is_valid():
+                pw = pendingwork.save(commit=False)
+                pw.PendingWork_employeeid = new_inward.inward_employeeid
+                pw.PendingWork_inwardid = new_inward
+                pendingwork.save()
+
+            
             form = InwardForm()
-            if inward_created :
-                subject = 'Work On Your Application has been started..'
-                message = ' It Will be Completed soon '
-                email_from = settings.EMAIL_HOST_USER
-                recipient_list = ['meetsuthar64@gmail.com'] #inwardform.inward_client_id.client_email
-                send_mail( subject, message, email_from, recipient_list,fail_silently=False)
+            # print(inward_created)
+            # print("Hello jvfsofdos")
+            # if inward_created :
+            subject = 'Work On Your Application has been started..'
+            message = ' It Will be Completed soon '
+            email_from = settings.EMAIL_HOST_USER
+            to_list = ['meetsuthar64@gmail.com'] #inwardform.inward_client_id.client_email
+            send_mail( subject, message, email_from, to_list,fail_silently=False)
+            messages.add_message(request, messages.SUCCESS, 'Inward successfuly added with documents')
+            
 
         if inwardDocumentForm.is_valid():
             documentform = inwardDocumentForm.save(commit=False)
@@ -45,7 +63,7 @@ def Inward_view(request):
             documentform.inward_id = new_inward            
             documentform.save()
             inwardDocumentForm = InwardDocumentForm()
-            messages.add_message(request, messages.SUCCESS, 'Inward successfuly added with documents')
+            
         else:
             InwardPendingDocumentForm.inward = new_inward
             messages.warning(request, 'Document is not valid')

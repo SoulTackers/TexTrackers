@@ -10,7 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <meta charset="utf-8"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta charset="utf-8"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -18,7 +19,7 @@
   </head>
   <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-steel">
-                <a class="navbar-brand" href="#">KM Kothari</a>
+                <a class="navbar-brand" href="{% url 'dashboard' %}">KM Kothari</a>
                 <button class="navbar-toggler" type="button" style="background-color:#5f788a" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -26,9 +27,9 @@
                   <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
-                      <button role="button" type="button" style="background-color:#5f788a" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Client
-                      </button>
+                      </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'add-client' %}">Add</a>
                           <a class="dropdown-item" href="{% url 'list-client' %}">Show</a>
@@ -38,9 +39,9 @@
 
 
                       <li class="nav-item dropdown">
-                        <button role="button" type="button" style="background-color:#5f788a" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Employee
-                        </button>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'add-employee' %}">Add</a>
                           <!-- <a class="dropdown-item" href="#">Employee Work</a> -->
@@ -49,9 +50,9 @@
                       </li>
 
                       <li class="nav-item dropdown">
-                        <button role="button" type="button" style="background-color:#5f788a" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Inward
-                        </button>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'add-inward'%}">Add</a>
                           <a class="dropdown-item" href="{% url 'list-inward' %}">Show</a>
@@ -59,9 +60,9 @@
                       </li>
 
                       <li class="nav-item dropdown">
-                        <button role="button" type="button" style="background-color:#5f788a" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Outward
-                        </button>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'add-outward'%}">Add</a>
                           <a class="dropdown-item" href="{% url 'list-outward' %}">Show</a>
@@ -69,9 +70,9 @@
                       </li>
 
                       <li class="nav-item dropdown">
-                        <button role="button" type="button" style="background-color:#5f788a" class="btn nav-item nav-link" href="#" id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Invoice
-                        </button>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'add-invoice'%}">Add</a>
                           <a class="dropdown-item" href="{% url 'list-invoice' %}">Show</a>

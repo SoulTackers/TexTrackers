@@ -147,19 +147,20 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = <Username>
 MAIL_PASSWORD = <Password>
 """
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+
 EMAIL_USE_TLS = True
-EMAIL_USE_USER = ''
-EMAIL_USE_PASSWORD = ''
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = '<YOUR EMAIL>'
+EMAIL_HOST_PASSWORD = '<YOUR PASSWORD>'
+EMAIL_PORT = 587
 
 
 
 
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/media/'
-MEDIA_URL = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = 'media'
+MEDIA_URL = os.path.join(BASE_DIR, '/media/')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #AUTH_USER_MODEL = "Authentication.CustomUser" 
 

@@ -63,7 +63,7 @@ class InwardDocument(models.Model):
 
 class InwardPendingDocument(models.Model):
     inward = models.OneToOneField(Inward, models.CASCADE,blank=True,null=True)
-    inward_doc = models.ImageField(upload_to='uploads/',default='default.png')
+    inward_doc = models.FileField(upload_to='uploads/',default='default.png')
 
     class meta:
         managed = True
