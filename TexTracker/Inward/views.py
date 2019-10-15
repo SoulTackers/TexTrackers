@@ -6,6 +6,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
 from .models import Inward,InwardTypes,InwardPostType,InwardDocument,InwardPendingDocument
 from PendingWork.models import PendingWork
+from Employee.models import Employee
 from Outward.forms import OutwardForm
 from Employee.models import Employee
 from django.core.mail import send_mail
@@ -142,11 +143,28 @@ def inward_pass(request,id):
     outward = OutwardForm(request.POST or None)
     outward.fields['outward_iid'].initial = inward
 
+    emp = Employee.objects.all()
+
     context = {
         'inward':inward,
-        'outward':outward
+        'outward':outward,
+        'employees' : emp
     }
     return render(request,'Inward/passinward.html',context)
+
+
+@login_required(login_url='login')
+def pass_inward_real(request,id):
+    if request.method == 'POST':
+        inward = Inward.objects.get(inward_id = id)
+        inward.inward_employeeid = Employee.objects.get(employee_id=request.POST['emp_id'])
+        inward.inward_track = inward.inward_track + str(inward.inward_employeeid.employee_id)+": "+request.POST['workdone']
+        inward.save()
+        return redirect('dashboard')
+    else:
+        pass
+
+
 
 
 # inward types views.........................................................................

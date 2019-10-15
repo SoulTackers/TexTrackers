@@ -111,17 +111,8 @@
             </div>
             <div id="collapse-7" class="collapse" data-parent="#accordion" aria-labelledby="heading-7">
                 <div class="card-body">
-                <form method="POST"> {% csrf_token %}
-                  <div class="form-group-inner">
-                    <div class="row">
-                            <div class="col-lg-3">
-                                <label class="login2 pull-right pull-right-pro">Inward No</label>
-                            </div>
-                            <div class="col-lg-9">
-                                    <input type="number" name="inwardno">
-                            </div>
-                    </div>
-                  </div>  
+                <form method="POST" action="pinward/"> {% csrf_token %}
+                
                   <div class="form-group-inner">
                         <div class="row">
                                 <div class="col-lg-3">
@@ -135,10 +126,15 @@
                       <div class="form-group-inner">
                             <div class="row">
                                     <div class="col-lg-3">
-                                        <label class="login2 pull-right pull-right-pro">Pass Employee Id</label>
+                                        <label class="login2 pull-right pull-right-pro">Pass Employee Name</label>
                                     </div>
                                     <div class="col-lg-9">
-                                            <input type="number" name="empid">
+                                            <select name="emp_id" >
+                                                    {% for emp in employees  %}
+                                                        <option value="{{emp.employee_id}}">{{emp.employee_name}}</option>
+                                                    {% endfor %}
+
+                                            </select>
                                     </div>
                             </div>
                           </div>
