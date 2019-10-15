@@ -6,6 +6,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
 from .models import Inward,InwardTypes,InwardPostType,InwardDocument,InwardPendingDocument
 from PendingWork.models import PendingWork
+from Employee.models import Employee
 from Outward.forms import OutwardForm
 from Employee.models import Employee
 from django.core.mail import send_mail
@@ -24,7 +25,7 @@ def Inward_view(request):
         # inwardtypesform = InwardTypesForm(request.POST or None)
         inwardDocumentForm = InwardDocumentForm(request.POST or None)
         inwardPendingDocumentForm = InwardPendingDocumentForm(request.POST or None)
-        
+
 
         if inwardform.is_valid():
             # form = InwardForm(request.POST)
@@ -34,14 +35,14 @@ def Inward_view(request):
             new_inward.inward_track = str(request.user.id) + ": Created,"
             new_inward.save()
             pendingwork = PendingWorkForm(request.POST or None) #,PendingWork_employeeid=new_inward.inward_employeeid,PendingWork_inwardid=new_inward)
-            
+
             if pendingwork.is_valid():
                 pw = pendingwork.save(commit=False)
                 pw.PendingWork_employeeid = new_inward.inward_employeeid
                 pw.PendingWork_inwardid = new_inward
                 pendingwork.save()
 
-            
+
             form = InwardForm()
             # print(inward_created)
             # print("Hello jvfsofdos")
@@ -52,7 +53,7 @@ def Inward_view(request):
             to_list = ['meetsuthar64@gmail.com'] #inwardform.inward_client_id.client_email
             send_mail( subject, message, email_from, to_list,fail_silently=False)
             messages.add_message(request, messages.SUCCESS, 'Inward successfuly added with documents')
-            
+
 
         if inwardDocumentForm.is_valid():
             documentform = inwardDocumentForm.save(commit=False)
@@ -60,10 +61,10 @@ def Inward_view(request):
                 temp = inwardPendingDocumentForm.save(commit=False)
                 temp.inward = new_inward
                 temp.save()
-            documentform.inward_id = new_inward            
+            documentform.inward_id = new_inward
             documentform.save()
             inwardDocumentForm = InwardDocumentForm()
-            
+
         else:
             InwardPendingDocumentForm.inward = new_inward
             messages.warning(request, 'Document is not valid')
@@ -125,11 +126,33 @@ def DeleteInwardView(request, id):
 @login_required(login_url='login')
 def inward_pass(request,id):
     if request.method == 'POST':
-        inward = Inward.objects.get(inward_no = request.POST['inwardno'])
-        inward.inward_employeeid = request.POST['empid']
-        inward.inward_track = inward.inward_track + str(request.user.id)+": "+request.POST['workdone']
-        inward.save()
+        # inward = Inward.objects.get(inward_no = request.POST['inwardno'])
+        PendingWork.objects.get(PendingWork_inwardid=id).delete()
+        return redirect('dashboard')
 
+
+
+    inward = get_object_or_404(Inward,inward_id=id)
+    outward = OutwardForm(request.POST or None)
+    outward.fields['outward_iid'].initial = inward
+
+    emp = Employee.objects.all()
+
+    context = {
+        'inward':inward,
+        'outward':outward,
+        'employees' : emp
+    }
+    return render(request,'Inward/passinward.html',context)
+
+
+@login_required(login_url='login')
+def pass_inward_real(request,id):
+    if request.method == 'POST':
+        inward = Inward.objects.get(inward_id = id)
+        inward.inward_employeeid = Employee.objects.get(employee_id=request.POST['emp_id'])
+        inward.inward_track = inward.inward_track + str(inward.inward_employeeid.employee_id)+": "+request.POST['workdone']
+        inward.save()
         # Begin Mail..............
         subject = 'Work Progress'
         message = request.POST['workdone']+'Done by '+inward.inward_employeeid.employee_name
@@ -137,16 +160,11 @@ def inward_pass(request,id):
         recipient_list = ['',] #inwardform.inward_client_id.client_email
         send_mail( subject, message, email_from, recipient_list,fail_silently=False)
         # End Mail.................
+        return redirect('dashboard')
+    else:
+        pass
 
-    inward = get_object_or_404(Inward,inward_id=id)
-    outward = OutwardForm(request.POST or None)
-    outward.fields['outward_iid'].initial = inward
 
-    context = {
-        'inward':inward,
-        'outward':outward
-    }
-    return render(request,'Inward/passinward.html',context)
 
 
 # inward types views.........................................................................
@@ -233,4 +251,4 @@ def AdddocumentView(request):
         'form': p_form,
     }
 
-    return render(request, 'Inward/addfile.html', context)
+return render(request, 'Inward/addfile.html', context)
