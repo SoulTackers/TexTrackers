@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 from .forms import InwardForm,InwardPostTypeForm,InwardTypesForm,InwardDocumentForm,InwardPendingDocumentForm
 from PendingWork.forms import PendingWorkForm
-from django.shortcuts import render,get_object_or_404
+from PendingWork.models import PendingWork
+from django.shortcuts import render,get_object_or_404, redirect
 from django.contrib import messages
 from .models import Inward,InwardTypes,InwardPostType,InwardDocument,InwardPendingDocument
 from Outward.forms import OutwardForm
@@ -11,7 +12,6 @@ from django.conf import settings
 from django.http import HttpResponse
 
 
-##########COpy THIsss........................................................
 def Inward_view(request):
     if request.method == 'POST':
         inwardform = InwardForm(request.POST or None)
@@ -19,12 +19,20 @@ def Inward_view(request):
         # inwardtypesform = InwardTypesForm(request.POST or None)
         inwardDocumentForm = InwardDocumentForm(request.POST or None)
         inwardPendingDocumentForm = InwardPendingDocumentForm(request.POST or None)
+        pendingWork = PendingWorkForm(request.POST or None)
 
         if inwardform.is_valid():
             form = InwardForm(request.POST)
             new_inward = form.save(commit=False)
             new_inward.inward_track = str(request.user.id) + ": Created,"
             inward_created = new_inward.save()
+            pendingWork = PendingWorkForm(request.POST or None)
+            if pendingWork.is_valid():
+                pw = pendingWork.save(commit=False)
+                pw.PendingWork_employeeid=new_inward.inward_employeeid
+                pw.PendingWork_inwardid=new_inward
+                pendingWork.save()
+
             if inward_created :
                 subject = 'Work On Your Application has been started..'
                 message = ' It Will be Completed soon '
@@ -84,7 +92,6 @@ def Inward_update_view(request, id):
     }
     return render(request,'Inward/inward.html',context)
 
-#####################tilll THiss...........................................................
 
 def DeleteInwardView(request, id):
     try:
@@ -189,7 +196,7 @@ def AdddocumentView(request):
             p_form.save()
             messages.success(
                 request, f'Your account has been Updated!')
-            return HttpResponse("Done!")
+            return redirect('add-doc-view')
     else:
         p_form = InwardDocumentForm(request.POST, request.FILES)
 

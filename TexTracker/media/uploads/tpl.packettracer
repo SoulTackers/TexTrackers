@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo Starting Packet Tracer 7.2.1
+
+PTDIR=III
+export LD_LIBRARY_PATH=$PTDIR/bin
+pushd $PTDIR/bin > /dev/null
+./PacketTracer7 "$@" > /dev/null 2>&1
+popd > /dev/null
+
