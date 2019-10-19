@@ -8,6 +8,7 @@ from Inward.models import Inward
 from Client.models import Client
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from Employee.models import Employee
 # Create your views here.
 @login_required(login_url='login')
 def pendingwork_view(request):
@@ -31,13 +32,14 @@ def pendingwork_update_view(request,id):
         pendingwork_update_form.save()
         messages.add_message(request, messages.SUCCESS, 'Pending work is updated')
         return redirect('dashboard')
-        return 
+        return
 
     return render(request,'PendingWork/pendingwork.html',{'form':pendingwork_update_form})
 
 @login_required(login_url='login')
 def dashboard(request):
-    pendingwork = PendingWork.objects.filter(PendingWork_employeeid = 1)
+    emp = Employee.objects.get(user = request.user)
+    pendingwork = PendingWork.objects.filter(PendingWork_employeeid = emp)
     inwardlist = []
     # clientlist = []
     for pw in pendingwork:
