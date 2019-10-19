@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from .forms import PendingWorkForm
+from Employee.models import Employee
 from django.shortcuts import render
 from django.shortcuts import render,get_object_or_404,render_to_response,redirect
 from .models import PendingWork
@@ -37,7 +38,7 @@ def pendingwork_update_view(request,id):
 
 @login_required(login_url='login')
 def dashboard(request):
-    pendingwork = PendingWork.objects.filter(PendingWork_employeeid = 1)
+    pendingwork = PendingWork.objects.filter(PendingWork_employeeid = Employee.objects.get(user=request.user))
     inwardlist = []
     # clientlist = []
     for pw in pendingwork:

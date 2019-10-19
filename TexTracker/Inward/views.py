@@ -43,15 +43,15 @@ def Inward_view(request):
                 pendingwork.save()
 
             
-            form = InwardForm()
+            inwardform = InwardForm()
             # print(inward_created)
             # print("Hello jvfsofdos")
             # if inward_created :
-            subject = 'Work On Your Application has been started..'
-            message = ' It Will be Completed soon '
-            email_from = settings.EMAIL_HOST_USER
-            to_list = ['meetsuthar64@gmail.com'] #inwardform.inward_client_id.client_email
-            send_mail( subject, message, email_from, to_list,fail_silently=False)
+            # subject = 'Work On Your Application has been started..'
+            # message = ' It Will be Completed soon '
+            # email_from = settings.EMAIL_HOST_USER
+            # to_list = ['meetsuthar64@gmail.com'] #inwardform.inward_client_id.client_email
+            # send_mail( subject, message, email_from, to_list,fail_silently=False)
             messages.add_message(request, messages.SUCCESS, 'Inward successfuly added with documents')
             
 
@@ -150,16 +150,18 @@ def inward_pass(request,id):
 def pass_inward_real(request,id):
     if request.method == 'POST':
         inward = Inward.objects.get(inward_id = id)
+        print(inward.inward_employeeid)
+        print(Employee.objects.get(employee_id=request.POST['emp_id']))
         inward.inward_employeeid = Employee.objects.get(employee_id=request.POST['emp_id'])
         inward.inward_track = inward.inward_track + str(inward.inward_employeeid.employee_id)+": "+request.POST['workdone']
         inward.save()
-        # Begin Mail..............
-        subject = 'Work Progress'
-        message = request.POST['workdone']+'Done by '+inward.inward_employeeid.employee_name
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['',] #inwardform.inward_client_id.client_email
-        send_mail( subject, message, email_from, recipient_list,fail_silently=False)
-        # End Mail.................
+        # # Begin Mail..............
+        # subject = 'Work Progress'
+        # message = request.POST['workdone']+'Done by '+inward.inward_employeeid.employee_name
+        # email_from = settings.EMAIL_HOST_USER
+        # recipient_list = ['',] #inwardform.inward_client_id.client_email
+        # send_mail( subject, message, email_from, recipient_list,fail_silently=False)
+        # # End Mail.................
         return redirect('dashboard')
     else:
         pass
@@ -252,3 +254,9 @@ def AdddocumentView(request):
     }
 
     return render(request, 'Inward/addfile.html', context)
+
+@login_required(login_url='login')
+def inward_track_view(request, id):
+    inwards = Inward.objects.get(inward_id = id).inward_track
+    return render(request,'Inward/inward_track.html',{'inwards':inwards})
+
