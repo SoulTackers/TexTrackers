@@ -25,7 +25,7 @@ def Inward_view(request):
         # inwardtypesform = InwardTypesForm(request.POST or None)
         inwardDocumentForm = InwardDocumentForm(request.POST or None)
         inwardPendingDocumentForm = InwardPendingDocumentForm(request.POST or None)
-
+        
 
         if inwardform.is_valid():
             # form = InwardForm(request.POST)
@@ -35,25 +35,25 @@ def Inward_view(request):
             new_inward.inward_track = str(request.user.id) + ": Created,"
             new_inward.save()
             pendingwork = PendingWorkForm(request.POST or None) #,PendingWork_employeeid=new_inward.inward_employeeid,PendingWork_inwardid=new_inward)
-
+            
             if pendingwork.is_valid():
                 pw = pendingwork.save(commit=False)
                 pw.PendingWork_employeeid = new_inward.inward_employeeid
                 pw.PendingWork_inwardid = new_inward
                 pendingwork.save()
 
-
-            form = InwardForm()
+            
+            inwardform = InwardForm()
             # print(inward_created)
             # print("Hello jvfsofdos")
             # if inward_created :
-            subject = 'Work On Your Application has been started..'
-            message = ' It Will be Completed soon '
-            email_from = settings.EMAIL_HOST_USER
-            to_list = ['meetsuthar64@gmail.com'] #inwardform.inward_client_id.client_email
-            send_mail( subject, message, email_from, to_list,fail_silently=False)
+            # subject = 'Work On Your Application has been started..'
+            # message = ' It Will be Completed soon '
+            # email_from = settings.EMAIL_HOST_USER
+            # to_list = ['meetsuthar64@gmail.com'] #inwardform.inward_client_id.client_email
+            # send_mail( subject, message, email_from, to_list,fail_silently=False)
             messages.add_message(request, messages.SUCCESS, 'Inward successfuly added with documents')
-
+            
 
         if inwardDocumentForm.is_valid():
             documentform = inwardDocumentForm.save(commit=False)
@@ -61,10 +61,10 @@ def Inward_view(request):
                 temp = inwardPendingDocumentForm.save(commit=False)
                 temp.inward = new_inward
                 temp.save()
-            documentform.inward_id = new_inward
+            documentform.inward_id = new_inward            
             documentform.save()
             inwardDocumentForm = InwardDocumentForm()
-
+            
         else:
             InwardPendingDocumentForm.inward = new_inward
             messages.warning(request, 'Document is not valid')
@@ -150,16 +150,18 @@ def inward_pass(request,id):
 def pass_inward_real(request,id):
     if request.method == 'POST':
         inward = Inward.objects.get(inward_id = id)
+        print(inward.inward_employeeid)
+        print(Employee.objects.get(employee_id=request.POST['emp_id']))
         inward.inward_employeeid = Employee.objects.get(employee_id=request.POST['emp_id'])
         inward.inward_track = inward.inward_track + str(inward.inward_employeeid.employee_id)+": "+request.POST['workdone']
         inward.save()
-        # Begin Mail..............
-        subject = 'Work Progress'
-        message = request.POST['workdone']+'Done by '+inward.inward_employeeid.employee_name
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['',] #inwardform.inward_client_id.client_email
-        send_mail( subject, message, email_from, recipient_list,fail_silently=False)
-        # End Mail.................
+        # # Begin Mail..............
+        # subject = 'Work Progress'
+        # message = request.POST['workdone']+'Done by '+inward.inward_employeeid.employee_name
+        # email_from = settings.EMAIL_HOST_USER
+        # recipient_list = ['',] #inwardform.inward_client_id.client_email
+        # send_mail( subject, message, email_from, recipient_list,fail_silently=False)
+        # # End Mail.................
         return redirect('dashboard')
     else:
         pass
@@ -251,4 +253,10 @@ def AdddocumentView(request):
         'form': p_form,
     }
 
-return render(request, 'Inward/addfile.html', context)
+    return render(request, 'Inward/addfile.html', context)
+
+@login_required(login_url='login')
+def inward_track_view(request, id):
+    inwards = Inward.objects.get(inward_id = id).inward_track
+    return render(request,'Inward/inward_track.html',{'inwards':inwards})
+

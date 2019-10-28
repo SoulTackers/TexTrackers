@@ -162,7 +162,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = 'media'
 MEDIA_URL = os.path.join(BASE_DIR, '/media/')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-#AUTH_USER_MODEL = "Authentication.CustomUser" 
+AUTH_USER_MODEL = "Authentication.CustomUser"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,"static_proj"),
@@ -172,6 +172,6 @@ REST_FRAMEWORK = {
         #'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        #'rest_framework.permissions.IsAuthenticated', 
+        #'rest_framework.permissions.IsAuthenticated',
         )
 }

@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 # Create your views here.
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def AddClientView(request):
 
     if request.method == 'POST':
