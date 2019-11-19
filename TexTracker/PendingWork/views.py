@@ -38,7 +38,9 @@ def pendingwork_update_view(request,id):
 
 @login_required(login_url='login')
 def dashboard(request):
-    pendingwork = PendingWork.objects.filter(PendingWork_employeeid = Employee.objects.get(user=request.user))
+   # pendingwork = PendingWork.objects.filter(PendingWork_employeeid = Employee.objects.get(user=request.user))
+    pendingwork = PendingWork.objects.all()
+
     inwardlist = []
     # clientlist = []
     for pw in pendingwork:
